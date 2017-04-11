@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'ReCaptcha_Example' do
+  pod 'ReCaptcha', :path => '../'
+
+  target 'ReCaptcha_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

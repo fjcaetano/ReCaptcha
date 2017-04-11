@@ -1,0 +1,40 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <script type="text/javascript">
+  var observeDOM = function(element, completion) {
+    new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutationRecord) {
+        completion();
+      });
+    })
+    .observe(element, {attributes: true, attributeFilter: ['style']})
+  };
+
+  var execute = function() {
+    observeDOM(document.getElementsByTagName("div")[3], function() {
+      window.webkit.messageHandlers.recaptcha.postMessage({action: "showReCaptcha"});
+    });
+
+    grecaptcha.execute();
+  }
+
+  var onSubmit = function(token) {
+    console.log(token);
+    window.webkit.messageHandlers.recaptcha.postMessage({token: token});
+  };
+
+  var onloadCallback = function() {
+    grecaptcha.render('submit', {
+      'sitekey' : '%@',
+      'callback' : onSubmit,
+      'size': 'invisible'
+    });
+  };
+  </script>
+</head>
+<body>
+  <span id="submit" style="visibility: hidden;"></span>
+  <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+</body>
+</html>

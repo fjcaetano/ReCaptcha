@@ -1,0 +1,48 @@
+# Xcode
+#
+# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+
+## Build generated
+build/
+DerivedData
+
+## Various settings
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+
+## Other
+*.xccheckout
+*.moved-aside
+*.xcuserstate
+*.orig
+
+## Obj-C/Swift specific
+*.hmap
+*.ipa
+
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion
+
+*.iml
+
+## Directory-based project format:
+.idea/
+.DS_Store
+
+## CocoaPods
+#Pods/
+
+html/highwinds_credentials.json
+html/node_modules/
+html/fb-*.html
+html/ios-*.html
+html/mp4-*.html
+html/player-inject-*.js
+
+.bitrise*

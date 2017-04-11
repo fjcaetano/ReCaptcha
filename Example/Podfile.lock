@@ -1,0 +1,19 @@
+PODS:
+  - ReCaptcha (0.1.0):
+    - Result (~> 3.0)
+  - Result (3.2.1)
+
+DEPENDENCIES:
+  - ReCaptcha (from `../`)
+
+EXTERNAL SOURCES:
+  ReCaptcha:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ReCaptcha: d9912029dfd0988054ec6f1237098a19ef694fd0
+  Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
+
+PODFILE CHECKSUM: 816c00f9db90d74940892ce0fa0bcc81d31a3270
+
+COCOAPODS: 1.2.0.beta.3
