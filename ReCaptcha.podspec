@@ -22,9 +22,8 @@ Add Google invisible ReCaptcha to your app
                        DESC
 
   s.homepage         = 'https://github.com/fjcaetano/ReCaptcha'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'fjcaetano' => 'flavio@vieiracaetano.com' }
+  s.author           = { 'Flávio Caetano' => 'flavio@vieiracaetano.com' }
   s.source           = { :git => 'https://github.com/fjcaetano/ReCaptcha.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/flavio_caetano'
 

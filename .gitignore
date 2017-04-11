@@ -36,13 +36,6 @@ xcuserdata
 .DS_Store
 
 ## CocoaPods
-**/Pods/
+Pods/
 
-html/highwinds_credentials.json
-html/node_modules/
-html/fb-*.html
-html/ios-*.html
-html/mp4-*.html
-html/player-inject-*.js
-
-.bitrise*
+docs/

@@ -1,6 +1,6 @@
 # ReCaptcha
 
-[![CI Status](http://img.shields.io/travis/fjcaetano/ReCaptcha.svg?style=flat)](https://travis-ci.org/fjcaetano/ReCaptcha)
+# [![CI Status](http://img.shields.io/travis/fjcaetano/ReCaptcha.svg?style=flat)](https://travis-ci.org/fjcaetano/ReCaptcha)
 [![Version](https://img.shields.io/cocoapods/v/ReCaptcha.svg?style=flat)](http://cocoapods.org/pods/ReCaptcha)
 [![License](https://img.shields.io/cocoapods/l/ReCaptcha.svg?style=flat)](http://cocoapods.org/pods/ReCaptcha)
 [![Platform](https://img.shields.io/cocoapods/p/ReCaptcha.svg?style=flat)](http://cocoapods.org/pods/ReCaptcha)
@@ -25,11 +25,13 @@ pod "ReCaptcha"
 Simply add `ReCaptchaKey` and `ReCaptchaDomain` to your Info.plist and run:
 
 ``` swift
+let recaptcha = try? ReCaptcha()
+
 override func viewDidLoad() {
     super.viewDidLoad()
 
-    recaptcha.presenterView = view
-    recaptcha.configureWebView { [weak self] webview in
+    recaptcha?.presenterView = view
+    recaptcha?.configureWebView { [weak self] webview in
         webview.frame = self?.view.bounds ?? CGRect.zero
         webview.tag = ViewController.webViewTag
     }
@@ -37,7 +39,7 @@ override func viewDidLoad() {
 
 
 func validate() {
-    recaptcha.validate { [weak self] result in
+    recaptcha?.validate { [weak self] result in
         print(try? result.dematerialize())
     }
 }
