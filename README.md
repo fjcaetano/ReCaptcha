@@ -38,7 +38,7 @@ override func viewDidLoad() {
 
 func validate() {
     recaptcha.validate { [weak self] result in
-        dprint(try? result.dematerialize())
+        print(try? result.dematerialize())
     }
 }
 ```

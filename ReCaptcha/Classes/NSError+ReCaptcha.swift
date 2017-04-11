@@ -8,8 +8,11 @@
 
 import Foundation
 
-
+/// The domain for ReCaptcha's errors
 fileprivate let kErrorDomain = "com.flaviocaetano.ReCaptcha"
+
+/** 
+ */
 extension NSError {
     enum Code: Int {
         case undefined

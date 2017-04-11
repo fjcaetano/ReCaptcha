@@ -1,7 +1,10 @@
+platform :ios, 8.3
+
 use_frameworks!
 
 target 'ReCaptcha_Example' do
-  pod 'ReCaptcha', :path => '../'
+  pod 'ReCaptcha/RxSwift', :path => '../'
+  pod 'RxCocoa', '~> 3.0'
 
   target 'ReCaptcha_Tests' do
     inherit! :search_paths

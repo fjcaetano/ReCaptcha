@@ -9,12 +9,15 @@
 import UIKit
 import ReCaptcha
 import Result
+import RxSwift
+import RxCocoa
 
 
 class ViewController: UIViewController {
     fileprivate static let webViewTag = 123
     
     fileprivate let recaptcha = try! ReCaptcha()
+    fileprivate var disposeBag = DisposeBag()
     
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
@@ -32,15 +35,33 @@ class ViewController: UIViewController {
     
     
     @IBAction func didPressButton(button: UIButton) {
-        spinner.startAnimating()
-        button.isEnabled = false
+        disposeBag = DisposeBag()
         
-        recaptcha.validate { [weak self] result in
-            self?.spinner.stopAnimating()
+        button.isEnabled = false
+
+        let validate = recaptcha.rx.validate()
+            .debug("validate")
+            .share()
             
-            self?.label.text = try? result.dematerialize()
-            self?.view.viewWithTag(ViewController.webViewTag)?.removeFromSuperview()
-        }
+        validate
+            .map { _ in false }
+            .startWith(true)
+            .bindTo(spinner.rx.isAnimating)
+            .disposed(by: disposeBag)
+            
+        validate
+            .map { [weak self] _ in
+                self?.view.viewWithTag(ViewController.webViewTag)
+            }
+            .subscribe(onNext: { subview in
+                subview?.removeFromSuperview()
+            })
+            .disposed(by: disposeBag)
+            
+        validate
+            .map { try $0.dematerialize() }
+            .bindTo(label.rx.text)
+            .disposed(by: disposeBag)
     }
 }
 

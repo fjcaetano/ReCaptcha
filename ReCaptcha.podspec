@@ -29,14 +29,21 @@ Add Google invisible ReCaptcha to your app
   s.social_media_url = 'https://twitter.com/flavio_caetano'
 
   s.ios.deployment_target = '8.0'
-
-  s.source_files = 'ReCaptcha/Classes/**/*'
+  s.default_subspecs = 'Core'
   
 # s.resource_bundles = {
 #   'ReCaptcha' => ['ReCaptcha/Assets/*']
 # }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  s.frameworks = 'WebKit'
-  s.dependency 'Result', '~> 3.0'
+  s.subspec 'Core' do |core|
+    core.source_files = 'ReCaptcha/Classes/*'
+    core.frameworks = 'WebKit'
+    core.dependency 'Result', '~> 3.0'
+  end
+
+  s.subspec 'RxSwift' do |rx|
+    rx.source_files = 'ReCaptcha/Classes/Rx/**/*'
+    rx.dependency 'ReCaptcha/Core'
+    rx.dependency 'RxSwift', '~> 3.0'
+  end
 end

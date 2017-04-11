@@ -36,7 +36,7 @@ xcuserdata
 .DS_Store
 
 ## CocoaPods
-#Pods/
+**/Pods/
 
 html/highwinds_credentials.json
 html/node_modules/

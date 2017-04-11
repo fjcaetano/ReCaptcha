@@ -1,6 +1,0 @@
-framework module Pods_ReCaptcha_Tests {
-  umbrella header "Pods-ReCaptcha_Tests-umbrella.h"
-
-  export *
-  module * { export * }
-}
