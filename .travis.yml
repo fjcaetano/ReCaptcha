@@ -1,0 +1,12 @@
+osx_image: xcode8.2
+language: objective-c
+
+podfile: Example/Podfile
+
+install:
+- if [[ ! $(which xcpretty) ]]; then gem install xcpretty --user-install; fi;
+
+script:
+- xcodebuild -workspace Example/ReCaptcha.xcworkspace -scheme ReCaptcha-Example -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.2' build | xcpretty
+- xcodebuild -workspace Example/ReCaptcha.xcworkspace -scheme ReCaptcha-Example -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.2' test | xcpretty
+- pod lib lint --no-clean --quick

@@ -15,6 +15,7 @@
 		BD850CB2DF4C9C94FC51226C /* Pods_ReCaptcha_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62BEEA62161F672468CCFD64 /* Pods_ReCaptcha_Example.framework */; };
 		D091B6E053FD250B4757E34C /* Pods_ReCaptcha_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9417A28DC340FF0BC1627B3F /* Pods_ReCaptcha_Tests.framework */; };
 		F2ECCF841E9FC4BA0097B199 /* NSError+ReCaptcha__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECCF831E9FC4BA0097B199 /* NSError+ReCaptcha__Tests.swift */; };
+		F2ECCF881E9FCE930097B199 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = F2ECCF871E9FCE930097B199 /* .travis.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		F2ECCF761E9FC47B0097B199 /* ReCaptcha_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReCaptcha_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2ECCF7A1E9FC47B0097B199 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2ECCF831E9FC4BA0097B199 /* NSError+ReCaptcha__Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+ReCaptcha__Tests.swift"; sourceTree = "<group>"; };
+		F2ECCF871E9FCE930097B199 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				62C1DD0E80E9920845E5DA51 /* ReCaptcha.podspec */,
 				0A2D0E5B4C6E445BF971488B /* README.md */,
 				C8537003ECC47117AF54DCA9 /* LICENSE */,
+				F2ECCF871E9FCE930097B199 /* .travis.yml */,
 			);
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				F2ECCF881E9FCE930097B199 /* .travis.yml in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -588,6 +592,7 @@
 				F2ECCF7F1E9FC47B0097B199 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
