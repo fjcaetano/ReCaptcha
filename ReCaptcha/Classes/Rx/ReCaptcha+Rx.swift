@@ -20,9 +20,9 @@ public extension Reactive where Base: ReCaptcha {
     - See:
      [ReCaptchaWebViewManager.validate](../Classes/ReCaptchaWebViewManager.html#/s:FC9ReCaptcha23ReCaptchaWebViewManager8validateFT10completionFGO6Result6ResultSSCSo7NSError_T__T_)
     */
-    public func validate() -> Observable<Base.Response> {
+    public func validate(on view: UIView) -> Observable<Base.Response> {
         return Observable<Base.Response>.create { [weak base] (observer: AnyObserver<Base.Response>) in
-            base?.validate { response in
+            base?.validate(on: view) { response in
                 observer.onNext(response)
                 observer.onCompleted()
             }

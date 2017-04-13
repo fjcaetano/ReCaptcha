@@ -17,6 +17,8 @@
 		F2ECCF841E9FC4BA0097B199 /* NSError+ReCaptcha__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECCF831E9FC4BA0097B199 /* NSError+ReCaptcha__Tests.swift */; };
 		F2ECCF881E9FCE930097B199 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = F2ECCF871E9FCE930097B199 /* .travis.yml */; };
 		F2ECCF8A1E9FCEFE0097B199 /* ReCaptchaDecoder__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECCF891E9FCEFE0097B199 /* ReCaptchaDecoder__Tests.swift */; };
+		F2ECCF8C1E9FE37C0097B199 /* mock.html in Resources */ = {isa = PBXBuildFile; fileRef = F2ECCF8B1E9FE37C0097B199 /* mock.html */; };
+		F2ECCF8E1E9FE68C0097B199 /* ReCaptchaWebViewManager__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECCF8D1E9FE68C0097B199 /* ReCaptchaWebViewManager__Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		F2ECCF831E9FC4BA0097B199 /* NSError+ReCaptcha__Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+ReCaptcha__Tests.swift"; sourceTree = "<group>"; };
 		F2ECCF871E9FCE930097B199 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
 		F2ECCF891E9FCEFE0097B199 /* ReCaptchaDecoder__Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReCaptchaDecoder__Tests.swift; sourceTree = "<group>"; };
+		F2ECCF8B1E9FE37C0097B199 /* mock.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = mock.html; sourceTree = "<group>"; };
+		F2ECCF8D1E9FE68C0097B199 /* ReCaptchaWebViewManager__Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReCaptchaWebViewManager__Tests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +145,7 @@
 		F2ECCF771E9FC47B0097B199 /* ReCaptcha_Tests */ = {
 			isa = PBXGroup;
 			children = (
+				F2ECCF8B1E9FE37C0097B199 /* mock.html */,
 				F2ECCF821E9FC4AC0097B199 /* Core */,
 				F2ECCF7A1E9FC47B0097B199 /* Info.plist */,
 			);
@@ -152,6 +157,7 @@
 			children = (
 				F2ECCF831E9FC4BA0097B199 /* NSError+ReCaptcha__Tests.swift */,
 				F2ECCF891E9FCEFE0097B199 /* ReCaptchaDecoder__Tests.swift */,
+				F2ECCF8D1E9FE68C0097B199 /* ReCaptchaWebViewManager__Tests.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -266,6 +272,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2ECCF8C1E9FE37C0097B199 /* mock.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2ECCF8E1E9FE68C0097B199 /* ReCaptchaWebViewManager__Tests.swift in Sources */,
 				F2ECCF8A1E9FCEFE0097B199 /* ReCaptchaDecoder__Tests.swift in Sources */,
 				F2ECCF841E9FC4BA0097B199 /* NSError+ReCaptcha__Tests.swift in Sources */,
 			);
