@@ -39,7 +39,7 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
         var result1: ReCaptchaWebViewManager.Response?
         
         // Validate
-        let manager = ReCaptchaWebViewManager(html: loadHTML(with: "{token: key}"), apiKey: apiKey, baseURL: URL(string: "http://localhost")!)
+        let manager = ReCaptchaWebViewManager(messageBody: "{token: key}", apiKey: apiKey)
         manager.configureWebView { _ in
             XCTFail("should not ask to configure the webview")
         }
@@ -82,7 +82,7 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
         let exp = expectation(description: "show recaptcha")
         
         // Validate
-        let manager = ReCaptchaWebViewManager(html: loadHTML(with: "{action: \"showReCaptcha\"}"), apiKey: apiKey, baseURL: URL(string: "http://localhost")!)
+        let manager = ReCaptchaWebViewManager(messageBody: "{action: \"showReCaptcha\"}")
         manager.configureWebView { _ in
             exp.fulfill()
         }
@@ -97,10 +97,10 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
     
     func test__Validate__Message_Error() {
         var result: ReCaptchaWebViewManager.Response?
-        let exp = expectation(description: "show recaptcha")
+        let exp = expectation(description: "message error")
         
         // Validate
-        let manager = ReCaptchaWebViewManager(html: loadHTML(with: "\"foobar\""), apiKey: apiKey, baseURL: URL(string: "http://localhost")!)
+        let manager = ReCaptchaWebViewManager(messageBody: "\"foobar\"")
         manager.configureWebView { _ in
             XCTFail("should not ask to configure the webview")
         }
@@ -120,10 +120,10 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
     
     func test__Validate__JS_Error() {
         var result: ReCaptchaWebViewManager.Response?
-        let exp = expectation(description: "show recaptcha")
+        let exp = expectation(description: "js error")
         
         // Validate
-        let manager = ReCaptchaWebViewManager(html: loadHTML(with: "foobar"), apiKey: apiKey, baseURL: URL(string: "http://localhost")!)
+        let manager = ReCaptchaWebViewManager(messageBody: "foobar")
         manager.configureWebView { _ in
             XCTFail("should not ask to configure the webview")
         }
@@ -144,10 +144,10 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
     // MARK: Configure WebView
     
     func test__Configure_Web_View__Empty() {
-        let exp = expectation(description: "show recaptcha")
+        let exp = expectation(description: "configure webview")
         
         // Configure WebView
-        let manager = ReCaptchaWebViewManager(html: loadHTML(with: "{action: \"showReCaptcha\"}"), apiKey: apiKey, baseURL: URL(string: "http://localhost")!)
+        let manager = ReCaptchaWebViewManager(messageBody: "{action: \"showReCaptcha\"}")
         manager.validate(on: presenterView) { response in
             XCTFail("should not call completion")
         }
@@ -160,10 +160,10 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
     }
     
     func test__Configure_Web_View() {
-        let exp = expectation(description: "show recaptcha")
+        let exp = expectation(description: "configure webview")
         
         // Configure WebView
-        let manager = ReCaptchaWebViewManager(html: loadHTML(with: "{action: \"showReCaptcha\"}"), apiKey: apiKey, baseURL: URL(string: "http://localhost")!)
+        let manager = ReCaptchaWebViewManager(messageBody: "{action: \"showReCaptcha\"}")
         manager.configureWebView { [unowned self] webView in
             XCTAssertEqual(webView.superview, self.presenterView)
             exp.fulfill()
@@ -179,10 +179,10 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
     // MARK: Stop
     
     func test__Stop() {
-        let exp = expectation(description: "load token")
+        let exp = expectation(description: "stop loading")
         
         // Stop
-        let manager = ReCaptchaWebViewManager(html: loadHTML(with: "{token: key}"), apiKey: apiKey, baseURL: URL(string: "http://localhost")!)
+        let manager = ReCaptchaWebViewManager(messageBody: "{action: \"showReCaptcha\"}")
         manager.stop()
         manager.configureWebView { _ in
             XCTFail("should not ask to configure the webview")
@@ -197,28 +197,5 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
         }
         
         waitForExpectations(timeout: 3)
-    }
-}
-
-
-// MARK: - Private Methods
-fileprivate extension ReCaptchaWebViewManager__Tests {
-    func loadHTML(with messageBody: String) -> String {
-        let htmlPath = Bundle(for: ReCaptchaWebViewManager__Tests.self).path(forResource: "mock", ofType: "html")
-        return String(format: try! String(contentsOfFile: htmlPath!), "%@", messageBody)
-    }
-}
-
-
-// MARK: - Result Helpers
-extension Result {
-    var value: T? {
-        guard case .success(let value) = self else { return nil }
-        return value
-    }
-    
-    var error: Error? {
-        guard case .failure(let error) = self else { return nil }
-        return error
     }
 }

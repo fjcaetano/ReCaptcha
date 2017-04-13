@@ -9,13 +9,15 @@
 import RxSwift
 
 
-/** Provides a public extension on ReCaptcha that makes it reactive.
+/** Provides a public extension on ReCaptchaWebViewManager that makes it reactive.
 */
-public extension Reactive where Base: ReCaptcha {
+public extension Reactive where Base: ReCaptchaWebViewManager {
     
     /** Starts the challenge validation uppon subscription.
      
-    The stream's element is a `Result<String, NSError>` that may contain a valid token.
+     The stream's element is a `Result<String, NSError>` that may contain a valid token.
+     
+     Sends `stop()` uppon disposal.
     
     - See:
      [ReCaptchaWebViewManager.validate](../Classes/ReCaptchaWebViewManager.html#/s:FC9ReCaptcha23ReCaptchaWebViewManager8validateFT10completionFGO6Result6ResultSSCSo7NSError_T__T_)

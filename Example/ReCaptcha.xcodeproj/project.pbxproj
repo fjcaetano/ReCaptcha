@@ -20,6 +20,9 @@
 		F2ECCF8C1E9FE37C0097B199 /* mock.html in Resources */ = {isa = PBXBuildFile; fileRef = F2ECCF8B1E9FE37C0097B199 /* mock.html */; };
 		F2ECCF8E1E9FE68C0097B199 /* ReCaptchaWebViewManager__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECCF8D1E9FE68C0097B199 /* ReCaptchaWebViewManager__Tests.swift */; };
 		F2ECCF901EA008C20097B199 /* codecov.yml in Resources */ = {isa = PBXBuildFile; fileRef = F2ECCF8F1EA008C20097B199 /* codecov.yml */; };
+		F2ECCF931EA009360097B199 /* ReCaptcha+Rx__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECCF921EA009360097B199 /* ReCaptcha+Rx__Tests.swift */; };
+		F2ECCF961EA00A5B0097B199 /* ReCaptchaWebViewManager+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECCF951EA00A5B0097B199 /* ReCaptchaWebViewManager+Helpers.swift */; };
+		F2ECCF981EA011370097B199 /* Result+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECCF971EA011370097B199 /* Result+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,9 @@
 		F2ECCF8B1E9FE37C0097B199 /* mock.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = mock.html; sourceTree = "<group>"; };
 		F2ECCF8D1E9FE68C0097B199 /* ReCaptchaWebViewManager__Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReCaptchaWebViewManager__Tests.swift; sourceTree = "<group>"; };
 		F2ECCF8F1EA008C20097B199 /* codecov.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = codecov.yml; path = ../codecov.yml; sourceTree = "<group>"; };
+		F2ECCF921EA009360097B199 /* ReCaptcha+Rx__Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ReCaptcha+Rx__Tests.swift"; sourceTree = "<group>"; };
+		F2ECCF951EA00A5B0097B199 /* ReCaptchaWebViewManager+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ReCaptchaWebViewManager+Helpers.swift"; sourceTree = "<group>"; };
+		F2ECCF971EA011370097B199 /* Result+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Result+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +156,8 @@
 			children = (
 				F2ECCF8B1E9FE37C0097B199 /* mock.html */,
 				F2ECCF821E9FC4AC0097B199 /* Core */,
+				F2ECCF911EA009220097B199 /* RxSwift */,
+				F2ECCF941EA00A4A0097B199 /* Helpers */,
 				F2ECCF7A1E9FC47B0097B199 /* Info.plist */,
 			);
 			path = ReCaptcha_Tests;
@@ -163,6 +171,23 @@
 				F2ECCF8D1E9FE68C0097B199 /* ReCaptchaWebViewManager__Tests.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		F2ECCF911EA009220097B199 /* RxSwift */ = {
+			isa = PBXGroup;
+			children = (
+				F2ECCF921EA009360097B199 /* ReCaptcha+Rx__Tests.swift */,
+			);
+			path = RxSwift;
+			sourceTree = "<group>";
+		};
+		F2ECCF941EA00A4A0097B199 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F2ECCF951EA00A5B0097B199 /* ReCaptchaWebViewManager+Helpers.swift */,
+				F2ECCF971EA011370097B199 /* Result+Helpers.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		FDC29111B59FAB9F0F44DADB /* Frameworks */ = {
@@ -389,7 +414,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2ECCF961EA00A5B0097B199 /* ReCaptchaWebViewManager+Helpers.swift in Sources */,
 				F2ECCF8E1E9FE68C0097B199 /* ReCaptchaWebViewManager__Tests.swift in Sources */,
+				F2ECCF981EA011370097B199 /* Result+Helpers.swift in Sources */,
+				F2ECCF931EA009360097B199 /* ReCaptcha+Rx__Tests.swift in Sources */,
 				F2ECCF8A1E9FCEFE0097B199 /* ReCaptchaDecoder__Tests.swift in Sources */,
 				F2ECCF841E9FC4BA0097B199 /* NSError+ReCaptcha__Tests.swift in Sources */,
 			);
