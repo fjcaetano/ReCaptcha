@@ -3,6 +3,9 @@ language: objective-c
 
 podfile: Example/Podfile
 
+before_install:
+  - gem install cocoapods -v '1.2.1'
+
 # install:
 #   - if [[ ! $(which xcpretty) ]]; then gem install xcpretty --user-install; fi;
 
