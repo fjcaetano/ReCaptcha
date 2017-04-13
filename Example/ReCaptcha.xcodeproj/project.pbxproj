@@ -16,6 +16,7 @@
 		D091B6E053FD250B4757E34C /* Pods_ReCaptcha_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9417A28DC340FF0BC1627B3F /* Pods_ReCaptcha_Tests.framework */; };
 		F2ECCF841E9FC4BA0097B199 /* NSError+ReCaptcha__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECCF831E9FC4BA0097B199 /* NSError+ReCaptcha__Tests.swift */; };
 		F2ECCF881E9FCE930097B199 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = F2ECCF871E9FCE930097B199 /* .travis.yml */; };
+		F2ECCF8A1E9FCEFE0097B199 /* ReCaptchaDecoder__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECCF891E9FCEFE0097B199 /* ReCaptchaDecoder__Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		F2ECCF7A1E9FC47B0097B199 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2ECCF831E9FC4BA0097B199 /* NSError+ReCaptcha__Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+ReCaptcha__Tests.swift"; sourceTree = "<group>"; };
 		F2ECCF871E9FCE930097B199 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
+		F2ECCF891E9FCEFE0097B199 /* ReCaptchaDecoder__Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReCaptchaDecoder__Tests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				F2ECCF831E9FC4BA0097B199 /* NSError+ReCaptcha__Tests.swift */,
+				F2ECCF891E9FCEFE0097B199 /* ReCaptchaDecoder__Tests.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2ECCF8A1E9FCEFE0097B199 /* ReCaptchaDecoder__Tests.swift in Sources */,
 				F2ECCF841E9FC4BA0097B199 /* NSError+ReCaptcha__Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
