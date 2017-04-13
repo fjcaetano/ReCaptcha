@@ -19,6 +19,7 @@
 		F2ECCF8A1E9FCEFE0097B199 /* ReCaptchaDecoder__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECCF891E9FCEFE0097B199 /* ReCaptchaDecoder__Tests.swift */; };
 		F2ECCF8C1E9FE37C0097B199 /* mock.html in Resources */ = {isa = PBXBuildFile; fileRef = F2ECCF8B1E9FE37C0097B199 /* mock.html */; };
 		F2ECCF8E1E9FE68C0097B199 /* ReCaptchaWebViewManager__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECCF8D1E9FE68C0097B199 /* ReCaptchaWebViewManager__Tests.swift */; };
+		F2ECCF901EA008C20097B199 /* codecov.yml in Resources */ = {isa = PBXBuildFile; fileRef = F2ECCF8F1EA008C20097B199 /* codecov.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		F2ECCF891E9FCEFE0097B199 /* ReCaptchaDecoder__Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReCaptchaDecoder__Tests.swift; sourceTree = "<group>"; };
 		F2ECCF8B1E9FE37C0097B199 /* mock.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = mock.html; sourceTree = "<group>"; };
 		F2ECCF8D1E9FE68C0097B199 /* ReCaptchaWebViewManager__Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReCaptchaWebViewManager__Tests.swift; sourceTree = "<group>"; };
+		F2ECCF8F1EA008C20097B199 /* codecov.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = codecov.yml; path = ../codecov.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 				0A2D0E5B4C6E445BF971488B /* README.md */,
 				C8537003ECC47117AF54DCA9 /* LICENSE */,
 				F2ECCF871E9FCE930097B199 /* .travis.yml */,
+				F2ECCF8F1EA008C20097B199 /* codecov.yml */,
 			);
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				F2ECCF901EA008C20097B199 /* codecov.yml in Resources */,
 				F2ECCF881E9FCE930097B199 /* .travis.yml in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
