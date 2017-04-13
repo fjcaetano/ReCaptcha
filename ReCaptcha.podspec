@@ -29,15 +29,15 @@ Add Google invisible ReCaptcha to your app
 
   s.ios.deployment_target = '8.0'
   s.default_subspecs = 'Core'
-  
-# s.resource_bundles = {
-#   'ReCaptcha' => ['ReCaptcha/Assets/*']
-# }
 
   s.subspec 'Core' do |core|
     core.source_files = 'ReCaptcha/Classes/*'
     core.frameworks = 'WebKit'
     core.dependency 'Result', '~> 3.0'
+
+    core.resource_bundles = {
+      'ReCaptcha' => ['ReCaptcha/Assets/**/*']
+    }
   end
 
   s.subspec 'RxSwift' do |rx|

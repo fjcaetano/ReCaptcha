@@ -20,9 +20,6 @@ open class ReCaptchaWebViewManager: NSObject {
         static let ExecuteJSCommand = "execute();"
     }
     
-    /// The view in which the webview may be presented.
-    open weak var presenterView: UIView?
-    
     
     fileprivate var completion: ((Response) -> Void)?
     fileprivate var configureWebView: ((WKWebView) -> Void)?
@@ -50,7 +47,8 @@ open class ReCaptchaWebViewManager: NSObject {
             self?.handle(result: result)
         }
         
-        webView.loadHTMLString(String(format: html, apiKey), baseURL: baseURL)
+        let formattedHTML = String(format: html, apiKey)
+        webView.loadHTMLString(formattedHTML, baseURL: baseURL)
     }
     
     
@@ -58,8 +56,11 @@ open class ReCaptchaWebViewManager: NSObject {
      
     - parameter completion: A closure that receives a Result<String, NSError> which may contain a valid result token.
     */
-    open func validate(completion: @escaping (Response) -> Void) {
+    open func validate(on view: UIView, completion: @escaping (Response) -> Void) {
         self.completion = completion
+        
+        webView.removeFromSuperview()
+        view.addSubview(webView)
         
         execute()
     }
@@ -96,8 +97,6 @@ extension ReCaptchaWebViewManager: WKNavigationDelegate {
      */
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         didFinishLoading = true
-        
-        presenterView?.addSubview(webView)
         
         if completion != nil {
             // User has requested for validation

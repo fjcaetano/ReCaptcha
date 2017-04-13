@@ -26,7 +26,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        recaptcha.presenterView = view
         recaptcha.configureWebView { [weak self] webview in
             webview.frame = self?.view.bounds ?? CGRect.zero
             webview.tag = ViewController.webViewTag
@@ -39,7 +38,7 @@ class ViewController: UIViewController {
         
         button.isEnabled = false
 
-        let validate = recaptcha.rx.validate()
+        let validate = recaptcha.rx.validate(on: view)
             .debug("validate")
             .share()
             
