@@ -9,7 +9,7 @@
 import Foundation
 
 /// The domain for ReCaptcha's errors
-fileprivate let kErrorDomain = "com.flaviocaetano.ReCaptcha"
+let kReCaptchaErrorDomain = "com.flaviocaetano.ReCaptcha"
 
 /** Adds enum codes to ReCaptcha's errors
  */
@@ -23,7 +23,7 @@ extension NSError {
      - baseURLNotFound: ReCaptchaDomain was not provided
      - wrongMessageFormat: Received an unexpeted message from javascript
     */
-    enum ReCaptchaCode: Int {
+    enum ReCaptchaCode: Int, CustomStringConvertible {
         /// Unexpected error
         case undefined
         
@@ -38,11 +38,33 @@ extension NSError {
         
         /// Received an unexpeted message from javascript
         case wrongMessageFormat
+        
+        
+        /// A human-readable description for each error
+        var description: String {
+            switch self {
+            case .undefined:
+                return "Unexpected Error"
+                
+            case .htmlLoadError:
+                return "Could not load embedded HTML"
+                
+            case .apiKeyNotFound:
+                return "ReCaptchaKey not provided"
+                
+            case .baseURLNotFound:
+                return "ReCaptchaDomain not provided"
+                
+            case .wrongMessageFormat:
+                return "Unexpected message from javascript"
+            }
+        }
     }
     
     
     /// The error ReCaptchaCode
     var rc_code: ReCaptchaCode? {
+        guard domain == kReCaptchaErrorDomain else { return nil }
         return ReCaptchaCode(rawValue: code)
     }
     
@@ -52,6 +74,9 @@ extension NSError {
     - parameter userInfo: The error's userInfo
     */
     convenience init(code: ReCaptchaCode, userInfo: [AnyHashable: Any]? = nil) {
-        self.init(domain: kErrorDomain, code: code.rawValue, userInfo: userInfo)
+        var info = userInfo ?? [:]
+        info[NSLocalizedDescriptionKey] = code.description
+        
+        self.init(domain: kReCaptchaErrorDomain, code: code.rawValue, userInfo: info)
     }
 }

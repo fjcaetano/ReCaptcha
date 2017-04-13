@@ -37,8 +37,9 @@ open class ReCaptcha: ReCaptchaWebViewManager {
         - Rethrows any exceptions thrown by `String(contentsOfFile:)`
     */
     public init(apiKey: String? = nil, baseURL: URL? = nil) throws {
-        guard let filePath = Bundle(for: ReCaptcha.self).path(forResource: "recaptcha", ofType: "html") else {
-            throw NSError(code: .htmlLoadError)
+        guard let bundlePath = Bundle(for: ReCaptcha.self).path(forResource: "ReCaptcha", ofType: "bundle"),
+            let filePath = Bundle(path: bundlePath)?.path(forResource: "recaptcha", ofType: "html") else {
+                throw NSError(code: .htmlLoadError)
         }
         
         // Fetches from info.plist

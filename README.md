@@ -32,7 +32,6 @@ override func viewDidLoad() {
     recaptcha?.presenterView = view
     recaptcha?.configureWebView { [weak self] webview in
         webview.frame = self?.view.bounds ?? CGRect.zero
-        webview.tag = ViewController.webViewTag
     }
 }
 

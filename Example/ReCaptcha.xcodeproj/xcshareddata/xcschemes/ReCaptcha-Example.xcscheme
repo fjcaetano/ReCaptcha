@@ -22,13 +22,13 @@
          </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
-            buildForRunning = "YES"
+            buildForRunning = "NO"
             buildForProfiling = "NO"
             buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
+            buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607FACE41AFB9204008FA782"
+               BlueprintIdentifier = "F2ECCF751E9FC47B0097B199"
                BuildableName = "ReCaptcha_Tests.xctest"
                BlueprintName = "ReCaptcha_Tests"
                ReferencedContainer = "container:ReCaptcha.xcodeproj">
@@ -40,13 +40,14 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607FACE41AFB9204008FA782"
+               BlueprintIdentifier = "F2ECCF751E9FC47B0097B199"
                BuildableName = "ReCaptcha_Tests.xctest"
                BlueprintName = "ReCaptcha_Tests"
                ReferencedContainer = "container:ReCaptcha.xcodeproj">
