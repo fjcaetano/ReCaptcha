@@ -53,8 +53,10 @@ open class ReCaptchaWebViewManager: NSObject {
     
     
     /** Starts the challenge validation
-     
-    - parameter completion: A closure that receives a Result<String, NSError> which may contain a valid result token.
+     - parameters:
+        - view: The view that presents the webview.
+        - completion: A closure that receives a Result<String, NSError> which may contain a valid result token.
+    
     */
     open func validate(on view: UIView, completion: @escaping (Response) -> Void) {
         self.completion = completion

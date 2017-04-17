@@ -23,7 +23,6 @@
 		F2ECCF931EA009360097B199 /* ReCaptcha+Rx__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECCF921EA009360097B199 /* ReCaptcha+Rx__Tests.swift */; };
 		F2ECCF961EA00A5B0097B199 /* ReCaptchaWebViewManager+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECCF951EA00A5B0097B199 /* ReCaptchaWebViewManager+Helpers.swift */; };
 		F2ECCF981EA011370097B199 /* Result+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECCF971EA011370097B199 /* Result+Helpers.swift */; };
-		F2ECCF9A1EA015030097B199 /* CHANGELOG.md in Sources */ = {isa = PBXBuildFile; fileRef = F2ECCF991EA015030097B199 /* CHANGELOG.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +63,6 @@
 		F2ECCF921EA009360097B199 /* ReCaptcha+Rx__Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ReCaptcha+Rx__Tests.swift"; sourceTree = "<group>"; };
 		F2ECCF951EA00A5B0097B199 /* ReCaptchaWebViewManager+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ReCaptchaWebViewManager+Helpers.swift"; sourceTree = "<group>"; };
 		F2ECCF971EA011370097B199 /* Result+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Result+Helpers.swift"; sourceTree = "<group>"; };
-		F2ECCF991EA015030097B199 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,7 +134,6 @@
 				62C1DD0E80E9920845E5DA51 /* ReCaptcha.podspec */,
 				0A2D0E5B4C6E445BF971488B /* README.md */,
 				C8537003ECC47117AF54DCA9 /* LICENSE */,
-				F2ECCF991EA015030097B199 /* CHANGELOG.md */,
 				F2ECCF871E9FCE930097B199 /* .travis.yml */,
 				F2ECCF8F1EA008C20097B199 /* codecov.yml */,
 			);

@@ -1,16 +1,18 @@
 PODS:
-  - ReCaptcha/Core (0.1.0):
+  - ReCaptcha/Core (0.2.0):
     - Result (~> 3.0)
-  - ReCaptcha/RxSwift (0.1.0):
+  - ReCaptcha/RxSwift (0.2.0):
     - ReCaptcha/Core
     - RxSwift (~> 3.0)
   - Result (3.2.1)
+  - Reveal-iOS-SDK (1.6.2)
   - RxCocoa (3.3.1):
     - RxSwift (~> 3.3)
   - RxSwift (3.3.1)
 
 DEPENDENCIES:
   - ReCaptcha/RxSwift (from `../`)
+  - Reveal-iOS-SDK
   - RxCocoa (~> 3.0)
 
 EXTERNAL SOURCES:
@@ -18,11 +20,12 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ReCaptcha: 95abbd66b5d508cc4e0f95e16e6b4adf7bc47710
+  ReCaptcha: b268b6a643738b6b61af5a91624bde553c42c793
   Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
+  Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
   RxCocoa: 7dcb7a1860fc9cd0e23dae67ab105fc2916670b6
   RxSwift: 8fc9f2de6275a9101d518444e00bf32f1a42caac
 
-PODFILE CHECKSUM: 7fc7411eb4b5e8324cd4e09beee56bbca1d658c4
+PODFILE CHECKSUM: f6cc03ba7ea1618eb558a844bb8e714e00af63ba
 
 COCOAPODS: 1.2.1

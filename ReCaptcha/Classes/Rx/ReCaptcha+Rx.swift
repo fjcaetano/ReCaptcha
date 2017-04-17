@@ -20,7 +20,7 @@ public extension Reactive where Base: ReCaptchaWebViewManager {
      Sends `stop()` uppon disposal.
     
     - See:
-     [ReCaptchaWebViewManager.validate](../Classes/ReCaptchaWebViewManager.html#/s:FC9ReCaptcha23ReCaptchaWebViewManager8validateFT10completionFGO6Result6ResultSSCSo7NSError_T__T_)
+     [ReCaptchaWebViewManager.validate(on:completion:)](../Classes/ReCaptchaWebViewManager.html#/s:FC9ReCaptcha23ReCaptchaWebViewManager8validateFT2onCSo6UIView10completionFGO6Result6ResultSSCSo7NSError_T__T_)
     */
     public func validate(on view: UIView) -> Observable<Base.Response> {
         return Observable<Base.Response>.create { [weak base] (observer: AnyObserver<Base.Response>) in
