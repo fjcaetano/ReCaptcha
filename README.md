@@ -20,6 +20,8 @@ ReCaptcha is available through [CocoaPods](http://cocoapods.org). To install it,
 Podfile:
 
 ``` ruby
+pod "ReCaptcha"
+# or
 pod "ReCaptcha/RxSwift"
 ```
 
@@ -33,15 +35,14 @@ let recaptcha = try? ReCaptcha()
 override func viewDidLoad() {
     super.viewDidLoad()
 
-    recaptcha?.configureWebView { [weak self] (webview: WKWebView) in
-        // Add constraints and configure it for display
+    recaptcha?.configureWebView { [weak self] webview in
         webview.frame = self?.view.bounds ?? CGRect.zero
     }
 }
 
 
 func validate() {
-    recaptcha?.validate(on: view) { [weak self] (result: Result<String, NSError>) in
+    recaptcha?.validate(on: view) { [weak self] result in
         print(try? result.dematerialize())
     }
 }
