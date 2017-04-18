@@ -31,7 +31,6 @@ let recaptcha = try? ReCaptcha()
 override func viewDidLoad() {
     super.viewDidLoad()
 
-    recaptcha?.presenterView = view
     recaptcha?.configureWebView { [weak self] webview in
         webview.frame = self?.view.bounds ?? CGRect.zero
     }
@@ -39,15 +38,21 @@ override func viewDidLoad() {
 
 
 func validate() {
-    recaptcha?.validate { [weak self] result in
+    recaptcha?.validate(on: view) { [weak self] result in
         print(try? result.dematerialize())
     }
 }
 ```
 
-## Author
+You can also install the reactive subpod and use it with RxSwift:
 
-Flávio Caetano, flavio@vieiracaetano.com
+``` swift
+recaptcha.rx.validate(on: view)
+    .map { try $0.dematerialize() }
+    .subscribe(onNext: { (token: String) in
+        // Do something
+    })
+```
 
 ## License
 
