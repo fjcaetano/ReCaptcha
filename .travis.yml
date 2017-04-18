@@ -9,7 +9,7 @@ before_install:
   - pod repo update --silent
 
 install:
-- pushd Example; pod install; popd
+  - pushd Example; pod install; popd;
   - if [[ ! $(which xcpretty) ]]; then gem install xcpretty --user-install; fi;
 
 env:
