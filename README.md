@@ -9,8 +9,10 @@
 -----
 
 Add Google's [Invisible ReCaptcha](https://developers.google.com/recaptcha/docs/invisible) to your project. This library
-automatically handles ReCaptcha's events and retrieves the validation token or notifies you to present the challenge if 
+automatically handles ReCaptcha's events and retrieves the validation token or notifies you to present the challenge if
 invisibility is not possible.
+
+![Example Gif](https://raw.githubusercontent.com/fjcaetano/ReCaptcha/master/example.gif)
 
 ## Installation
 
@@ -18,7 +20,7 @@ ReCaptcha is available through [CocoaPods](http://cocoapods.org). To install it,
 Podfile:
 
 ``` ruby
-pod "ReCaptcha"
+pod "ReCaptcha/RxSwift"
 ```
 
 ## Usage
@@ -31,14 +33,15 @@ let recaptcha = try? ReCaptcha()
 override func viewDidLoad() {
     super.viewDidLoad()
 
-    recaptcha?.configureWebView { [weak self] webview in
+    recaptcha?.configureWebView { [weak self] (webview: WKWebView) in
+        // Add constraints and configure it for display
         webview.frame = self?.view.bounds ?? CGRect.zero
     }
 }
 
 
 func validate() {
-    recaptcha?.validate(on: view) { [weak self] result in
+    recaptcha?.validate(on: view) { [weak self] (result: Result<String, NSError>) in
         print(try? result.dematerialize())
     }
 }
