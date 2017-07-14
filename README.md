@@ -12,7 +12,7 @@ Add Google's [Invisible ReCaptcha](https://developers.google.com/recaptcha/docs/
 automatically handles ReCaptcha's events and retrieves the validation token or notifies you to present the challenge if
 invisibility is not possible.
 
-![Example Gif](https://raw.githubusercontent.com/fjcaetano/ReCaptcha/master/example.gif)
+![Example Gif](https://raw.githubusercontent.com/fjcaetano/ReCaptcha/master/example.gif)  ![Example Gif 2](https://raw.githubusercontent.com/fjcaetano/ReCaptcha/master/example2.gif)
 
 ## Installation
 
