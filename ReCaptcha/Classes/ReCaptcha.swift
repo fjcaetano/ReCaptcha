@@ -48,8 +48,8 @@ open class ReCaptcha: ReCaptchaWebViewManager {
         guard let apiKey = apiKey ?? (infoDict?[Constants.InfoDictKeys.APIKey] as? String) else {
             throw NSError(code: .apiKeyNotFound)
         }
-        
-        guard let domain = infoDict?[Constants.InfoDictKeys.Domain] as? String, let baseURL = baseURL ?? URL(string: domain) else {
+
+        guard let baseURL = baseURL ?? URL(string: (infoDict?[Constants.InfoDictKeys.Domain] as? String) ?? "") else {
             throw NSError(code: .baseURLNotFound)
         }
         
