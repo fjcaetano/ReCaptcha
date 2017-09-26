@@ -45,7 +45,7 @@ class ViewController: UIViewController {
         validate
             .map { _ in false }
             .startWith(true)
-            .bindTo(spinner.rx.isAnimating)
+            .bind(to: spinner.rx.isAnimating)
             .disposed(by: disposeBag)
             
         validate
@@ -59,7 +59,7 @@ class ViewController: UIViewController {
             
         validate
             .map { try $0.dematerialize() }
-            .bindTo(label.rx.text)
+            .bind(to: label.rx.text)
             .disposed(by: disposeBag)
     }
 }
