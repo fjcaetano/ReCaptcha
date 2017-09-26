@@ -73,7 +73,7 @@ extension NSError {
     - parameter code: A ReCaptchaCode
     - parameter userInfo: The error's userInfo
     */
-    convenience init(code: ReCaptchaCode, userInfo: [AnyHashable: Any]? = nil) {
+    convenience init(code: ReCaptchaCode, userInfo: [String: Any]? = nil) {
         var info = userInfo ?? [:]
         info[NSLocalizedDescriptionKey] = code.description
         
