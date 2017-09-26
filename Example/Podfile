@@ -4,7 +4,7 @@ use_frameworks!
 
 target 'ReCaptcha_Example' do
   pod 'ReCaptcha/RxSwift', :path => '../'
-  pod 'RxCocoa', '~> 3.0'
+  pod 'RxCocoa', '= 4.0.0-alpha.1'
 
   target 'ReCaptcha_Tests' do
     inherit! :search_paths
