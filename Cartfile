@@ -1,2 +1,2 @@
-github "antitypical/Result" >= 3.0
-github "ReactiveX/RxSwift" ~> 3.0
+github "antitypical/Result" ~> 3.0
+github "ReactiveX/RxSwift" ~> 4.0

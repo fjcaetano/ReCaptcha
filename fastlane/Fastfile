@@ -55,7 +55,7 @@ platform :ios do
   desc "Lint Carthage lib"
   lane :carthage_lint do
     carthage(
-      command: "bootstrap",
+      command: "update",
       platform: "iOS",
       cache_builds: true,
     )

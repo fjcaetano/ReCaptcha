@@ -7,13 +7,13 @@ inhibit_all_warnings!
 
 target 'ReCaptcha_Example' do
   pod 'ReCaptcha/RxSwift', :path => '../'
-  pod 'RxCocoa', '~> 3.0'
+  pod 'RxCocoa', '~> 4.0'
   pod 'SwiftLint', '~> 0.23'
 
   target 'ReCaptcha_Tests' do
     inherit! :search_paths
 
-    pod 'AppSwizzle', '~> 1.1'
+    pod 'AppSwizzle', :git => 'git@github.com:fjcaetano/AppSwizzle.git', :branch => 'swift4'
   end
 end
 

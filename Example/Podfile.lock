@@ -1,34 +1,42 @@
 PODS:
-  - AppSwizzle (1.1.2)
+  - AppSwizzle (1.2)
   - ReCaptcha/Core (0.3.0):
     - Result (~> 3.0)
   - ReCaptcha/RxSwift (0.3.0):
     - ReCaptcha/Core
-    - RxSwift (~> 3.0)
+    - RxSwift (~> 4.0)
   - Result (3.2.4)
-  - RxCocoa (3.6.1):
-    - RxSwift (~> 3.6)
-  - RxSwift (3.6.1)
+  - RxCocoa (4.0.0):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.0.0)
   - SwiftLint (0.23.1)
 
 DEPENDENCIES:
-  - AppSwizzle (~> 1.1)
+  - AppSwizzle (from `git@github.com:fjcaetano/AppSwizzle.git`, branch `swift4`)
   - ReCaptcha/RxSwift (from `../`)
-  - RxCocoa (~> 3.0)
+  - RxCocoa (~> 4.0)
   - SwiftLint (~> 0.23)
 
 EXTERNAL SOURCES:
+  AppSwizzle:
+    :branch: swift4
+    :git: git@github.com:fjcaetano/AppSwizzle.git
   ReCaptcha:
     :path: ../
 
+CHECKOUT OPTIONS:
+  AppSwizzle:
+    :commit: c432a73e43779d20ef8e8a589aabd9622b7b6a5d
+    :git: git@github.com:fjcaetano/AppSwizzle.git
+
 SPEC CHECKSUMS:
-  AppSwizzle: 45d1a9d71821e7e1bb3a2a503c2979ca6fe4e46d
-  ReCaptcha: 0ecf1105cae5040557d8b470909dda5196853c15
+  AppSwizzle: bbd3782652fc426ce59c045a92ec61d36f261984
+  ReCaptcha: a08f541158ddf69ece271ee476a7843fd484aa2c
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
-  RxCocoa: 84a08739ab186248c7f31ce4ee92d6f8a947d690
-  RxSwift: f9de85ea20cd2f7716ee5409fc13523dc638e4e4
+  RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
+  RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
   SwiftLint: 1b670ce79284c76520f84060e87d645078fd32fa
 
-PODFILE CHECKSUM: 297c41fe46ada741f20f242a63e577d52fa47001
+PODFILE CHECKSUM: b22c55655f09e6f7d188835d6914c58236e5956e
 
 COCOAPODS: 1.3.1
