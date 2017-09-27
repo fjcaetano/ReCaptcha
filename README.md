@@ -12,7 +12,12 @@ Add Google's [Invisible ReCaptcha](https://developers.google.com/recaptcha/docs/
 automatically handles ReCaptcha's events and retrieves the validation token or notifies you to present the challenge if
 invisibility is not possible.
 
-![Example Gif](https://raw.githubusercontent.com/fjcaetano/ReCaptcha/master/example.gif)  ![Example Gif 2](https://raw.githubusercontent.com/fjcaetano/ReCaptcha/master/example2.gif)
+![Example Gif 2](https://raw.githubusercontent.com/fjcaetano/ReCaptcha/master/example2.gif)  ![Example Gif](https://raw.githubusercontent.com/fjcaetano/ReCaptcha/master/example.gif)
+
+#### _Warning ⚠️_
+
+Beware that this library only works for Invisible ReCaptcha keys! Make sure to check the Invisible reCAPTCHA option
+when creating your [API Key](https://www.google.com/recaptcha/admin)
 
 ## Installation
 
