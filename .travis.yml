@@ -19,8 +19,8 @@ env:
     - DESTINATION="platform=iOS Simulator,OS=8.3,name=iPhone 4S"    POD_LINT="NO"
 
 script:
-  - xcodebuild -workspace Example/ReCaptcha.xcworkspace -scheme ReCaptcha-Example -destination '$DESTINATION' build | xcpretty
-  - xcodebuild -workspace Example/ReCaptcha.xcworkspace -scheme ReCaptcha-Example -destination '$DESTINATION' test | xcpretty
+  - xcodebuild -workspace Example/ReCaptcha.xcworkspace -scheme ReCaptcha-Example -destination "$DESTINATION" build | xcpretty
+  - xcodebuild -workspace Example/ReCaptcha.xcworkspace -scheme ReCaptcha-Example -destination "$DESTINATION" test | xcpretty
 
   # Run `pod lib lint` if specified
   - if [ $POD_LINT == "YES" ]; then
