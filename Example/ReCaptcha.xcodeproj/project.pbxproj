@@ -14,6 +14,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		BD850CB2DF4C9C94FC51226C /* Pods_ReCaptcha_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62BEEA62161F672468CCFD64 /* Pods_ReCaptcha_Example.framework */; };
 		D091B6E053FD250B4757E34C /* Pods_ReCaptcha_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9417A28DC340FF0BC1627B3F /* Pods_ReCaptcha_Tests.framework */; };
+		F206BAD51F8D3FEB00A25807 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = F206BAD41F8D3FEB00A25807 /* Cartfile */; };
 		F288E9451F9537760018688D /* ReCaptchaError+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F288E9441F9537760018688D /* ReCaptchaError+Equatable.swift */; };
 		F2E2685E1F7AEE3400CD876D /* ReCaptcha__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E2685D1F7AEE3400CD876D /* ReCaptcha__Tests.swift */; };
 		F2ECCF881E9FCE930097B199 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = F2ECCF871E9FCE930097B199 /* .travis.yml */; };
@@ -53,6 +54,7 @@
 		9417A28DC340FF0BC1627B3F /* Pods_ReCaptcha_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReCaptcha_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2A0BDD35B5E219129E9BC65 /* Pods-ReCaptcha_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReCaptcha_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReCaptcha_Example/Pods-ReCaptcha_Example.release.xcconfig"; sourceTree = "<group>"; };
 		C8537003ECC47117AF54DCA9 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		F206BAD41F8D3FEB00A25807 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Cartfile; path = ../Cartfile; sourceTree = "<group>"; };
 		F288E9441F9537760018688D /* ReCaptchaError+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReCaptchaError+Equatable.swift"; sourceTree = "<group>"; };
 		F2E2685D1F7AEE3400CD876D /* ReCaptcha__Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReCaptcha__Tests.swift; sourceTree = "<group>"; };
 		F2ECCF761E9FC47B0097B199 /* ReCaptcha_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReCaptcha_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				62C1DD0E80E9920845E5DA51 /* ReCaptcha.podspec */,
+				F206BAD41F8D3FEB00A25807 /* Cartfile */,
 				0A2D0E5B4C6E445BF971488B /* README.md */,
 				C8537003ECC47117AF54DCA9 /* LICENSE */,
 				F2ECCF871E9FCE930097B199 /* .travis.yml */,
@@ -292,6 +295,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F206BAD51F8D3FEB00A25807 /* Cartfile in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				F2ECCF901EA008C20097B199 /* codecov.yml in Resources */,
@@ -520,7 +524,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -566,7 +570,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

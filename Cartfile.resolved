@@ -1,0 +1,2 @@
+github "ReactiveX/RxSwift" "3.6.1"
+github "antitypical/Result" "3.2.4"

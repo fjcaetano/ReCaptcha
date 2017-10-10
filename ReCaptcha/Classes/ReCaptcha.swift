@@ -48,6 +48,17 @@ open class ReCaptcha: ReCaptchaWebViewManager {
         // The base url to be used to resolve relative URLs in the webview
         let baseURL: URL
 
+        private static let bundle: Bundle = {
+            let bundle = Bundle(for: ReCaptcha.self)
+            guard let cocoapodsBundle = bundle
+                .path(forResource: "ReCaptcha", ofType: "bundle")
+                .flatMap(Bundle.init(path:)) else {
+                    return bundle
+            }
+
+            return cocoapodsBundle
+        }()
+
         /**
          - parameter apiKey: The API key sent to the ReCaptcha init
          - parameter infoPlistKey: The API key retrived from the application's Info.plist
@@ -61,9 +72,8 @@ open class ReCaptcha: ReCaptchaWebViewManager {
             - Rethrows any exceptions thrown by `String(contentsOfFile:)`
         */
         public init(apiKey: String?, infoPlistKey: String?, baseURL: URL?, infoPlistURL: URL?) throws {
-            guard let bundlePath = Bundle(for: ReCaptcha.self).path(forResource: "ReCaptcha", ofType: "bundle"),
-                let filePath = Bundle(path: bundlePath)?.path(forResource: "recaptcha", ofType: "html") else {
-                    throw ReCaptchaError.htmlLoadError
+            guard let filePath = Config.bundle.path(forResource: "recaptcha", ofType: "html") else {
+                throw ReCaptchaError.htmlLoadError
             }
 
             guard let apiKey = apiKey ?? infoPlistKey else {

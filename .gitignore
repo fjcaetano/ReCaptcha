@@ -22,6 +22,7 @@ xcuserdata
 *.moved-aside
 *.xcuserstate
 *.orig
+ci.sh
 
 ## Obj-C/Swift specific
 *.hmap
@@ -37,5 +38,6 @@ xcuserdata
 
 ## CocoaPods
 Pods/
+Carthage/
 
 docs/

@@ -14,21 +14,30 @@ invisibility is not possible.
 
 ![Example Gif 2](https://raw.githubusercontent.com/fjcaetano/ReCaptcha/master/example2.gif)  ![Example Gif](https://raw.githubusercontent.com/fjcaetano/ReCaptcha/master/example.gif)
 
-#### _Warning ⚠️_
+#### _Warning_ ⚠️
 
 Beware that this library only works for Invisible ReCaptcha keys! Make sure to check the Invisible reCAPTCHA option
-when creating your [API Key](https://www.google.com/recaptcha/admin)
+when creating your [API Key](https://www.google.com/recaptcha/admin).
 
 ## Installation
 
-ReCaptcha is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your
-Podfile:
+ReCaptcha is available through [CocoaPods](http://cocoapods.org) and [Carthage](https://github.com/Carthage/Carthage).
+To install it, simply add the following line to your depedencies file:
 
+#### Cocoapods
 ``` ruby
 pod "ReCaptcha"
 # or
 pod "ReCaptcha/RxSwift"
 ```
+
+#### Carthage
+``` ruby
+github "fjcaetano/ReCaptcha"
+```
+
+Carthage will create two different frameworks named `ReCaptcha` and `ReCaptcha_RxSwift`, the latter containing the RxSwift
+extension for the ReCaptcha framework.
 
 ## Usage
 

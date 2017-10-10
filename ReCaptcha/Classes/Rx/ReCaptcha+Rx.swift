@@ -6,6 +6,7 @@
 //
 //
 
+import UIKit
 import RxSwift
 
 /// Makes ReCaptchaWebViewManager compatible with RxSwift extensions
