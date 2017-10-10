@@ -1,6 +1,6 @@
 //
 //  ReCaptchaDecoder.swift
-//  Pods
+//  ReCaptcha
 //
 //  Created by Flávio Caetano on 22/03/17.
 //

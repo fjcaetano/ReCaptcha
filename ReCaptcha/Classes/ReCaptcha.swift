@@ -1,6 +1,6 @@
 //
 //  ReCaptcha.swift
-//  Pods
+//  ReCaptcha
 //
 //  Created by Flávio Caetano on 22/03/17.
 //
@@ -17,6 +17,22 @@ open class ReCaptcha: ReCaptchaWebViewManager {
         struct InfoDictKeys {
             static let APIKey = "ReCaptchaKey"
             static let Domain = "ReCaptchaDomain"
+        }
+    }
+
+    /** The JS API endpoint to be loaded onto the HTML file.
+     
+     - default: Google's default endpoint. Points to https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit
+     - alternate: Alternate endpoint. Points to https://www.recaptcha.net/recaptcha/api.js
+     */
+    public enum Endpoint {
+        case `default`, alternate
+
+        fileprivate var url: String {
+            switch self {
+            case .default: return "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+            case .alternate: return "https://www.recaptcha.net/recaptcha/api.js"
+            }
         }
     }
 
@@ -73,8 +89,9 @@ open class ReCaptcha: ReCaptchaWebViewManager {
      
      A key may be aquired here: https://www.google.com/recaptcha/admin#list
      
-    - parameter apiKey: The API key to be provided to Google's ReCaptcha. Overrides the Info.plist entry.
-    - parameter baseURL: A url domain to be load onto the webview. Overrides the Info.plist entry.
+     - parameter apiKey: The API key to be provided to Google's ReCaptcha. Overrides the Info.plist entry. Defaults to `nil`.
+     - parameter baseURL: A url domain to be load onto the webview. Overrides the Info.plist entry. Defaults to `nil`.
+     - parameter endpoint: The JS API endpoint to be loaded onto the HTML file. Defaults to `.default`.
      
      - Throws:
         - `NSError.ReCaptchaCode.htmlLoadError` if is unable to load the HTML embedded in the bundle.
@@ -82,13 +99,13 @@ open class ReCaptcha: ReCaptchaWebViewManager {
         - `NSError.ReCaptchaCode.baseURLNotFound` if a `baseURL` is not provided and can't find one in the project's Info.plist.
         - Rethrows any exceptions thrown by `String(contentsOfFile:)`
     */
-    public init(apiKey: String? = nil, baseURL: URL? = nil) throws {
+    public init(apiKey: String? = nil, baseURL: URL? = nil, endpoint: Endpoint = .default) throws {
         let infoDict = Bundle.main.infoDictionary
 
         let plistApiKey = infoDict?[Constants.InfoDictKeys.APIKey] as? String
         let plistDomain = (infoDict?[Constants.InfoDictKeys.Domain] as? String).flatMap(URL.init(string:))
 
         let config = try Config(apiKey: apiKey, infoPlistKey: plistApiKey, baseURL: baseURL, infoPlistURL: plistDomain)
-        super.init(html: config.html, apiKey: config.apiKey, baseURL: config.baseURL)
+        super.init(html: config.html, apiKey: config.apiKey, baseURL: config.baseURL, endpoint: endpoint.url)
     }
 }

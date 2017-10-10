@@ -1,6 +1,6 @@
 //
 //  ReCaptchaWebViewManager.swift
-//  Pods
+//  ReCaptcha
 //
 //  Created by Flávio Caetano on 22/03/17.
 //
@@ -39,15 +39,16 @@ open class ReCaptchaWebViewManager: NSObject {
         - html: The HTML string to be loaded onto the webview
         - apiKey: The Google's ReCaptcha API Key
         - baseURL: The URL configured with the API Key
+        - endpoint: The JS API endpoint to be loaded onto the HTML file.
     */
-    init(html: String, apiKey: String, baseURL: URL) {
+    init(html: String, apiKey: String, baseURL: URL, endpoint: String) {
         super.init()
         
         decoder = ReCaptchaDecoder { [weak self] result in
             self?.handle(result: result)
         }
 
-        let formattedHTML = String(format: html, apiKey)
+        let formattedHTML = String(format: html, arguments: ["apiKey": apiKey, "endpoint": endpoint])
 
         if let window = UIApplication.shared.keyWindow {
             setupWebview(on: window, html: formattedHTML, url: baseURL)

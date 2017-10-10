@@ -2,10 +2,11 @@
     <head>
         <meta name="viewport" content="width=device-width" />
         <script type="text/javascript">
-        var key = "%@";
+        var key = "${apiKey}";
         var execute = function() {
-            window.webkit.messageHandlers.recaptcha.postMessage(%@);
+            window.webkit.messageHandlers.recaptcha.postMessage(${message});
         }
+        var endpoint = "${endpoint}";
         </script>
     </head>
     <body>

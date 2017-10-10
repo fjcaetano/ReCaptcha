@@ -26,7 +26,7 @@
 
   var onloadCallback = function() {
     grecaptcha.render('submit', {
-      'sitekey' : '%@',
+      'sitekey' : '${apiKey}',
       'callback' : onSubmit,
       'size': 'invisible'
     });
@@ -35,6 +35,6 @@
 </head>
 <body>
   <span id="submit" style="visibility: hidden;"></span>
-  <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+  <script src="${endpoint}" async defer></script>
 </body>
 </html>

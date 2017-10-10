@@ -198,4 +198,50 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
         
         waitForExpectations(timeout: 3)
     }
+
+    // MARK: Setup
+
+    func test__Key_Setup() {
+        let exp = expectation(description: "setup key")
+        var result: ReCaptchaWebViewManager.Response?
+
+        // Validate
+        let manager = ReCaptchaWebViewManager(messageBody: "{token: key}", apiKey: apiKey)
+        manager.configureWebView { _ in
+            XCTFail("should not ask to configure the webview")
+        }
+
+        manager.validate(on: presenterView) { response in
+            result = response
+            exp.fulfill()
+        }
+
+        waitForExpectations(timeout: 3)
+
+        XCTAssertNotNil(result)
+        XCTAssertNil(result?.error)
+        XCTAssertEqual(result?.value, apiKey)
+    }
+
+    func test__Endpoint_Setup() {
+        let exp = expectation(description: "setup endpoint")
+        let endpoint = String(describing: arc4random())
+        var result: ReCaptchaWebViewManager.Response?
+
+        let manager = ReCaptchaWebViewManager(messageBody: "{token: endpoint}", endpoint: endpoint)
+        manager.configureWebView { _ in
+            XCTFail("should not ask to configure the webview")
+        }
+
+        manager.validate(on: presenterView) { response in
+            result = response
+            exp.fulfill()
+        }
+
+        waitForExpectations(timeout: 3)
+
+        XCTAssertNotNil(result)
+        XCTAssertNil(result?.error)
+        XCTAssertEqual(result?.value, endpoint)
+    }
 }
