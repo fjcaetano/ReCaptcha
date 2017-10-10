@@ -63,6 +63,19 @@ recaptcha.rx.validate(on: view)
     })
 ```
 
+#### Alternte endpoint
+
+If your app has firewall limitations that may be blocking Google's API, the JS endpoint may be changed on initialization.
+It'll then point to `https://www.recaptcha.net/recaptcha/api.js`:
+
+``` swift
+public enum Endpoint {
+    case default, alternate
+}
+
+let recaptcha = try? ReCaptcha(endpoint: .alternate) // Defaults to `default` when unset
+```
+
 ## License
 
 ReCaptcha is available under the MIT license. See the LICENSE file for more info.
