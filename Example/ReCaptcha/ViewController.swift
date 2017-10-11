@@ -35,17 +35,23 @@ class ViewController: UIViewController {
     
     @IBAction func didPressButton(button: UIButton) {
         disposeBag = DisposeBag()
-        
-        button.isEnabled = false
 
         let validate = recaptcha.rx.validate(on: view)
             .debug("validate")
             .share()
             
-        validate
+        let isLoading = validate
             .map { _ in false }
             .startWith(true)
+
+        isLoading
             .bind(to: spinner.rx.isAnimating)
+            .disposed(by: disposeBag)
+
+        isLoading
+            .map { !$0 }
+            .catchErrorJustReturn(false)
+            .bind(to: button.rx.isEnabled)
             .disposed(by: disposeBag)
             
         validate

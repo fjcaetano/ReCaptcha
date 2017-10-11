@@ -2,6 +2,9 @@ platform :ios, 8.3
 
 use_frameworks!
 
+# ignore all warnings from all pods
+inhibit_all_warnings!
+
 target 'ReCaptcha_Example' do
   pod 'ReCaptcha/RxSwift', :path => '../'
   pod 'RxCocoa', '~> 4.0.0-alpha.1'
