@@ -14,13 +14,13 @@ install:
 
 env:
   matrix:
-    - DESTINATION="platform=iOS Simulator,OS=10.3,name=iPhone 7"    POD_LINT="YES"
+    - DESTINATION="platform=iOS Simulator,OS=10.3.1,name=iPhone 7"  POD_LINT="YES"
     - DESTINATION="platform=iOS Simulator,OS=9.0,name=iPhone 6"     POD_LINT="NO"
     - DESTINATION="platform=iOS Simulator,OS=8.3,name=iPhone 4S"    POD_LINT="NO"
 
 script:
-  - xcodebuild -workspace Example/ReCaptcha.xcworkspace -scheme ReCaptcha-Example -destination '$DESTINATION' build | xcpretty
-  - xcodebuild -workspace Example/ReCaptcha.xcworkspace -scheme ReCaptcha-Example -destination '$DESTINATION' test | xcpretty
+  - xcodebuild -workspace Example/ReCaptcha.xcworkspace -scheme ReCaptcha-Example -destination "$DESTINATION" build | xcpretty
+  - xcodebuild -workspace Example/ReCaptcha.xcworkspace -scheme ReCaptcha-Example -destination "$DESTINATION" test | xcpretty
 
   # Run `pod lib lint` if specified
   - if [ $POD_LINT == "YES" ]; then

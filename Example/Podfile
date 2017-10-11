@@ -9,6 +9,6 @@ target 'ReCaptcha_Example' do
   target 'ReCaptcha_Tests' do
     inherit! :search_paths
 
-    
+    pod 'AppSwizzle', '~> 1.1'
   end
 end

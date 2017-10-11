@@ -19,6 +19,52 @@ open class ReCaptcha: ReCaptchaWebViewManager {
             static let Domain = "ReCaptchaDomain"
         }
     }
+
+    /** Internal data model for DI in unit tests
+    */
+    struct Config {
+        /// The raw unformated HTML file content
+        let html: String
+
+        // The API key that will be sent to the ReCaptcha API
+        let apiKey: String
+
+        // The base url to be used to resolve relative URLs in the webview
+        let baseURL: URL
+
+        /**
+         - parameter apiKey: The API key sent to the ReCaptcha init
+         - parameter infoPlistKey: The API key retrived from the application's Info.plist
+         - parameter baseURL: The base URL sent to the ReCaptcha init
+         - parameter infoPlistURL: The base URL retrieved from the application's Info.plist
+
+         - Throws:
+            - `NSError.ReCaptchaCode.htmlLoadError` if is unable to load the HTML embedded in the bundle.
+            - `NSError.ReCaptchaCode.apiKeyNotFound` if an `apiKey` is not provided and can't find one in the project's Info.plist.
+            - `NSError.ReCaptchaCode.baseURLNotFound` if a `baseURL` is not provided and can't find one in the project's Info.plist.
+            - Rethrows any exceptions thrown by `String(contentsOfFile:)`
+        */
+        public init(apiKey: String?, infoPlistKey: String?, baseURL: URL?, infoPlistURL: URL?) throws {
+            guard let bundlePath = Bundle(for: ReCaptcha.self).path(forResource: "ReCaptcha", ofType: "bundle"),
+                let filePath = Bundle(path: bundlePath)?.path(forResource: "recaptcha", ofType: "html") else {
+                    throw NSError(code: .htmlLoadError)
+            }
+
+            guard let apiKey = apiKey ?? infoPlistKey else {
+                throw NSError(code: .apiKeyNotFound)
+            }
+
+            guard let domain = baseURL ?? infoPlistURL else {
+                throw NSError(code: .baseURLNotFound)
+            }
+
+            let rawHTML = try String(contentsOfFile: filePath)
+            
+            self.html = rawHTML
+            self.apiKey = apiKey
+            self.baseURL = domain
+        }
+    }
     
     /** Initializes a ReCaptcha object
      
@@ -37,23 +83,12 @@ open class ReCaptcha: ReCaptchaWebViewManager {
         - Rethrows any exceptions thrown by `String(contentsOfFile:)`
     */
     public init(apiKey: String? = nil, baseURL: URL? = nil) throws {
-        guard let bundlePath = Bundle(for: ReCaptcha.self).path(forResource: "ReCaptcha", ofType: "bundle"),
-            let filePath = Bundle(path: bundlePath)?.path(forResource: "recaptcha", ofType: "html") else {
-                throw NSError(code: .htmlLoadError)
-        }
-        
-        // Fetches from info.plist
         let infoDict = Bundle.main.infoDictionary
-        
-        guard let apiKey = apiKey ?? (infoDict?[Constants.InfoDictKeys.APIKey] as? String) else {
-            throw NSError(code: .apiKeyNotFound)
-        }
-        
-        guard let domain = infoDict?[Constants.InfoDictKeys.Domain] as? String, let baseURL = baseURL ?? URL(string: domain) else {
-            throw NSError(code: .baseURLNotFound)
-        }
-        
-        let rawHTML = try String(contentsOfFile: filePath)
-        super.init(html: String(format: rawHTML, apiKey), apiKey: apiKey, baseURL: baseURL)
+
+        let plistApiKey = infoDict?[Constants.InfoDictKeys.APIKey] as? String
+        let plistDomain = (infoDict?[Constants.InfoDictKeys.Domain] as? String).flatMap(URL.init(string:))
+
+        let config = try Config(apiKey: apiKey, infoPlistKey: plistApiKey, baseURL: baseURL, infoPlistURL: plistDomain)
+        super.init(html: config.html, apiKey: config.apiKey, baseURL: config.baseURL)
     }
 }
