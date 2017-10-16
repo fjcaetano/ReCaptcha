@@ -3,7 +3,7 @@
 //  ReCaptcha
 //
 //  Created by Flávio Caetano on 13/04/17.
-//  Copyright © 2017 CocoaPods. All rights reserved.
+//  Copyright © 2017 ReCaptcha. All rights reserved.
 //
 
 @testable import ReCaptcha
@@ -131,7 +131,7 @@ class ReCaptcha_Rx__Tests: XCTestCase {
         XCTAssertNotNil(result)
         XCTAssertNil(result?.value)
         XCTAssertNotNil(result?.error)
-        XCTAssertEqual(result?.error?.rc_code, .wrongMessageFormat)
+        XCTAssertEqual(result?.error, .wrongMessageFormat)
     }
     
     // MARK: Dispose

@@ -13,22 +13,50 @@ import Result
 
 /** Handles comunications with the webview containing the ReCaptcha challenge.
 */
-open class ReCaptchaWebViewManager: NSObject {
-    public typealias Response = Result<String, NSError>
+open class ReCaptchaWebViewManager {
+    public typealias Response = Result<String, ReCaptchaError>
+
+    /** The webview delegate object that performs execution uppon script loading
+     */
+    fileprivate class WebViewDelegate: NSObject, WKNavigationDelegate {
+        private weak var manager: ReCaptchaWebViewManager?
+        init(manager: ReCaptchaWebViewManager) {
+            self.manager = manager
+        }
+
+        /** Called when the navigation is complete.
+
+         - parameter webView: The web view invoking the delegate method.
+         - parameter navigation: The navigation object that finished.
+         */
+        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+            manager?.didFinishLoading = true
+
+            if manager?.completion != nil {
+                // User has requested for validation
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                    self?.manager?.execute()
+                }
+            }
+        }
+    }
     
     fileprivate struct Constants {
         static let ExecuteJSCommand = "execute();"
     }
-    
-    
+
     fileprivate var completion: ((Response) -> Void)?
     fileprivate var configureWebView: ((WKWebView) -> Void)?
     fileprivate var decoder: ReCaptchaDecoder!
     fileprivate var didFinishLoading = false // webView.isLoading does not work in this case
+
+    fileprivate lazy var webviewDelegate: WebViewDelegate = {
+        return WebViewDelegate(manager: self)
+    }()
     
     fileprivate lazy var webView: WKWebView = {
         let webview = WKWebView(frame: CGRect(x: 0, y: 0, width: 1, height: 1), configuration: self.buildConfiguration())
-        webview.navigationDelegate = self
+        webview.navigationDelegate = self.webviewDelegate
         webview.isHidden = true
         
         return webview
@@ -42,8 +70,6 @@ open class ReCaptchaWebViewManager: NSObject {
         - endpoint: The JS API endpoint to be loaded onto the HTML file.
     */
     init(html: String, apiKey: String, baseURL: URL, endpoint: String) {
-        super.init()
-        
         decoder = ReCaptchaDecoder { [weak self] result in
             self?.handle(result: result)
         }
@@ -97,30 +123,6 @@ open class ReCaptchaWebViewManager: NSObject {
     }
 }
 
-
-// MARK: - Navigation
-
-/** Makes ReCaptchaWebViewManager conform to `WKNavigationDelegate`
- */
-extension ReCaptchaWebViewManager: WKNavigationDelegate {
-    /** Called when the navigation is complete.
-     
-     - parameter webView: The web view invoking the delegate method.
-     - parameter navigation: The navigation object that finished.
-     */
-    public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        didFinishLoading = true
-        
-        if completion != nil {
-            // User has requested for validation
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.execute()
-            }
-        }
-    }
-}
-
-
 // MARK: - Private Methods
 
 /** Private methods for ReCaptchaWebViewManager
@@ -138,7 +140,7 @@ fileprivate extension ReCaptchaWebViewManager {
         
         webView.evaluateJavaScript(Constants.ExecuteJSCommand) { [weak self] result, error in
             if let error = error {
-                self?.decoder.send(error: error as NSError)
+                self?.decoder.send(error: .unexpected(error))
             }
         }
     }
@@ -162,10 +164,10 @@ fileprivate extension ReCaptchaWebViewManager {
     func handle(result: ReCaptchaDecoder.Result) {
         switch result {
         case .token(let token):
-            completion?(Response.success(token))
+            completion?(.success(token))
             
         case .error(let error):
-            completion?(Response.failure(error))
+            completion?(.failure(error))
             
         case .showReCaptcha:
             configureWebView?(webView)

@@ -14,8 +14,8 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		BD850CB2DF4C9C94FC51226C /* Pods_ReCaptcha_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62BEEA62161F672468CCFD64 /* Pods_ReCaptcha_Example.framework */; };
 		D091B6E053FD250B4757E34C /* Pods_ReCaptcha_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9417A28DC340FF0BC1627B3F /* Pods_ReCaptcha_Tests.framework */; };
+		F288E9451F9537760018688D /* ReCaptchaError+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F288E9441F9537760018688D /* ReCaptchaError+Equatable.swift */; };
 		F2E2685E1F7AEE3400CD876D /* ReCaptcha__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E2685D1F7AEE3400CD876D /* ReCaptcha__Tests.swift */; };
-		F2ECCF841E9FC4BA0097B199 /* NSError+ReCaptcha__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECCF831E9FC4BA0097B199 /* NSError+ReCaptcha__Tests.swift */; };
 		F2ECCF881E9FCE930097B199 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = F2ECCF871E9FCE930097B199 /* .travis.yml */; };
 		F2ECCF8A1E9FCEFE0097B199 /* ReCaptchaDecoder__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECCF891E9FCEFE0097B199 /* ReCaptchaDecoder__Tests.swift */; };
 		F2ECCF8C1E9FE37C0097B199 /* mock.html in Resources */ = {isa = PBXBuildFile; fileRef = F2ECCF8B1E9FE37C0097B199 /* mock.html */; };
@@ -53,10 +53,10 @@
 		9417A28DC340FF0BC1627B3F /* Pods_ReCaptcha_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReCaptcha_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2A0BDD35B5E219129E9BC65 /* Pods-ReCaptcha_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReCaptcha_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReCaptcha_Example/Pods-ReCaptcha_Example.release.xcconfig"; sourceTree = "<group>"; };
 		C8537003ECC47117AF54DCA9 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		F288E9441F9537760018688D /* ReCaptchaError+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReCaptchaError+Equatable.swift"; sourceTree = "<group>"; };
 		F2E2685D1F7AEE3400CD876D /* ReCaptcha__Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReCaptcha__Tests.swift; sourceTree = "<group>"; };
 		F2ECCF761E9FC47B0097B199 /* ReCaptcha_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReCaptcha_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2ECCF7A1E9FC47B0097B199 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F2ECCF831E9FC4BA0097B199 /* NSError+ReCaptcha__Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+ReCaptcha__Tests.swift"; sourceTree = "<group>"; };
 		F2ECCF871E9FCE930097B199 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
 		F2ECCF891E9FCEFE0097B199 /* ReCaptchaDecoder__Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReCaptchaDecoder__Tests.swift; sourceTree = "<group>"; };
 		F2ECCF8B1E9FE37C0097B199 /* mock.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = mock.html; sourceTree = "<group>"; };
@@ -168,7 +168,6 @@
 		F2ECCF821E9FC4AC0097B199 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				F2ECCF831E9FC4BA0097B199 /* NSError+ReCaptcha__Tests.swift */,
 				F2ECCF891E9FCEFE0097B199 /* ReCaptchaDecoder__Tests.swift */,
 				F2ECCF8D1E9FE68C0097B199 /* ReCaptchaWebViewManager__Tests.swift */,
 				F2E2685D1F7AEE3400CD876D /* ReCaptcha__Tests.swift */,
@@ -189,6 +188,7 @@
 			children = (
 				F2ECCF951EA00A5B0097B199 /* ReCaptchaWebViewManager+Helpers.swift */,
 				F2ECCF971EA011370097B199 /* Result+Helpers.swift */,
+				F288E9441F9537760018688D /* ReCaptchaError+Equatable.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -253,7 +253,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = ReCaptcha;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
@@ -440,8 +440,8 @@
 				F2ECCF981EA011370097B199 /* Result+Helpers.swift in Sources */,
 				F2E2685E1F7AEE3400CD876D /* ReCaptcha__Tests.swift in Sources */,
 				F2ECCF931EA009360097B199 /* ReCaptcha+Rx__Tests.swift in Sources */,
+				F288E9451F9537760018688D /* ReCaptchaError+Equatable.swift in Sources */,
 				F2ECCF8A1E9FCEFE0097B199 /* ReCaptchaDecoder__Tests.swift in Sources */,
-				F2ECCF841E9FC4BA0097B199 /* NSError+ReCaptcha__Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,14 +483,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -530,14 +536,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

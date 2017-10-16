@@ -3,7 +3,7 @@
 //  ReCaptcha
 //
 //  Created by Flávio Caetano on 13/04/17.
-//  Copyright © 2017 CocoaPods. All rights reserved.
+//  Copyright © 2017 ReCaptcha. All rights reserved.
 //
 
 @testable import ReCaptcha
@@ -43,15 +43,15 @@ class ReCaptchaDecoder__Tests: XCTestCase {
         
         
         // Send
-        let code = NSError.ReCaptchaCode(rawValue: Int(arc4random_uniform(4)))!
-        decoder.send(error: NSError(code: code))
+        let err = ReCaptchaError.random()
+        decoder.send(error: err)
         
         waitForExpectations(timeout: 1)
         
         
         // Check
         XCTAssertNotNil(result)
-        XCTAssertEqual(result?.error?.rc_code, code)
+        XCTAssertEqual(result?.error, err)
         XCTAssertNil(result?.token)
         XCTAssertFalse(result!.showReCaptcha)
     }
@@ -75,7 +75,7 @@ class ReCaptchaDecoder__Tests: XCTestCase {
         
         
         // Check
-        XCTAssertEqual(result?.error?.rc_code, .wrongMessageFormat)
+        XCTAssertEqual(result?.error, .wrongMessageFormat)
         XCTAssertNil(result?.token)
         XCTAssertFalse(result!.showReCaptcha)
     }
@@ -99,7 +99,7 @@ class ReCaptchaDecoder__Tests: XCTestCase {
         
         
         // Check
-        XCTAssertEqual(result?.error?.rc_code, .undefined)
+        XCTAssertEqual(result?.error, .wrongMessageFormat)
         XCTAssertNil(result?.token)
         XCTAssertFalse(result!.showReCaptcha)
     }
@@ -188,7 +188,7 @@ extension ReCaptchaDecoder.Result {
         return true
     }
     
-    var error: NSError? {
+    var error: ReCaptchaError? {
         guard case .error(let error) = self else { return nil }
         return error
     }

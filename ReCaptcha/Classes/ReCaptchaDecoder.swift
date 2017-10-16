@@ -27,7 +27,7 @@ class ReCaptchaDecoder: NSObject {
         case showReCaptcha
         
         /// Any errors
-        case error(NSError)
+        case error(ReCaptchaError)
     }
     
     fileprivate let sendMessage: ((Result) -> Void)
@@ -45,7 +45,7 @@ class ReCaptchaDecoder: NSObject {
     /** Sends an error to the completion closure
      - parameter error: The error to be sent.
     */
-    func send(error: NSError) {
+    func send(error: ReCaptchaError) {
         sendMessage(.error(error))
     }
 }
@@ -58,7 +58,7 @@ class ReCaptchaDecoder: NSObject {
 extension ReCaptchaDecoder: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         guard let dict = message.body as? [String: Any] else {
-            return sendMessage(.error(NSError(code: .wrongMessageFormat)))
+            return sendMessage(.error(.wrongMessageFormat))
         }
         
         sendMessage(Result.from(response: dict))
@@ -85,6 +85,6 @@ fileprivate extension ReCaptchaDecoder.Result {
             return .showReCaptcha
         }
         
-        return .error(NSError(code: .undefined))
+        return .error(.wrongMessageFormat)
     }
 }
