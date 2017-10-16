@@ -20,13 +20,13 @@ open class ReCaptcha: ReCaptchaWebViewManager {
         }
     }
 
-    /** The JS API endpoint to be loaded onto the HTML file.
-     
-     - default: Google's default endpoint. Points to https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit
-     - alternate: Alternate endpoint. Points to https://www.recaptcha.net/recaptcha/api.js
-     */
+    /// The JS API endpoint to be loaded onto the HTML file.
     public enum Endpoint {
-        case `default`, alternate
+        /// Google's default endpoint. Points to https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit
+        case `default`
+
+        /// Alternate endpoint. Points to https://www.recaptcha.net/recaptcha/api.js
+        case alternate
 
         fileprivate var url: String {
             switch self {
@@ -55,23 +55,23 @@ open class ReCaptcha: ReCaptchaWebViewManager {
          - parameter infoPlistURL: The base URL retrieved from the application's Info.plist
 
          - Throws:
-            - `NSError.ReCaptchaCode.htmlLoadError` if is unable to load the HTML embedded in the bundle.
-            - `NSError.ReCaptchaCode.apiKeyNotFound` if an `apiKey` is not provided and can't find one in the project's Info.plist.
-            - `NSError.ReCaptchaCode.baseURLNotFound` if a `baseURL` is not provided and can't find one in the project's Info.plist.
+            - `ReCaptchaError.htmlLoadError` if is unable to load the HTML embedded in the bundle.
+            - `ReCaptchaError.apiKeyNotFound` if an `apiKey` is not provided and can't find one in the project's Info.plist.
+            - `ReCaptchaError.baseURLNotFound` if a `baseURL` is not provided and can't find one in the project's Info.plist.
             - Rethrows any exceptions thrown by `String(contentsOfFile:)`
         */
         public init(apiKey: String?, infoPlistKey: String?, baseURL: URL?, infoPlistURL: URL?) throws {
             guard let bundlePath = Bundle(for: ReCaptcha.self).path(forResource: "ReCaptcha", ofType: "bundle"),
                 let filePath = Bundle(path: bundlePath)?.path(forResource: "recaptcha", ofType: "html") else {
-                    throw NSError(code: .htmlLoadError)
+                    throw ReCaptchaError.htmlLoadError
             }
 
             guard let apiKey = apiKey ?? infoPlistKey else {
-                throw NSError(code: .apiKeyNotFound)
+                throw ReCaptchaError.apiKeyNotFound
             }
 
             guard let domain = baseURL ?? infoPlistURL else {
-                throw NSError(code: .baseURLNotFound)
+                throw ReCaptchaError.baseURLNotFound
             }
 
             let rawHTML = try String(contentsOfFile: filePath)
@@ -94,9 +94,9 @@ open class ReCaptcha: ReCaptchaWebViewManager {
      - parameter endpoint: The JS API endpoint to be loaded onto the HTML file. Defaults to `.default`.
      
      - Throws:
-        - `NSError.ReCaptchaCode.htmlLoadError` if is unable to load the HTML embedded in the bundle.
-        - `NSError.ReCaptchaCode.apiKeyNotFound` if an `apiKey` is not provided and can't find one in the project's Info.plist.
-        - `NSError.ReCaptchaCode.baseURLNotFound` if a `baseURL` is not provided and can't find one in the project's Info.plist.
+        - `ReCaptchaError.htmlLoadError` if is unable to load the HTML embedded in the bundle.
+        - `ReCaptchaError.apiKeyNotFound` if an `apiKey` is not provided and can't find one in the project's Info.plist.
+        - `ReCaptchaError.baseURLNotFound` if a `baseURL` is not provided and can't find one in the project's Info.plist.
         - Rethrows any exceptions thrown by `String(contentsOfFile:)`
     */
     public init(apiKey: String? = nil, baseURL: URL? = nil, endpoint: Endpoint = .default) throws {

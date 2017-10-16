@@ -3,7 +3,7 @@
 //  ReCaptcha
 //
 //  Created by Flávio Caetano on 13/04/17.
-//  Copyright © 2017 CocoaPods. All rights reserved.
+//  Copyright © 2017 ReCaptcha. All rights reserved.
 //
 
 import Result

@@ -3,7 +3,7 @@
 //  ReCaptcha
 //
 //  Created by Flávio Caetano on 13/04/17.
-//  Copyright © 2017 CocoaPods. All rights reserved.
+//  Copyright © 2017 ReCaptcha. All rights reserved.
 //
 
 @testable import ReCaptcha
@@ -114,7 +114,7 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
         
         // Verify
         XCTAssertNotNil(result)
-        XCTAssertEqual(result?.error?.rc_code, .wrongMessageFormat)
+        XCTAssertEqual(result?.error, .wrongMessageFormat)
         XCTAssertNil(result?.value)
     }
     
@@ -137,8 +137,15 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
         
         // Verify
         XCTAssertNotNil(result)
-        XCTAssertEqual(result?.error?.code, WKError.javaScriptExceptionOccurred.rawValue)
+        XCTAssertNotNil(result?.error)
         XCTAssertNil(result?.value)
+
+        switch result!.error! {
+        case .unexpected(let error as NSError):
+            XCTAssertEqual(error.code, WKError.javaScriptExceptionOccurred.rawValue)
+        default:
+            XCTFail("Unexpected error received")
+        }
     }
     
     // MARK: Configure WebView

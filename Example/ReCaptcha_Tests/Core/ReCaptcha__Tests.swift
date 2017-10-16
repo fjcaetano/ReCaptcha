@@ -3,7 +3,7 @@
 //  ReCaptcha
 //
 //  Created by Flávio Caetano on 26/09/17.
-//  Copyright © 2017 CocoaPods. All rights reserved.
+//  Copyright © 2017 ReCaptcha. All rights reserved.
 //
 
 @testable import ReCaptcha
@@ -31,8 +31,10 @@ class ReCaptcha__Tests: XCTestCase {
         do {
             _ = try ReCaptcha()
             XCTFail("Should have failed")
-        } catch let e as NSError {
-            XCTAssertEqual(e.rc_code, .htmlLoadError)
+        } catch let e as ReCaptchaError {
+            XCTAssertEqual(e, ReCaptchaError.htmlLoadError)
+        } catch let e {
+            XCTFail("Unexpected error: \(e)")
         }
 
         // Unswizzle
@@ -47,8 +49,10 @@ class ReCaptcha__Tests: XCTestCase {
         do {
             _ = try ReCaptcha.Config(apiKey: "", infoPlistKey: nil, baseURL: nil, infoPlistURL: nil)
             XCTFail("Should have failed")
-        } catch let e as NSError {
-            XCTAssertEqual(e.rc_code, .baseURLNotFound)
+        } catch let e as ReCaptchaError {
+            XCTAssertEqual(e, ReCaptchaError.baseURLNotFound)
+        } catch let e {
+            XCTFail("Unexpected error: \(e)")
         }
 
         // Ensures plist url if nil key
@@ -67,8 +71,10 @@ class ReCaptcha__Tests: XCTestCase {
         do {
             _ = try ReCaptcha.Config(apiKey: nil, infoPlistKey: nil, baseURL: nil, infoPlistURL: nil)
             XCTFail("Should have failed")
-        } catch let e as NSError {
-            XCTAssertEqual(e.rc_code, .apiKeyNotFound)
+        } catch let e as ReCaptchaError {
+            XCTAssertEqual(e, ReCaptchaError.apiKeyNotFound)
+        } catch let e {
+            XCTFail("Unexpected error: \(e)")
         }
 
         // Ensures plist key if nil key

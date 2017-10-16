@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  ReCaptcha
 //
-//  Created by fjcaetano on 03/22/2017.
-//  Copyright (c) 2017 fjcaetano. All rights reserved.
+//  Created by Flávio Caetano on 03/22/2017.
+//  Copyright (c) 2017 ReCaptcha. All rights reserved.
 //
 
 import UIKit
