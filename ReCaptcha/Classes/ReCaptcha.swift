@@ -61,8 +61,7 @@ open class ReCaptcha: ReCaptchaWebViewManager {
             - Rethrows any exceptions thrown by `String(contentsOfFile:)`
         */
         public init(apiKey: String?, infoPlistKey: String?, baseURL: URL?, infoPlistURL: URL?) throws {
-            guard let bundlePath = Bundle(for: ReCaptcha.self).path(forResource: "ReCaptcha", ofType: "bundle"),
-                let filePath = Bundle(path: bundlePath)?.path(forResource: "recaptcha", ofType: "html") else {
+            guard let filePath = Bundle(for: ReCaptcha.self).path(forResource: "recaptcha", ofType: "html") else {
                     throw ReCaptchaError.htmlLoadError
             }
 
@@ -75,24 +74,24 @@ open class ReCaptcha: ReCaptchaWebViewManager {
             }
 
             let rawHTML = try String(contentsOfFile: filePath)
-            
+
             self.html = rawHTML
             self.apiKey = apiKey
             self.baseURL = domain
         }
     }
-    
+
     /** Initializes a ReCaptcha object
-     
-     Both `apiKey` and `baseURL` may be nil, in which case the lib will look for entries of `ReCaptchaKey` and 
+
+     Both `apiKey` and `baseURL` may be nil, in which case the lib will look for entries of `ReCaptchaKey` and
      `ReCaptchaDomain`, respectively, in the project's Info.plist
-     
+
      A key may be aquired here: https://www.google.com/recaptcha/admin#list
-     
+
      - parameter apiKey: The API key to be provided to Google's ReCaptcha. Overrides the Info.plist entry. Defaults to `nil`.
      - parameter baseURL: A url domain to be load onto the webview. Overrides the Info.plist entry. Defaults to `nil`.
      - parameter endpoint: The JS API endpoint to be loaded onto the HTML file. Defaults to `.default`.
-     
+
      - Throws:
         - `ReCaptchaError.htmlLoadError` if is unable to load the HTML embedded in the bundle.
         - `ReCaptchaError.apiKeyNotFound` if an `apiKey` is not provided and can't find one in the project's Info.plist.
