@@ -10,7 +10,6 @@ import Foundation
 import WebKit
 import Result
 
-
 /** Handles comunications with the webview containing the ReCaptcha challenge.
 */
 open class ReCaptchaWebViewManager {
