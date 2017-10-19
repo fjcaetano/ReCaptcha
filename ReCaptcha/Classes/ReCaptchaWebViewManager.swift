@@ -27,12 +27,12 @@ open class ReCaptchaWebViewManager: NSObject {
     fileprivate var didFinishLoading = false // webView.isLoading does not work in this case
     
     fileprivate lazy var webView: WKWebView = {
-        let webview = WKWebView(frame: CGRect.zero, configuration: self.buildConfiguration())
+        let webview = WKWebView(frame: CGRect(x: 0, y: 0, width: 1, height: 1), configuration: self.buildConfiguration())
         webview.navigationDelegate = self
+        webview.isHidden = true
         
         return webview
     }()
-    
     
     /** Initializes the manager
      - parameters:
@@ -46,9 +46,19 @@ open class ReCaptchaWebViewManager: NSObject {
         decoder = ReCaptchaDecoder { [weak self] result in
             self?.handle(result: result)
         }
-        
+
         let formattedHTML = String(format: html, apiKey)
-        webView.loadHTMLString(formattedHTML, baseURL: baseURL)
+
+        if let window = UIApplication.shared.keyWindow {
+            setupWebview(on: window, html: formattedHTML, url: baseURL)
+        }
+        else {
+            NotificationCenter.default.addObserver(forName: .UIWindowDidBecomeVisible, object: nil, queue: nil)
+            { [weak self] notification in
+                guard let window = notification.object as? UIWindow else { return }
+                self?.setupWebview(on: window, html: formattedHTML, url: baseURL)
+            }
+        }
     }
     
     
@@ -56,14 +66,14 @@ open class ReCaptchaWebViewManager: NSObject {
      - parameters:
         - view: The view that presents the webview.
         - completion: A closure that receives a Result<String, NSError> which may contain a valid result token.
-    
     */
     open func validate(on view: UIView, completion: @escaping (Response) -> Void) {
         self.completion = completion
-        
+
+        webView.isHidden = false
         webView.removeFromSuperview()
         view.addSubview(webView)
-        
+
         execute()
     }
     
@@ -159,5 +169,17 @@ fileprivate extension ReCaptchaWebViewManager {
         case .showReCaptcha:
             configureWebView?(webView)
         }
+    }
+
+    /** Adds the webview to a valid UIView and loads the initial HTML file
+     - parameter window: The window in which to add the webview
+     - parameter html: The embedded HTML file
+     - parameter url: The base URL given to the webview
+    */
+    func setupWebview(on window: UIWindow, html: String, url: URL) {
+        window.addSubview(webView)
+        webView.loadHTMLString(html, baseURL: url)
+
+        NotificationCenter.default.removeObserver(self)
     }
 }
