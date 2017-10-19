@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ReCaptcha'
-  s.version          = '0.2.0'
+  s.version          = '0.3.0'
   s.summary          = 'ReCaptcha for iOS'
 
   s.description      = <<-DESC
