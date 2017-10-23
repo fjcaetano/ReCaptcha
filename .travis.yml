@@ -17,14 +17,37 @@ env:
     - DESTINATION="platform=iOS Simulator,OS=9.0,name=iPhone 6"
     - DESTINATION="platform=iOS Simulator,OS=8.3,name=iPhone 4S"
 
-before_script:
-  - carthage bootstrap --platform iOS
-
 script:
   - xcodebuild -workspace Example/ReCaptcha.xcworkspace -scheme ReCaptcha-Example -destination "$DESTINATION" build | xcpretty
   - xcodebuild -workspace Example/ReCaptcha.xcworkspace -scheme ReCaptcha-Example -destination "$DESTINATION" test | xcpretty
 
 after_success:
-  - pod lib lint --verbose
-  - carthage build --no-skip-current --platform iOS
   - bash <(curl -s https://codecov.io/bash) -J 'ReCaptcha'
+
+jobs:
+  include:
+  - stage: dependency managers
+    script: pod lib lint --verbose
+  -
+    script: carthage build --no-skip-current --platform iOS --cache-builds
+
+before_deploy:
+  - carthage build --no-skip-current --platform iOS --cache-builds
+  - carthage archive ReCaptcha
+
+deploy:
+  - provider: releases
+    api_key:
+      secure: HarUHEvw4T9xbcyuK5hVftm1EMHb3RTbbZ0DyTq6s2A+bTlZIxPDd2mWlX/lGXiGSkbBr4syrrfn6AICC+PGe7al/N9FR3s5JRLV1p2gkA+HrDhvaYbjRwC/s6jEe6aVjH5ViJXBKF4PSw50s4+kUXWPIzy+T4sBnbUdunwyWSzafwh+vNtpc1QXFqpYlH5sFI1iDjC/UZHoEZ4AehzFm79Y8gxvh4C2HMWDvgYmjwwZTuK/qKRvA73bH+IpQsHsOnCN9p4LLj5+ZWLCx2xU19zslFGKbPG2hipHFbyRS6b/MKFIzhOJ1Nqlzhtrkqh90dVjZefo/iUIJlbVQr3BcPAMOnemtO3iw3m9toKixN6AvQOixwlrWi00CsIC2cDRu5LuppjCUlUDjNuymock/vCHiDhqJN+xV+1lfB5sONGmA6BVImCV66kL4ajAlWv16TtF459KkLHPOkEYo/TCAxlF9dPaAML396ypU01uNu+EQkW9xrXjkYGW8JJsrkoMvN/4KhjHvUWpiYRJYX4TSd8V+rEyEShU/pzLkO26xFfSUp7XwBaBl5lmetCsp6JPErqS7eX/VfqKiGuPA/wP/dFwy02+h6TUaAMagYd4N+51IBKYpWRZczUzRdb7LzNE8GXU968wR1KiHdz8S8mWBOBl7dDCp/eY3Jwldh3f5oM=
+    file: 'ReCaptcha.framework.zip'
+    skip_cleanup: true
+    on:
+      repo: fjcaetano/ReCaptcha
+      tags: true
+  - provider: script
+    script: pod trunk push
+    skip_cleanup: true
+    on:
+      repo: fjcaetano/ReCaptcha
+      tags: true
+

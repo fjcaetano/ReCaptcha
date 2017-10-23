@@ -19,7 +19,6 @@
 		F24EA1E61F968403001DEC17 /* ReCaptcha.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24EA1DE1F9683F5001DEC17 /* ReCaptcha.swift */; };
 		F24EA1E71F968406001DEC17 /* recaptcha.html in Resources */ = {isa = PBXBuildFile; fileRef = F24EA1E01F9683F5001DEC17 /* recaptcha.html */; };
 		F255FBEC1F8D5654002F5FA8 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F255FBEB1F8D5654002F5FA8 /* Result.framework */; };
-		F255FBF41F8D5942002F5FA8 /* ReCaptcha.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F206BAB01F8D3DE900A25807 /* ReCaptcha.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,19 +30,6 @@
 			remoteInfo = ReCaptcha;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		F255FBF31F8D593B002F5FA8 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				F255FBF41F8D5942002F5FA8 /* ReCaptcha.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		F206BAB01F8D3DE900A25807 /* ReCaptcha.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ReCaptcha.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -229,7 +215,6 @@
 				F206BB151F8D4DBC00A25807 /* Frameworks */,
 				F206BB161F8D4DBC00A25807 /* Headers */,
 				F206BB171F8D4DBC00A25807 /* Resources */,
-				F255FBF31F8D593B002F5FA8 /* CopyFiles */,
 			);
 			buildRules = (
 			);
