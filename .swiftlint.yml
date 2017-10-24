@@ -1,0 +1,47 @@
+excluded:
+  - Carthage
+  - Example/Pods
+
+disabled_rules:
+  - nesting
+  - opening_brace
+  - statement_position
+  - weak_delegate
+
+opt_in_rules:
+#  - array_init # is causing a false positive on `.map { !$0 }`
+  - closure_end_indentation
+  - closure_spacing
+  - contains_over_first_not_nil
+  - empty_count
+  - explicit_init
+  - explicit_top_level_acl
+  - extension_access_modifier
+  - fatal_error_message
+  - file_header
+  - first_where
+  - force_unwrapping
+  - implicit_return
+  - let_var_whitespace
+  - literal_expression_end_indentation
+  - multiline_arguments
+  - multiple_closures_with_trailing_closure
+  - operator_usage_whitespace
+  - redundant_nil_coalescing
+  - single_test_class
+  - sorted_imports
+#  - trailing_closure # causing a false positive on `.subscribe(onNext:)`
+  - unneeded_parentheses_in_closure_argument
+
+vertical_whitespace:
+  max_empty_lines: 2
+
+file_header:
+  required_pattern: |
+    \/\/
+    \/\/  .*?\.swift
+    \/\/  ReCaptcha
+    \/\/
+    \/\/  Created by .*? on \d{1,2}\/\d{1,2}\/\d{2}\.
+    \/\/  Copyright © \d{4} ReCaptcha\. All rights reserved\.
+    \/\/

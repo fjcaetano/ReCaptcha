@@ -6,11 +6,10 @@
 //  Copyright © 2017 ReCaptcha. All rights reserved.
 //
 
-@testable import ReCaptcha
-
-import XCTest
 import AppSwizzle
+@testable import ReCaptcha
 import RxSwift
+import XCTest
 
 
 class ReCaptcha__Tests: XCTestCase {
@@ -79,12 +78,22 @@ class ReCaptcha__Tests: XCTestCase {
 
         // Ensures plist key if nil key
         let plistKey = "bar"
-        let config1 = try? ReCaptcha.Config(apiKey: nil, infoPlistKey: plistKey, baseURL: URL(string: "foo"), infoPlistURL: nil)
+        let config1 = try? ReCaptcha.Config(
+            apiKey: nil,
+            infoPlistKey: plistKey,
+            baseURL: URL(string: "foo"),
+            infoPlistURL: nil
+        )
         XCTAssertEqual(config1?.apiKey, plistKey)
 
         // Ensures preference of given key over plist entry
         let key = "foo"
-        let config2 = try? ReCaptcha.Config(apiKey: key, infoPlistKey: plistKey, baseURL: URL(string: "foo"), infoPlistURL: nil)
+        let config2 = try? ReCaptcha.Config(
+            apiKey: key,
+            infoPlistKey: plistKey,
+            baseURL: URL(string: "foo"),
+            infoPlistURL: nil
+        )
         XCTAssertEqual(config2?.apiKey, key)
     }
 }

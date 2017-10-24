@@ -6,9 +6,8 @@
 //  Copyright © 2017 ReCaptcha. All rights reserved.
 //
 
-@testable import ReCaptcha
-
 import Foundation
+@testable import ReCaptcha
 
 
 extension ReCaptchaWebViewManager {
@@ -18,7 +17,7 @@ extension ReCaptchaWebViewManager {
             .path(forResource: "mock", ofType: "html")
             .flatMap { try? String(contentsOfFile: $0) }
             .map { String(format: $0, arguments: ["message": messageBody]) }
-        
+
         self.init(
             html: html!,
             apiKey: apiKey ?? String(arc4random()),

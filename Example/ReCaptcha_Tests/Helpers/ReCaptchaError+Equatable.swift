@@ -6,17 +6,16 @@
 //  Copyright © 2017 ReCaptcha. All rights reserved.
 //
 
+import Foundation
 @testable import ReCaptcha
 
-import Foundation
-
 extension ReCaptchaError: Equatable {
-    public static func ==(lhs: ReCaptchaError, rhs: ReCaptchaError) -> Bool {
+    public static func == (lhs: ReCaptchaError, rhs: ReCaptchaError) -> Bool {
         switch (lhs, rhs) {
-            case (.htmlLoadError, .htmlLoadError),
-                 (.apiKeyNotFound, .apiKeyNotFound),
-                 (.baseURLNotFound, .baseURLNotFound),
-                 (.wrongMessageFormat, .wrongMessageFormat):
+        case (.htmlLoadError, .htmlLoadError),
+             (.apiKeyNotFound, .apiKeyNotFound),
+             (.baseURLNotFound, .baseURLNotFound),
+             (.wrongMessageFormat, .wrongMessageFormat):
             return true
         case (.unexpected(let lhe as NSError), .unexpected(let rhe as NSError)):
             return lhe == rhe

@@ -6,6 +6,7 @@ before_install:
   - pod --version
   - pod repo update --silent
   - brew outdated carthage || brew upgrade carthage
+  - brew outdated swiftlint || brew upgrade swiftlint
 
 install:
   - pushd Example; pod install; popd;
@@ -16,6 +17,9 @@ env:
     - DESTINATION="platform=iOS Simulator,OS=10.3.1,name=iPhone 7"
     - DESTINATION="platform=iOS Simulator,OS=9.0,name=iPhone 6"
     - DESTINATION="platform=iOS Simulator,OS=8.3,name=iPhone 4S"
+
+before_script:
+  - swiftlint --strict --path "$TRAVIS_BUILD_DIR"
 
 script:
   - xcodebuild -workspace Example/ReCaptcha.xcworkspace -scheme ReCaptcha-Example -destination "$DESTINATION" build | xcpretty

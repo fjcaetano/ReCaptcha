@@ -57,6 +57,7 @@
 		F206BAD41F8D3FEB00A25807 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Cartfile; path = ../Cartfile; sourceTree = "<group>"; };
 		F21901D91F98D62F00D8E2C9 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
 		F288E9441F9537760018688D /* ReCaptchaError+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReCaptchaError+Equatable.swift"; sourceTree = "<group>"; };
+		F2C0FD7F1F9F8111009B7A6F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .swiftlint.yml; path = ../.swiftlint.yml; sourceTree = "<group>"; };
 		F2E2685D1F7AEE3400CD876D /* ReCaptcha__Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReCaptcha__Tests.swift; sourceTree = "<group>"; };
 		F2ECCF761E9FC47B0097B199 /* ReCaptcha_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReCaptcha_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2ECCF7A1E9FC47B0097B199 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -143,6 +144,7 @@
 				F21901D91F98D62F00D8E2C9 /* CHANGELOG.md */,
 				F2ECCF871E9FCE930097B199 /* .travis.yml */,
 				F2ECCF8F1EA008C20097B199 /* codecov.yml */,
+				F2C0FD7F1F9F8111009B7A6F /* .swiftlint.yml */,
 			);
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
@@ -220,6 +222,7 @@
 				607FACCE1AFB9204008FA782 /* Resources */,
 				8F03FFB3F5C55E873C23C682 /* [CP] Embed Pods Frameworks */,
 				ED1C0E07490C9C4B4A401061 /* [CP] Copy Pods Resources */,
+				F2C0FD7E1F9F8061009B7A6F /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -424,6 +427,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReCaptcha_Example/Pods-ReCaptcha_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		F2C0FD7E1F9F8061009B7A6F /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    \"${PODS_ROOT}/SwiftLint/swiftlint\" --path \"${PROJECT_DIR}/..\"\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
