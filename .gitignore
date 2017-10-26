@@ -22,7 +22,8 @@ xcuserdata
 *.moved-aside
 *.xcuserstate
 *.orig
-ci.sh
+.bundle
+vendor
 
 ## Obj-C/Swift specific
 *.hmap
@@ -41,3 +42,10 @@ Pods/
 Carthage/
 
 docs/
+
+## Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/README.md
+fastlane/test_output

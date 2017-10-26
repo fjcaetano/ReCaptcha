@@ -1,6 +1,7 @@
 excluded:
   - Carthage
   - Example/Pods
+  - vendor
 
 disabled_rules:
   - nesting

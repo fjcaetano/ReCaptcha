@@ -61,7 +61,7 @@ class ReCaptcha_Rx__Tests: XCTestCase {
             }
             .disposed(by: disposeBag)
 
-        waitForExpectations(timeout: 3)
+        waitForExpectations(timeout: 10)
 
         // Verify
         XCTAssertNotNil(result)
@@ -95,7 +95,7 @@ class ReCaptcha_Rx__Tests: XCTestCase {
             }
             .disposed(by: disposeBag)
 
-        waitForExpectations(timeout: 3)
+        waitForExpectations(timeout: 10)
     }
 
 
@@ -125,7 +125,7 @@ class ReCaptcha_Rx__Tests: XCTestCase {
             }
             .disposed(by: disposeBag)
 
-        waitForExpectations(timeout: 3)
+        waitForExpectations(timeout: 10)
 
         // Verify
         XCTAssertNotNil(result)
@@ -155,6 +155,6 @@ class ReCaptcha_Rx__Tests: XCTestCase {
             exp.fulfill()
         }
 
-        waitForExpectations(timeout: 3)
+        waitForExpectations(timeout: 10)
     }
 }

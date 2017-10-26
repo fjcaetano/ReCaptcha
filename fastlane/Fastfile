@@ -1,0 +1,115 @@
+# Customise this file, documentation can be found here:
+# https://docs.fastlane.tools/actions/
+# All available actions: https://docs.fastlane.tools/actions
+# can also be listed using the `fastlane actions` command
+
+# Change the syntax highlighting to Ruby
+# All lines starting with a # are ignored when running `fastlane`
+
+# If you want to automatically update fastlane if a new version is available:
+# update_fastlane
+
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version "2.62.1"
+
+default_platform :ios
+
+platform :ios do
+  skip_docs
+
+  desc "Runs all the tests"
+  lane :test do
+    cocoapods(
+      podfile: "Example/Podfile"
+    )
+
+    swiftlint(
+      executable: "Example/Pods/Swiftlint/swiftlint",
+      strict: true
+    )
+
+    scan(
+      workspace: "Example/ReCaptcha.xcworkspace",
+      scheme: "ReCaptcha-Example",
+      device: ENV["DEVICE"],
+      # device: "iPhone X (11.0)",
+      code_coverage: true,
+    )
+
+    if is_ci
+      puts "Uploading coverage files to CodeCov"
+      sh "curl -s https://codecov.io/bash | bash -s -- -J 'ReCaptcha'"
+    else
+      puts "Not CI: Skipping coverage files upload"
+    end
+  end
+
+  desc "Lint Cocoapods Lib"
+  lane :pod_lint do
+    pod_lib_lint(
+      allow_warnings: true # Remove this when RxSwift stops warning
+    )
+  end
+
+  desc "Lint Carthage lib"
+  lane :carthage_lint do
+    carthage(
+      command: "bootstrap",
+      platform: "iOS",
+      cache_builds: true,
+    )
+
+    carthage(
+      command: "build",
+      platform: "iOS",
+      cache_builds: true,
+      no_skip_current: true
+    )
+  end
+
+  desc "Deploy a new version to Github and Cocoapods"
+  lane :release do
+    carthage "archive"
+
+    pod_push(
+      path: "ReCaptcha.podspec",
+      verbose: true
+    )
+
+    changelog = changelog_from_git_commits(
+      tag_match_pattern: "*",
+      pretty: "- %s"
+    )
+
+    set_github_release(
+      tag_name: last_git_tag,
+      upload_assets: ["ReCaptcha.framework"],
+      description: changelog
+    )
+  end
+
+  # You can define as many lanes as you want
+
+  after_all do |lane|
+    # This block is called, only if the executed lane was successful
+
+    # slack(
+    #   message: "Successfully deployed new App Update."
+    # )
+  end
+
+  error do |lane, exception|
+    # slack(
+    #   message: exception.message,
+    #   success: false
+    # )
+  end
+end
+
+
+# More information about multiple platforms in fastlane: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Platforms.md
+# All available actions: https://docs.fastlane.tools/actions
+
+# fastlane reports which actions are used. No personal data is recorded.
+# Learn more at https://github.com/fastlane/fastlane#metrics

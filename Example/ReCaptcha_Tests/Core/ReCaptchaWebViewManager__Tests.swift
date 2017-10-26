@@ -49,7 +49,7 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
             exp1.fulfill()
         }
 
-        waitForExpectations(timeout: 3)
+        waitForExpectations(timeout: 10)
 
 
         // Verify
@@ -68,7 +68,7 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
             exp2.fulfill()
         }
 
-        waitForExpectations(timeout: 3)
+        waitForExpectations(timeout: 10)
 
 
         // Verify
@@ -91,7 +91,7 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
             XCTFail("should not call completion")
         }
 
-        waitForExpectations(timeout: 3)
+        waitForExpectations(timeout: 10)
     }
 
 
@@ -110,7 +110,7 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
             exp.fulfill()
         }
 
-        waitForExpectations(timeout: 3)
+        waitForExpectations(timeout: 10)
 
         // Verify
         XCTAssertNotNil(result)
@@ -133,7 +133,7 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
             exp.fulfill()
         }
 
-        waitForExpectations(timeout: 3)
+        waitForExpectations(timeout: 10)
 
         // Verify
         XCTAssertNotNil(result)
@@ -163,7 +163,7 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
             exp.fulfill()
         }
 
-        waitForExpectations(timeout: 3)
+        waitForExpectations(timeout: 10)
     }
 
     func test__Configure_Web_View() {
@@ -180,7 +180,7 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
             XCTFail("should not call completion")
         }
 
-        waitForExpectations(timeout: 3)
+        waitForExpectations(timeout: 10)
     }
 
     // MARK: Stop
@@ -203,7 +203,7 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
             exp.fulfill()
         }
 
-        waitForExpectations(timeout: 3)
+        waitForExpectations(timeout: 10)
     }
 
     // MARK: Setup
@@ -223,7 +223,7 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
             exp.fulfill()
         }
 
-        waitForExpectations(timeout: 3)
+        waitForExpectations(timeout: 10)
 
         XCTAssertNotNil(result)
         XCTAssertNil(result?.error)
@@ -245,7 +245,7 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
             exp.fulfill()
         }
 
-        waitForExpectations(timeout: 3)
+        waitForExpectations(timeout: 10)
 
         XCTAssertNotNil(result)
         XCTAssertNil(result?.error)

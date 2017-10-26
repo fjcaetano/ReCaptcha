@@ -16,3 +16,15 @@ target 'ReCaptcha_Example' do
     pod 'AppSwizzle', '~> 1.1'
   end
 end
+
+post_install do |i|
+  target = File.join(Dir.pwd, "../.git/hooks/pre-push")
+  unless File.symlink?(target)
+    puts "Installing git hook for pre-push"
+
+    begin
+      File.symlink(File.join(Dir.pwd, "../pre-push.sh"), target)
+    rescue => exc
+    end
+  end
+end
