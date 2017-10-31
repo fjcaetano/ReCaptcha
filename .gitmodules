@@ -1,0 +1,3 @@
+[submodule "fastlane/actions"]
+	path = fastlane/actions
+	url = https://gist.github.com/04126b3051f6cd6aebe041bb1dfe14e9.git

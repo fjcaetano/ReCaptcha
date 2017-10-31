@@ -13,7 +13,7 @@ target 'ReCaptcha_Example' do
   target 'ReCaptcha_Tests' do
     inherit! :search_paths
 
-    pod 'AppSwizzle', :git => 'git@github.com:fjcaetano/AppSwizzle.git', :branch => 'swift4'
+    pod 'AppSwizzle', :git => 'https://github.com/fjcaetano/AppSwizzle.git', :branch => 'swift4'
   end
 end
 

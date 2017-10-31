@@ -18,6 +18,9 @@ default_platform :ios
 platform :ios do
   skip_docs
 
+  lane :cov do
+  end
+
   desc "Runs all the tests"
   lane :test do
     cocoapods(
@@ -29,17 +32,34 @@ platform :ios do
       strict: true
     )
 
+    # The problem lies in the fact (or rather: serious bug in xcodebuild) that
+    # the timeout for connecting to the XCTest server starts at the moment you
+    # issue the command xcodebuild. The timeout is 120 seconds, so if your
+    # compilation + startup of the simulator takes longer than 2 minutes
+    # xcodebuild will give this "Canceling tests due to timeout" error.
+    # https://stackoverflow.com/questions/37922146/xctests-failing-on-physical-device-canceling-tests-due-to-timeout/40790171#40790171
     scan(
       workspace: "Example/ReCaptcha.xcworkspace",
       scheme: "ReCaptcha-Example",
       device: ENV["DEVICE"],
-      # device: "iPhone X (11.0)",
       code_coverage: true,
+      build_for_testing: true
+    )
+
+    scan(
+      workspace: "Example/ReCaptcha.xcworkspace",
+      scheme: "ReCaptcha-Example",
+      device: ENV["DEVICE"],
+      code_coverage: true,
+      test_without_building: true
     )
 
     if is_ci
       puts "Uploading coverage files to CodeCov"
-      sh "curl -s https://codecov.io/bash | bash -s -- -J 'ReCaptcha'"
+      codecov(
+        project_name: 'ReCaptcha',
+        use_xcodeplist: true,
+      )
     else
       puts "Not CI: Skipping coverage files upload"
     end
@@ -47,6 +67,11 @@ platform :ios do
 
   desc "Lint Cocoapods Lib"
   lane :pod_lint do
+    cocoapods(
+      podfile: "Example/Podfile",
+      repo_update: true
+    )
+
     pod_lib_lint(
       allow_warnings: true # Remove this when RxSwift stops warning
     )
