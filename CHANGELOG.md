@@ -1,3 +1,7 @@
+# 1.0.0
+
+- Swift 4 support
+
 # 0.3.0
 
 - Carthage support
