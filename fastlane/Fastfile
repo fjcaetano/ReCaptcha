@@ -1,11 +1,3 @@
-# Customise this file, documentation can be found here:
-# https://docs.fastlane.tools/actions/
-# All available actions: https://docs.fastlane.tools/actions
-# can also be listed using the `fastlane actions` command
-
-# Change the syntax highlighting to Ruby
-# All lines starting with a # are ignored when running `fastlane`
-
 # If you want to automatically update fastlane if a new version is available:
 # update_fastlane
 
@@ -18,18 +10,34 @@ default_platform :ios
 platform :ios do
   skip_docs
 
-  lane :cov do
+  devices = [
+    "iPhone X (11.0)",
+    "iPhone 7 (10.0)",
+    "iPhone 6 (9.0)",
+    "iPhone 5s (8.1)",
+  ]
+
+  desc "Runs the following lanes:\n- test\n- pod_lint\n- carthage_lint"
+  lane :ci do
+    test
+    pod_lint
+    carthage_lint
   end
 
   desc "Runs all the tests"
   lane :test do
+    ios_simulator(
+      devices: devices,
+      reset_before_launching: is_ci,
+    )
+
     cocoapods(
-      podfile: "Example/Podfile"
+      podfile: "Example/Podfile",
     )
 
     swiftlint(
       executable: "Example/Pods/Swiftlint/swiftlint",
-      strict: true
+      strict: true,
     )
 
     # The problem lies in the fact (or rather: serious bug in xcodebuild) that
@@ -39,19 +47,23 @@ platform :ios do
     # xcodebuild will give this "Canceling tests due to timeout" error.
     # https://stackoverflow.com/questions/37922146/xctests-failing-on-physical-device-canceling-tests-due-to-timeout/40790171#40790171
     scan(
-      workspace: "Example/ReCaptcha.xcworkspace",
+      build_for_testing: true,
+      devices: devices,
       scheme: "ReCaptcha-Example",
-      device: ENV["DEVICE"],
+      workspace: "Example/ReCaptcha.xcworkspace",
       code_coverage: true,
-      build_for_testing: true
+      buildlog_path: File.join(ENV['BITRISE_DEPLOY_DIR'] || '.', "logs/build"),
+      xcargs: '-maximum-concurrent-test-device-destinations=1',
     )
 
     scan(
-      workspace: "Example/ReCaptcha.xcworkspace",
+      test_without_building: true,
+      devices: devices,
       scheme: "ReCaptcha-Example",
-      device: ENV["DEVICE"],
+      workspace: "Example/ReCaptcha.xcworkspace",
       code_coverage: true,
-      test_without_building: true
+      buildlog_path: File.join(ENV['BITRISE_DEPLOY_DIR'] || '.', "logs/run"),
+      xcargs: '-maximum-concurrent-test-device-destinations=1',
     )
 
     if is_ci
@@ -67,14 +79,7 @@ platform :ios do
 
   desc "Lint Cocoapods Lib"
   lane :pod_lint do
-    cocoapods(
-      podfile: "Example/Podfile",
-      repo_update: true
-    )
-
-    pod_lib_lint(
-      allow_warnings: true # Remove this when RxSwift stops warning
-    )
+    pod_lib_lint
   end
 
   desc "Lint Carthage lib"
@@ -89,32 +94,37 @@ platform :ios do
       command: "build",
       platform: "iOS",
       cache_builds: true,
-      no_skip_current: true
+      no_skip_current: true,
     )
   end
 
   desc "Deploy a new version to Github and Cocoapods"
   lane :release do
-    carthage "archive"
+    ci unless is_ci
+
+    carthage(
+      command: "archive",
+    )
 
     pod_push(
       path: "ReCaptcha.podspec",
-      verbose: true
+      verbose: true,
     )
 
+    prev_tag = sh "git describe --abbrev=0 --tags `git rev-list --tags --skip=1  --max-count=1`"
     changelog = changelog_from_git_commits(
-      tag_match_pattern: "*",
+      between: [last_git_tag, prev_tag.strip],
       pretty: "- %s"
     )
 
     set_github_release(
+      repository_name: "fjcaetano/ReCaptcha",
       tag_name: last_git_tag,
-      upload_assets: ["ReCaptcha.framework"],
-      description: changelog
+      name: last_git_tag,
+      upload_assets: ["ReCaptcha.framework.zip"],
+      description: changelog,
     )
   end
-
-  # You can define as many lanes as you want
 
   after_all do |lane|
     # This block is called, only if the executed lane was successful
@@ -131,10 +141,3 @@ platform :ios do
     # )
   end
 end
-
-
-# More information about multiple platforms in fastlane: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Platforms.md
-# All available actions: https://docs.fastlane.tools/actions
-
-# fastlane reports which actions are used. No personal data is recorded.
-# Learn more at https://github.com/fastlane/fastlane#metrics
