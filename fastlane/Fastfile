@@ -10,12 +10,10 @@ default_platform :ios
 platform :ios do
   skip_docs
 
-  devices = [
-    "iPhone X (11.0)",
-    "iPhone 7 (10.0)",
-    "iPhone 6 (9.0)",
-    "iPhone 5s (8.1)",
-  ]
+  devices = ["iPhone X (11.0)"]
+  devices << "iPhone 7 (10.0)" if !Helper.is_ci?
+  devices << "iPhone 6 (9.0)" if !Helper.is_ci?
+  devices << "iPhone 5s (8.1)" if !Helper.is_ci?
 
   desc "Runs the following lanes:\n- test\n- pod_lint\n- carthage_lint"
   lane :ci do
@@ -26,11 +24,6 @@ platform :ios do
 
   desc "Runs all the tests"
   lane :test do
-    ios_simulator(
-      devices: devices,
-      reset_before_launching: is_ci,
-    )
-
     cocoapods(
       podfile: "Example/Podfile",
     )
@@ -52,8 +45,6 @@ platform :ios do
       scheme: "ReCaptcha-Example",
       workspace: "Example/ReCaptcha.xcworkspace",
       code_coverage: true,
-      buildlog_path: File.join(ENV['BITRISE_DEPLOY_DIR'] || '.', "logs/build"),
-      xcargs: '-maximum-concurrent-test-device-destinations=1',
     )
 
     scan(
@@ -62,12 +53,9 @@ platform :ios do
       scheme: "ReCaptcha-Example",
       workspace: "Example/ReCaptcha.xcworkspace",
       code_coverage: true,
-      buildlog_path: File.join(ENV['BITRISE_DEPLOY_DIR'] || '.', "logs/run"),
-      xcargs: '-maximum-concurrent-test-device-destinations=1',
     )
 
     if is_ci
-      puts "Uploading coverage files to CodeCov"
       codecov(
         project_name: 'ReCaptcha',
         use_xcodeplist: true,
@@ -100,8 +88,6 @@ platform :ios do
 
   desc "Deploy a new version to Github and Cocoapods"
   lane :release do
-    ci unless is_ci
-
     carthage(
       command: "archive",
     )

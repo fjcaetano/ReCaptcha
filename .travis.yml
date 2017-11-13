@@ -1,6 +1,11 @@
 osx_image: xcode9
 language: objective-c
 
+cache:
+  cocoapods: true
+  directories:
+    - Carthage
+
 script:
   - bundle exec fastlane ci
 

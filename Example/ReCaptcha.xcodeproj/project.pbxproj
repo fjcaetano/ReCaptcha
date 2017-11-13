@@ -214,7 +214,6 @@
 				607FACCE1AFB9204008FA782 /* Resources */,
 				8F03FFB3F5C55E873C23C682 /* [CP] Embed Pods Frameworks */,
 				ED1C0E07490C9C4B4A401061 /* [CP] Copy Pods Resources */,
-				F2C0FD7E1F9F8061009B7A6F /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -418,20 +417,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReCaptcha_Example/Pods-ReCaptcha_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		F2C0FD7E1F9F8061009B7A6F /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ -f \"${PODS_ROOT}/SwiftLint/swiftlint\" ]; then\n    \"${PODS_ROOT}/SwiftLint/swiftlint\" --path \"${PROJECT_DIR}/..\"\nelse\n    echo \"error: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n    exit 1\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
