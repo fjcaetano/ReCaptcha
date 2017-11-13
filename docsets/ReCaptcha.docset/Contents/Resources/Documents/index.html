@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ReCaptcha  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="ReCaptcha  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">ReCaptcha Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">ReCaptcha Reference</a>
+        <img id="carat" src="img/carat.png" />
+        ReCaptcha  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/ReCaptcha.html">ReCaptcha</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/ReCaptcha/Endpoint.html">– Endpoint</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/ReCaptchaWebViewManager.html">ReCaptchaWebViewManager</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Enums/ReCaptchaError.html">ReCaptchaError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/Reactive.html">Reactive</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <h1 id='recaptcha' class='heading'>ReCaptcha</h1>
+
+<p><a href="https://travis-ci.org/fjcaetano/ReCaptcha"><img src="https://travis-ci.org/fjcaetano/ReCaptcha.svg?branch=master" alt="Build Status"></a>
+<a href="http://cocoapods.org/pods/ReCaptcha"><img src="https://img.shields.io/cocoapods/v/ReCaptcha.svg?style=flat" alt="Version"></a>
+<a href="http://cocoapods.org/pods/ReCaptcha"><img src="https://img.shields.io/cocoapods/l/ReCaptcha.svg?style=flat" alt="License"></a>
+<a href="http://cocoapods.org/pods/ReCaptcha"><img src="https://img.shields.io/cocoapods/p/ReCaptcha.svg?style=flat" alt="Platform"></a>
+<a href="https://codecov.io/gh/fjcaetano/ReCaptcha"><img src="https://codecov.io/gh/fjcaetano/ReCaptcha/branch/master/graph/badge.svg" alt="codecov"></a>
+<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a></p>
+
+<hr>
+
+<p>Add Google&rsquo;s <a href="https://developers.google.com/recaptcha/docs/invisible">Invisible ReCaptcha</a> to your project. This library
+automatically handles ReCaptcha&rsquo;s events and retrieves the validation token or notifies you to present the challenge if
+invisibility is not possible.</p>
+
+<p><img src="https://raw.githubusercontent.com/fjcaetano/ReCaptcha/master/example2.gif" alt="Example Gif 2">  <img src="https://raw.githubusercontent.com/fjcaetano/ReCaptcha/master/example.gif" alt="Example Gif"></p>
+<h4 id='em-warning-em' class='heading'><em>Warning</em> ⚠️</h4>
+
+<p>Beware that this library only works for Invisible ReCaptcha keys! Make sure to check the Invisible reCAPTCHA option
+when creating your <a href="https://www.google.com/recaptcha/admin">API Key</a>.</p>
+<h2 id='installation' class='heading'>Installation</h2>
+
+<p>ReCaptcha is available through <a href="http://cocoapods.org">CocoaPods</a> and <a href="https://github.com/Carthage/Carthage">Carthage</a>.
+To install it, simply add the following line to your depedencies file:</p>
+<h4 id='cocoapods' class='heading'>Cocoapods</h4>
+<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s2">"ReCaptcha"</span>
+<span class="c1"># or</span>
+<span class="n">pod</span> <span class="s2">"ReCaptcha/RxSwift"</span>
+</code></pre>
+<h4 id='carthage' class='heading'>Carthage</h4>
+<pre class="highlight ruby"><code><span class="n">github</span> <span class="s2">"fjcaetano/ReCaptcha"</span>
+</code></pre>
+
+<p>Carthage will create two different frameworks named <code><a href="Classes/ReCaptcha.html">ReCaptcha</a></code> and <code>ReCaptcha_RxSwift</code>, the latter containing the RxSwift
+extension for the ReCaptcha framework.</p>
+<h2 id='usage' class='heading'>Usage</h2>
+
+<p>Simply add <code>ReCaptchaKey</code> and <code>ReCaptchaDomain</code> to your Info.plist and run:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">recaptcha</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">ReCaptcha</span><span class="p">()</span>
+
+<span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
+
+    <span class="n">recaptcha</span><span class="p">?</span><span class="o">.</span><span class="n">configureWebView</span> <span class="p">{</span> <span class="p">[</span><span class="k">weak</span> <span class="k">self</span><span class="p">]</span> <span class="n">webview</span> <span class="k">in</span>
+        <span class="n">webview</span><span class="o">.</span><span class="n">frame</span> <span class="o">=</span> <span class="k">self</span><span class="p">?</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">bounds</span> <span class="p">??</span> <span class="kt">CGRect</span><span class="o">.</span><span class="n">zero</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="kd">func</span> <span class="nf">validate</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">recaptcha</span><span class="p">?</span><span class="o">.</span><span class="nf">validate</span><span class="p">(</span><span class="nv">on</span><span class="p">:</span> <span class="n">view</span><span class="p">)</span> <span class="p">{</span> <span class="p">[</span><span class="k">weak</span> <span class="k">self</span><span class="p">]</span> <span class="n">result</span> <span class="k">in</span>
+        <span class="nf">print</span><span class="p">(</span><span class="k">try</span><span class="p">?</span> <span class="n">result</span><span class="o">.</span><span class="nf">dematerialize</span><span class="p">())</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>You can also install the reactive subpod and use it with RxSwift:</p>
+<pre class="highlight swift"><code><span class="n">recaptcha</span><span class="o">.</span><span class="n">rx</span><span class="o">.</span><span class="nf">validate</span><span class="p">(</span><span class="nv">on</span><span class="p">:</span> <span class="n">view</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="k">try</span> <span class="nv">$0</span><span class="o">.</span><span class="nf">dematerialize</span><span class="p">()</span> <span class="p">}</span>
+    <span class="o">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="nv">onNext</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="nv">token</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">in</span>
+        <span class="c1">// Do something</span>
+    <span class="p">})</span>
+</code></pre>
+<h4 id='alternte-endpoint' class='heading'>Alternte endpoint</h4>
+
+<p>If your app has firewall limitations that may be blocking Google&rsquo;s API, the JS endpoint may be changed on initialization.
+It&rsquo;ll then point to <code>https://www.recaptcha.net/recaptcha/api.js</code>:</p>
+<pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Endpoint</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="k">default</span><span class="p">,</span> <span class="n">alternate</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">recaptcha</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">ReCaptcha</span><span class="p">(</span><span class="nv">endpoint</span><span class="p">:</span> <span class="o">.</span><span class="n">alternate</span><span class="p">)</span> <span class="c1">// Defaults to `default` when unset</span>
+</code></pre>
+<h2 id='license' class='heading'>License</h2>
+
+<p>ReCaptcha is available under the MIT license. See the LICENSE file for more info.</p>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="https://github.com/fjcaetano/ReCaptcha" target="_blank" rel="external">Flávio Caetano</a>. All rights reserved. (Last updated: 2017-11-13)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
