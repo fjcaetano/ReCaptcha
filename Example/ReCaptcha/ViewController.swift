@@ -16,7 +16,7 @@ import UIKit
 class ViewController: UIViewController {
     fileprivate static let webViewTag = 123
 
-    // swiftlint:disable force_try
+    // swiftlint:disable:next force_try
     fileprivate let recaptcha = try! ReCaptcha()
     fileprivate var disposeBag = DisposeBag()
 
