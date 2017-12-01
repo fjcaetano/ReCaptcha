@@ -6,6 +6,7 @@
 build/
 DerivedData
 logs/
+ReCaptcha.framework.zip
 
 ## Various settings
 *.pbxuser

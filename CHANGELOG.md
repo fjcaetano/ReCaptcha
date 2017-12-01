@@ -1,3 +1,7 @@
+# 1.0.1
+
+- Fix: Webview content being dismissed when clicking outside of div frame area
+
 # 1.0.0
 
 - Swift 4 support
