@@ -89,6 +89,25 @@ platform :ios do
 
   desc "Deploy a new version to Github and Cocoapods"
   lane :release do
+    # Checking files
+    tag = last_git_tag
+
+    did_succeed = true
+    if version_get_podspec != tag
+      UI.error "Podspec version different than tag name"
+      did_succeed = false
+    end
+
+    changelog_contents = File.read '../CHANGELOG.md'
+    if !changelog_contents.include? tag
+      UI.error "CHANGELOG hasn't been updated"
+      did_succeed = false
+    end
+
+    if !did_succeed
+      exit 1
+    end
+
     carthage(
       command: "archive",
     )
@@ -100,14 +119,14 @@ platform :ios do
 
     prev_tag = sh "git describe --abbrev=0 --tags `git rev-list --tags --skip=1  --max-count=1`"
     changelog = changelog_from_git_commits(
-      between: [last_git_tag, prev_tag.strip],
+      between: [tag, prev_tag.strip],
       pretty: "- %s"
     )
 
     set_github_release(
       repository_name: "fjcaetano/ReCaptcha",
-      tag_name: last_git_tag,
-      name: last_git_tag,
+      tag_name: tag,
+      name: tag,
       upload_assets: ["ReCaptcha.framework.zip"],
       description: changelog,
     )
