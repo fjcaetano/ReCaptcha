@@ -24,6 +24,9 @@ internal class ReCaptchaDecoder: NSObject {
 
         /// Any errors
         case error(ReCaptchaError)
+
+        /// Did finish loading resources
+        case didLoad
     }
 
     /// The closure that receives messages
@@ -84,8 +87,17 @@ fileprivate extension ReCaptchaDecoder.Result {
             return .token(token)
         }
 
-        if let action = response["action"] as? String, action == "showReCaptcha" {
-            return .showReCaptcha
+        if let action = response["action"] as? String {
+            switch action {
+            case "showReCaptcha":
+                return .showReCaptcha
+
+            case "didLoad":
+                return .didLoad
+
+            default:
+                break
+            }
         }
 
         return .error(.wrongMessageFormat)

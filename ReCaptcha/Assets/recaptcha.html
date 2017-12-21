@@ -13,7 +13,11 @@
 
   var execute = function() {
     // Removes ReCaptcha dismissal when clicking outside div area
-    document.getElementsByTagName("div")[4].outerHTML = ""
+    try {
+        document.getElementsByTagName("div")[4].outerHTML = ""
+    }
+    catch(e) {
+    }
 
     // Listens to changes on the div element that presents the ReCaptcha challenge
     observeDOM(document.getElementsByTagName("div")[3], function() {

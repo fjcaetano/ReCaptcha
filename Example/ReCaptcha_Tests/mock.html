@@ -1,16 +1,20 @@
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <script type="text/javascript">
-        var key = "${apiKey}";
-        var execute = function() {
-            window.webkit.messageHandlers.recaptcha.postMessage(${message});
-        }
-        var endpoint = "${endpoint}";
-        </script>
-    </head>
-    <body>
-        <span id="submit" style="visibility: hidden;"></span>
-    </body>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <script type="text/javascript">
+  var key = "${apiKey}";
+  var endpoint = "${endpoint}";
+
+  var execute = function() {
+    window.webkit.messageHandlers.recaptcha.postMessage(${message});
+  }
+
+  window.onload = function() {
+    window.webkit.messageHandlers.recaptcha.postMessage({action: "didLoad"});
+  }
+  </script>
+</head>
+<body>
+  <span id="submit" style="visibility: hidden;"></span>
+</body>
 </html>
-cartha  

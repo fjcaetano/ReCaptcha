@@ -22,6 +22,9 @@ open class ReCaptchaWebViewManager {
         /// The parent manager
         private weak var manager: ReCaptchaWebViewManager?
 
+        /// The active requests' urls
+        private var activeRequests = Set<String>(minimumCapacity: 0)
+
         /// - parameter manager: The parent manager
         init(manager: ReCaptchaWebViewManager) {
             self.manager = manager
@@ -30,16 +33,55 @@ open class ReCaptchaWebViewManager {
         /**
          - parameters:
              - webView: The web view invoking the delegate method.
-             - navigation: The navigation object that finished.
-         
-         Called when the navigation is complete.
-         */
-        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-            manager?.didFinishLoading = true
+             - navigationAction: Descriptive information about the action triggering the navigation request.
+             - decisionHandler: The decision handler to call to allow or cancel the navigation. The argument is one of
+         the constants of the enumerated type WKNavigationActionPolicy.
 
-            if manager?.completion != nil {
-                // User has requested for validation
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+         Decides whether to allow or cancel a navigation.
+         */
+        func webView(
+            _ webView: WKWebView,
+            decidePolicyFor navigationAction: WKNavigationAction,
+            decisionHandler: @escaping (WKNavigationActionPolicy
+        ) -> Void) {
+            defer { decisionHandler(.allow) }
+
+            if let url = navigationAction.request.url, let host = url.host, let endpoint = manager?.endpoint,
+                endpoint.range(of: host) != nil {
+                activeRequests.insert(url.absoluteString)
+            }
+        }
+
+        /**
+         - parameters:
+            - webView: The web view invoking the delegate method.
+            - navigationResponse: Descriptive information about the navigation response.
+            - decisionHandler: A block to be called when your app has decided whether to allow or cancel the navigation
+
+         Decides whether to allow or cancel a navigation after its response is known.
+         */
+        func webView(
+            _ webView: WKWebView,
+            decidePolicyFor navigationResponse: WKNavigationResponse,
+            decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void
+        ) {
+            defer { decisionHandler(.allow) }
+            guard let url = navigationResponse.response.url?.absoluteString,
+                activeRequests.remove(url) != nil, activeRequests.isEmpty else {
+                    return
+            }
+
+            execute()
+        }
+
+        /// Flag the requests as finished and call ReCaptcha execution if necessary
+        func execute() {
+            DispatchQueue.main.throttle(deadline: .now() + 1) { [weak self] in
+                // Did finish loading the ReCaptcha JS source
+                self?.manager?.didFinishLoading = true
+
+                if self?.manager?.completion != nil {
+                    // User has requested for validation
                     self?.manager?.execute()
                 }
             }
@@ -64,6 +106,9 @@ open class ReCaptchaWebViewManager {
 
     /// The observer for `.UIWindowDidBecomeVisible`
     fileprivate var observer: NSObjectProtocol?
+
+    /// The endpoint url being used
+    fileprivate var endpoint: String
 
     /// The `webView` delegate implementation
     fileprivate lazy var webviewDelegate: WebViewDelegate = {
@@ -90,7 +135,8 @@ open class ReCaptchaWebViewManager {
          - endpoint: The JS API endpoint to be loaded onto the HTML file.
      */
     init(html: String, apiKey: String, baseURL: URL, endpoint: String) {
-        decoder = ReCaptchaDecoder { [weak self] result in
+        self.endpoint = endpoint
+        self.decoder = ReCaptchaDecoder { [weak self] result in
             self?.handle(result: result)
         }
 
@@ -201,6 +247,10 @@ fileprivate extension ReCaptchaWebViewManager {
 
         case .showReCaptcha:
             configureWebView?(webView)
+
+        case .didLoad:
+            // For testing purposes
+            webviewDelegate.execute()
         }
     }
 

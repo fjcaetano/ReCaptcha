@@ -11,6 +11,7 @@
 		F206BAD31F8D3E7600A25807 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F206BAD21F8D3E7600A25807 /* Result.framework */; };
 		F206BB1D1F8D4DBC00A25807 /* ReCaptcha_RxSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = F206BB1B1F8D4DBC00A25807 /* ReCaptcha_RxSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F206BB221F8D4DDF00A25807 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F206BB121F8D4D1400A25807 /* RxSwift.framework */; };
+		F231B39A1FEC51C800F82943 /* DispatchQueue+Throttle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231B3991FEC51C800F82943 /* DispatchQueue+Throttle.swift */; };
 		F24EA1E11F9683FB001DEC17 /* ReCaptcha+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24EA1DD1F9683F5001DEC17 /* ReCaptcha+Rx.swift */; };
 		F24EA1E21F968403001DEC17 /* ReCaptchaDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24EA1D81F9683F5001DEC17 /* ReCaptchaDecoder.swift */; };
 		F24EA1E31F968403001DEC17 /* ReCaptchaWebViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24EA1D91F9683F5001DEC17 /* ReCaptchaWebViewManager.swift */; };
@@ -41,6 +42,7 @@
 		F206BB191F8D4DBC00A25807 /* ReCaptcha_RxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ReCaptcha_RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F206BB1B1F8D4DBC00A25807 /* ReCaptcha_RxSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReCaptcha_RxSwift.h; sourceTree = "<group>"; };
 		F206BB1C1F8D4DBC00A25807 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F231B3991FEC51C800F82943 /* DispatchQueue+Throttle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Throttle.swift"; sourceTree = "<group>"; };
 		F24EA1D81F9683F5001DEC17 /* ReCaptchaDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReCaptchaDecoder.swift; sourceTree = "<group>"; };
 		F24EA1D91F9683F5001DEC17 /* ReCaptchaWebViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReCaptchaWebViewManager.swift; sourceTree = "<group>"; };
 		F24EA1DA1F9683F5001DEC17 /* String+Dict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Dict.swift"; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				F24EA1D91F9683F5001DEC17 /* ReCaptchaWebViewManager.swift */,
 				F24EA1DA1F9683F5001DEC17 /* String+Dict.swift */,
 				F24EA1DB1F9683F5001DEC17 /* ReCaptchaError.swift */,
+				F231B3991FEC51C800F82943 /* DispatchQueue+Throttle.swift */,
 				F24EA1DC1F9683F5001DEC17 /* Rx */,
 				F24EA1DE1F9683F5001DEC17 /* ReCaptcha.swift */,
 			);
@@ -291,6 +294,7 @@
 				F24EA1E61F968403001DEC17 /* ReCaptcha.swift in Sources */,
 				F24EA1E31F968403001DEC17 /* ReCaptchaWebViewManager.swift in Sources */,
 				F24EA1E41F968403001DEC17 /* String+Dict.swift in Sources */,
+				F231B39A1FEC51C800F82943 /* DispatchQueue+Throttle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
