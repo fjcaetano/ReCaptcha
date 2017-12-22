@@ -26,6 +26,7 @@ platform :ios do
   lane :test do
     cocoapods(
       podfile: "Example/Podfile",
+      try_repo_update_on_error: true,
     )
 
     swiftlint(
