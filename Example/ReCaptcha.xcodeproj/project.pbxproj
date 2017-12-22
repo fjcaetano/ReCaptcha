@@ -16,6 +16,7 @@
 		D091B6E053FD250B4757E34C /* Pods_ReCaptcha_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9417A28DC340FF0BC1627B3F /* Pods_ReCaptcha_Tests.framework */; };
 		F206BAD51F8D3FEB00A25807 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = F206BAD41F8D3FEB00A25807 /* Cartfile */; };
 		F231B3971FEC325A00F82943 /* DispatchQueue__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231B3961FEC325A00F82943 /* DispatchQueue__Tests.swift */; };
+		F231B39F1FED4A8C00F82943 /* ReCaptchaDecoder+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231B39E1FED4A8C00F82943 /* ReCaptchaDecoder+Helper.swift */; };
 		F288E9451F9537760018688D /* ReCaptchaError+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F288E9441F9537760018688D /* ReCaptchaError+Equatable.swift */; };
 		F2E2685E1F7AEE3400CD876D /* ReCaptcha__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E2685D1F7AEE3400CD876D /* ReCaptcha__Tests.swift */; };
 		F2ECCF8A1E9FCEFE0097B199 /* ReCaptchaDecoder__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECCF891E9FCEFE0097B199 /* ReCaptchaDecoder__Tests.swift */; };
@@ -56,6 +57,7 @@
 		F206BAD41F8D3FEB00A25807 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Cartfile; path = ../Cartfile; sourceTree = "<group>"; };
 		F21901D91F98D62F00D8E2C9 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
 		F231B3961FEC325A00F82943 /* DispatchQueue__Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueue__Tests.swift; sourceTree = "<group>"; };
+		F231B39E1FED4A8C00F82943 /* ReCaptchaDecoder+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReCaptchaDecoder+Helper.swift"; sourceTree = "<group>"; };
 		F288E9441F9537760018688D /* ReCaptchaError+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReCaptchaError+Equatable.swift"; sourceTree = "<group>"; };
 		F2E2685D1F7AEE3400CD876D /* ReCaptcha__Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReCaptcha__Tests.swift; sourceTree = "<group>"; };
 		F2ECCF761E9FC47B0097B199 /* ReCaptcha_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReCaptcha_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +193,7 @@
 				F2ECCF951EA00A5B0097B199 /* ReCaptchaWebViewManager+Helpers.swift */,
 				F2ECCF971EA011370097B199 /* Result+Helpers.swift */,
 				F288E9441F9537760018688D /* ReCaptchaError+Equatable.swift */,
+				F231B39E1FED4A8C00F82943 /* ReCaptchaDecoder+Helper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 				F2ECCF8E1E9FE68C0097B199 /* ReCaptchaWebViewManager__Tests.swift in Sources */,
 				F2ECCF981EA011370097B199 /* Result+Helpers.swift in Sources */,
 				F231B3971FEC325A00F82943 /* DispatchQueue__Tests.swift in Sources */,
+				F231B39F1FED4A8C00F82943 /* ReCaptchaDecoder+Helper.swift in Sources */,
 				F2E2685E1F7AEE3400CD876D /* ReCaptcha__Tests.swift in Sources */,
 				F2ECCF931EA009360097B199 /* ReCaptcha+Rx__Tests.swift in Sources */,
 				F288E9451F9537760018688D /* ReCaptchaError+Equatable.swift in Sources */,

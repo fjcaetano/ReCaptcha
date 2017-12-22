@@ -33,7 +33,7 @@ class ReCaptchaDecoder__Tests: XCTestCase {
 
 
     func test__Send_Error() {
-        let exp = expectation(description: "send message")
+        let exp = expectation(description: "send error message")
         var result: Result?
 
         assertResult = { res in
@@ -51,9 +51,7 @@ class ReCaptchaDecoder__Tests: XCTestCase {
 
         // Check
         XCTAssertNotNil(result)
-        XCTAssertEqual(result?.error, err)
-        XCTAssertNil(result?.token)
-        XCTAssertFalse(result!.showReCaptcha)
+        XCTAssertEqual(result, .error(err))
     }
 
 
@@ -75,14 +73,12 @@ class ReCaptchaDecoder__Tests: XCTestCase {
 
 
         // Check
-        XCTAssertEqual(result?.error, .wrongMessageFormat)
-        XCTAssertNil(result?.token)
-        XCTAssertFalse(result!.showReCaptcha)
+        XCTAssertEqual(result, .error(ReCaptchaError.wrongMessageFormat))
     }
 
 
-    func test__Decode__Undefined() {
-        let exp = expectation(description: "send message with undefined body")
+    func test__Decode__Unexpected_Action() {
+        let exp = expectation(description: "send message with unexpected action")
         var result: Result?
 
         assertResult = { res in
@@ -92,21 +88,19 @@ class ReCaptchaDecoder__Tests: XCTestCase {
 
 
         // Send
-        let message = MockMessage(message: ["foo": "bar"])
+        let message = MockMessage(message: ["action": "bar"])
         decoder.send(message: message)
 
         waitForExpectations(timeout: 1)
 
 
         // Check
-        XCTAssertEqual(result?.error, .wrongMessageFormat)
-        XCTAssertNil(result?.token)
-        XCTAssertFalse(result!.showReCaptcha)
+        XCTAssertEqual(result, .error(ReCaptchaError.wrongMessageFormat))
     }
 
 
     func test__Decode__ShowReCaptcha() {
-        let exp = expectation(description: "send message with undefined body")
+        let exp = expectation(description: "send showReCaptcha message")
         var result: Result?
 
         assertResult = { res in
@@ -123,14 +117,12 @@ class ReCaptchaDecoder__Tests: XCTestCase {
 
 
         // Check
-        XCTAssertNil(result?.error)
-        XCTAssertNil(result?.token)
-        XCTAssertTrue(result!.showReCaptcha)
+        XCTAssertEqual(result, .showReCaptcha)
     }
 
 
     func test__Decode__Token() {
-        let exp = expectation(description: "send message with undefined body")
+        let exp = expectation(description: "send token message")
         var result: Result?
 
         assertResult = { res in
@@ -148,48 +140,28 @@ class ReCaptchaDecoder__Tests: XCTestCase {
 
 
         // Check
-        XCTAssertNil(result?.error)
-        XCTAssertEqual(result?.token, token)
-        XCTAssertFalse(result!.showReCaptcha)
-    }
-}
-
-
-class MockMessage: WKScriptMessage {
-    override var body: Any {
-        return storedBody
+        XCTAssertEqual(result, .token(token))
     }
 
-    fileprivate let storedBody: Any
 
-    init(message: Any) {
-        storedBody = message
-    }
-}
+    func test__Decode__DidLoad() {
+        let exp = expectation(description: "send did load message")
+        var result: Result?
 
-
-// MARK: - Decoder Helpers
-fileprivate extension ReCaptchaDecoder {
-    func send(message: MockMessage) {
-        userContentController(WKUserContentController(), didReceive: message)
-    }
-}
+        assertResult = { res in
+            result = res
+            exp.fulfill()
+        }
 
 
-// MARK: - Result Helpers
-extension ReCaptchaDecoder.Result {
-    var token: String? {
-        guard case .token(let token) = self else { return nil }
-        return token
-    }
+        // Send
+        let message = MockMessage(message: ["action": "didLoad"])
+        decoder.send(message: message)
 
-    var showReCaptcha: Bool {
-        guard case .showReCaptcha = self else { return false }
-        return true
-    }
+        waitForExpectations(timeout: 1)
 
-    var error: ReCaptchaError? {
-        guard case .error(let error) = self else { return nil }
-        return error
+
+        // Check
+        XCTAssertEqual(result, .didLoad)
     }
 }

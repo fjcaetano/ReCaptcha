@@ -31,6 +31,7 @@ class ReCaptcha__Tests: XCTestCase {
             _ = try ReCaptcha()
             XCTFail("Should have failed")
         } catch let e as ReCaptchaError {
+            print(e)
             XCTAssertEqual(e, ReCaptchaError.htmlLoadError)
         } catch let e {
             XCTFail("Unexpected error: \(e)")
@@ -49,6 +50,7 @@ class ReCaptcha__Tests: XCTestCase {
             _ = try ReCaptcha.Config(apiKey: "", infoPlistKey: nil, baseURL: nil, infoPlistURL: nil)
             XCTFail("Should have failed")
         } catch let e as ReCaptchaError {
+            print(e)
             XCTAssertEqual(e, ReCaptchaError.baseURLNotFound)
         } catch let e {
             XCTFail("Unexpected error: \(e)")
@@ -71,6 +73,7 @@ class ReCaptcha__Tests: XCTestCase {
             _ = try ReCaptcha.Config(apiKey: nil, infoPlistKey: nil, baseURL: nil, infoPlistURL: nil)
             XCTFail("Should have failed")
         } catch let e as ReCaptchaError {
+            print(e)
             XCTAssertEqual(e, ReCaptchaError.apiKeyNotFound)
         } catch let e {
             XCTFail("Unexpected error: \(e)")
