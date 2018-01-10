@@ -1,6 +1,10 @@
+# 1.0.2
+
+- Fix: Better detection of resources loading end (#16)
+
 # 1.0.1
 
-- Fix: Webview content being dismissed when clicking outside of div frame area
+- Fix: Webview content being dismissed when clicking outside of div frame area (#14)
 
 # 1.0.0
 
@@ -10,9 +14,9 @@
 
 - Carthage support
 - Refactored framework errors
-- Alternate endpoint to bypass firewall limitations #10
-- Fix: JS not loaded #7
-- Fix: Wrong Domain retrieving #6
+- Alternate endpoint to bypass firewall limitations (#10)
+- Fix: JS not loaded (#7)
+- Fix: Wrong Domain retrieving (#6)
 
 # 0.2.0
 

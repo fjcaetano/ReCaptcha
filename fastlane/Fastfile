@@ -92,20 +92,13 @@ platform :ios do
     # Checking files
     tag = last_git_tag
 
-    did_succeed = true
-    if version_get_podspec != tag
-      UI.error "Podspec version different than tag name"
-      did_succeed = false
-    end
-
     changelog_contents = File.read '../CHANGELOG.md'
     if !changelog_contents.include? tag
-      UI.error "CHANGELOG hasn't been updated"
-      did_succeed = false
+      UI.user_error! "CHANGELOG hasn't been updated"
     end
 
-    if !did_succeed
-      exit 1
+    if version_get_podspec != tag
+      UI.user_error! "Podspec version different than tag name"
     end
 
     carthage(
