@@ -20,7 +20,7 @@ class DispatchQueue__Tests: XCTestCase {
         super.tearDown()
     }
 
-    func test__Throttle() {
+    func test__Throttle_Nil_Context() {
         // Execute closure called once
         let exp0 = expectation(description: "did call single closure")
 
@@ -38,6 +38,38 @@ class DispatchQueue__Tests: XCTestCase {
 
         DispatchQueue.main.throttle(deadline: .now() + 0.1) {
             exp1.fulfill()
+        }
+
+        waitForExpectations(timeout: 1)
+    }
+
+    func test__Throttle_Context() {
+        // Execute closure called once
+        let exp0 = expectation(description: "did call single closure")
+        let c0 = UUID()
+
+        DispatchQueue.main.throttle(deadline: .now() + 0.1, context: c0) {
+            exp0.fulfill()
+        }
+
+        waitForExpectations(timeout: 1)
+
+        // Does not execute first closure
+        let exp1 = expectation(description: "execute on valid context")
+        let c1 = UUID()
+        DispatchQueue.main.throttle(deadline: .now() + 0.1, context: c1) {
+            XCTFail("Shouldn't be called")
+        }
+
+        DispatchQueue.main.throttle(deadline: .now() + 0.1, context: c1) {
+            exp1.fulfill()
+        }
+
+        // Execute in a different context
+        let exp2 = expectation(description: "execute on different context")
+        let c2 = UUID()
+        DispatchQueue.main.throttle(deadline: .now() + 0.1, context: c2) {
+            exp2.fulfill()
         }
 
         waitForExpectations(timeout: 1)
