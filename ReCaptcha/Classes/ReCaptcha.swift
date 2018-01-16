@@ -33,7 +33,7 @@ open class ReCaptcha: ReCaptchaWebViewManager {
         fileprivate var url: String {
             switch self {
             case .default: return "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-            case .alternate: return "https://www.recaptcha.net/recaptcha/api.js"
+            case .alternate: return "https://www.recaptcha.net/recaptcha/api.js?onload=onloadCallback&render=explicit"
             }
         }
     }

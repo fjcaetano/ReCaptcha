@@ -19,6 +19,11 @@ open class ReCaptchaWebViewManager {
     /** The `webView` delegate object that performs execution uppon script loading
      */
     fileprivate class WebViewDelegate: NSObject, WKNavigationDelegate {
+        struct Constants {
+            /// The host that loaded requests should have
+            static let apiURLHost = "www.google.com"
+        }
+
         /// The parent manager
         private weak var manager: ReCaptchaWebViewManager?
 
@@ -46,8 +51,7 @@ open class ReCaptchaWebViewManager {
         ) -> Void) {
             defer { decisionHandler(.allow) }
 
-            if let url = navigationAction.request.url, let host = url.host, let endpoint = manager?.endpoint,
-                endpoint.range(of: host) != nil {
+            if let url = navigationAction.request.url, url.host == Constants.apiURLHost {
                 activeRequests.insert(url.absoluteString)
             }
         }
