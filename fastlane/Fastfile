@@ -10,10 +10,9 @@ default_platform :ios
 platform :ios do
   skip_docs
 
-  devices = ["iPhone X (11.0)"]
-  devices << "iPhone 7 (10.0)" if !Helper.is_ci?
-  devices << "iPhone 6 (9.0)" if !Helper.is_ci?
-  devices << "iPhone 5s (8.1)" if !Helper.is_ci?
+  devices = [["iPhone X", "11"]]
+  devices << ["iPhone 7", "10"] if !Helper.is_ci?
+  devices << ["iPhone 5s", "9"] if !Helper.is_ci?
 
   desc "Runs the following lanes:\n- test\n- pod_lint\n- carthage_lint"
   lane :ci do
@@ -42,7 +41,7 @@ platform :ios do
     # https://stackoverflow.com/questions/37922146/xctests-failing-on-physical-device-canceling-tests-due-to-timeout/40790171#40790171
     scan(
       build_for_testing: true,
-      devices: devices,
+      devices: self.select_similar_simulator(devices),
       scheme: "ReCaptcha-Example",
       workspace: "Example/ReCaptcha.xcworkspace",
       code_coverage: true,
@@ -50,7 +49,7 @@ platform :ios do
 
     scan(
       test_without_building: true,
-      devices: devices,
+      devices: self.select_similar_simulator(devices),
       scheme: "ReCaptcha-Example",
       workspace: "Example/ReCaptcha.xcworkspace",
       code_coverage: true,
@@ -125,18 +124,15 @@ platform :ios do
     )
   end
 
-  after_all do |lane|
-    # This block is called, only if the executed lane was successful
+  # Private
 
-    # slack(
-    #   message: "Successfully deployed new App Update."
-    # )
-  end
-
-  error do |lane, exception|
-    # slack(
-    #   message: exception.message,
-    #   success: false
-    # )
+  def select_similar_simulator(args)
+    args.map { |name, ver|
+      FastlaneCore::Simulator.all
+        .select { |s| s.name == name }
+        .sort_by { |s| Gem::Version.create(s.os_version) }
+        .detect { |s| s.ios_version.start_with?(ver) }
+    }
+    .map { |s| "#{s.name} (#{s.ios_version})"}
   end
 end

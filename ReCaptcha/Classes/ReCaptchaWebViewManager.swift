@@ -126,6 +126,8 @@ open class ReCaptchaWebViewManager {
             configuration: self.buildConfiguration()
         )
         webview.navigationDelegate = self.webviewDelegate
+        webview.accessibilityIdentifier = "webview"
+        webview.accessibilityTraits = UIAccessibilityTraitLink
         webview.isHidden = true
 
         return webview

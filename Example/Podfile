@@ -13,6 +13,10 @@ target 'ReCaptcha_Example' do
 
     pod 'AppSwizzle', :git => 'https://github.com/fjcaetano/AppSwizzle.git', :branch => 'swift4'
   end
+
+  target 'ReCaptcha_UITests' do
+    inherit! :search_paths
+  end
 end
 
 post_install do |i|

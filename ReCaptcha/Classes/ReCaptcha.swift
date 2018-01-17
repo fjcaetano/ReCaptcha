@@ -38,7 +38,7 @@ open class ReCaptcha: ReCaptchaWebViewManager {
         }
     }
 
-    /** Internal data model for DI in unit tests
+    /** Internal data model for CI in unit tests
      */
     struct Config {
         /// The raw unformated HTML file content
