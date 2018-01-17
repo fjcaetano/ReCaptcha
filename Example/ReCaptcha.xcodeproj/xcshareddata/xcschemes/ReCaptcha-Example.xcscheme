@@ -54,6 +54,16 @@
                ReferencedContainer = "container:ReCaptcha.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F28FAC9B200E425600E14987"
+               BuildableName = "ReCaptcha_UITests.xctest"
+               BlueprintName = "ReCaptcha_UITests"
+               ReferencedContainer = "container:ReCaptcha.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

@@ -14,27 +14,33 @@ import UIKit
 
 
 class ViewController: UIViewController {
-    fileprivate static let webViewTag = 123
+    private struct Constants {
+        static let webViewTag = 123
+    }
 
-    // swiftlint:disable:next force_try
-    fileprivate let recaptcha = try! ReCaptcha()
-    fileprivate var disposeBag = DisposeBag()
+    private var recaptcha: ReCaptcha!
+    private var disposeBag = DisposeBag()
 
-    @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet private weak var label: UILabel!
+    @IBOutlet private weak var spinner: UIActivityIndicatorView!
+    @IBOutlet private weak var segmentedControl: UISegmentedControl!
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupReCaptcha(endpoint: .default)
+    }
 
-        recaptcha.configureWebView { [weak self] webview in
-            webview.frame = self?.view.bounds ?? CGRect.zero
-            webview.tag = ViewController.webViewTag
+    @IBAction func didPressSegmentedControl(_ sender: UISegmentedControl) {
+        label.text = ""
+        switch sender.selectedSegmentIndex {
+        case 0: setupReCaptcha(endpoint: .default)
+        case 1: setupReCaptcha(endpoint: .alternate)
+        default: assertionFailure("invalid index")
         }
     }
 
-
-    @IBAction func didPressButton(button: UIButton) {
+    @IBAction private func didPressButton(button: UIButton) {
         disposeBag = DisposeBag()
 
         let validate = recaptcha.rx.validate(on: view)
@@ -44,20 +50,28 @@ class ViewController: UIViewController {
         let isLoading = validate
             .map { _ in false }
             .startWith(true)
+            .share(replay: 1)
 
         isLoading
             .bind(to: spinner.rx.isAnimating)
             .disposed(by: disposeBag)
 
-        isLoading
+        let isEnabled = isLoading
             .map { !$0 }
             .catchErrorJustReturn(false)
+            .share(replay: 1)
+
+        isEnabled
             .bind(to: button.rx.isEnabled)
+            .disposed(by: disposeBag)
+
+        isEnabled
+            .bind(to: segmentedControl.rx.isEnabled)
             .disposed(by: disposeBag)
 
         validate
             .map { [weak self] _ in
-                self?.view.viewWithTag(ViewController.webViewTag)
+                self?.view.viewWithTag(Constants.webViewTag)
             }
             .subscribe(onNext: { subview in
                 subview?.removeFromSuperview()
@@ -68,5 +82,21 @@ class ViewController: UIViewController {
             .map { try $0.dematerialize() }
             .bind(to: label.rx.text)
             .disposed(by: disposeBag)
+    }
+
+    private func setupReCaptcha(endpoint: ReCaptcha.Endpoint) {
+        // swiftlint:disable:next force_try
+        recaptcha = try! ReCaptcha(endpoint: endpoint)
+
+        recaptcha.configureWebView { [weak self] webview in
+            webview.frame = self?.view.bounds ?? CGRect.zero
+            webview.tag = Constants.webViewTag
+
+            // For testing purposes
+            // If the webview requires presentation, this should work as a way of detecting the webview in UI tests
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
+            label.accessibilityLabel = "webview"
+            self?.view.addSubview(label)
+        }
     }
 }
