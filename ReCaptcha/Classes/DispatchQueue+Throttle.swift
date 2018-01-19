@@ -8,10 +8,14 @@
 
 import Foundation
 
-private var workItems = [AnyHashable: DispatchWorkItem]()
-private let nilContext = UUID()
-
+/// Adds throttling to dispatch queues
 extension DispatchQueue {
+    /// Stores a throttle DispatchWorkItem instance for a given context
+    private static var workItems = [AnyHashable: DispatchWorkItem]()
+
+    /// An object representing a context if none is given
+    private static let nilContext = UUID()
+
     /**
      - parameters:
          - deadline: The timespan to delay a closure execution
@@ -22,13 +26,13 @@ extension DispatchQueue {
      */
     func throttle(deadline: DispatchTime, context: AnyHashable = nilContext, action: @escaping () -> Void) {
         let worker = DispatchWorkItem {
-            defer { workItems[context] = nil }
+            defer { DispatchQueue.workItems.removeValue(forKey: context) }
             action()
         }
 
         asyncAfter(deadline: deadline, execute: worker)
 
-        workItems[context]?.cancel()
-        workItems[context] = worker
+        DispatchQueue.workItems[context]?.cancel()
+        DispatchQueue.workItems[context] = worker
     }
 }

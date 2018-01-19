@@ -38,7 +38,7 @@ open class ReCaptcha: ReCaptchaWebViewManager {
         }
     }
 
-    /** Internal data model for DI in unit tests
+    /** Internal data model for CI in unit tests
      */
     struct Config {
         /// The raw unformated HTML file content
@@ -93,7 +93,7 @@ open class ReCaptcha: ReCaptchaWebViewManager {
 
             self.html = rawHTML
             self.apiKey = apiKey
-            self.baseURL = domain
+            self.baseURL = Config.fixSchemeIfNeeded(for: domain)
         }
     }
 
@@ -126,5 +126,28 @@ open class ReCaptcha: ReCaptchaWebViewManager {
 
         let config = try Config(apiKey: apiKey, infoPlistKey: plistApiKey, baseURL: baseURL, infoPlistURL: plistDomain)
         super.init(html: config.html, apiKey: config.apiKey, baseURL: config.baseURL, endpoint: endpoint.url)
+    }
+}
+
+// MARK: - Private Methods
+
+private extension ReCaptcha.Config {
+    /**
+     - parameter url: The URL to be fixed
+     - returns: An URL with scheme
+
+     If the given URL has no scheme, prepends `http://` to it and return the fixed URL.
+     */
+    static func fixSchemeIfNeeded(for url: URL) -> URL {
+        guard url.scheme?.isEmpty != false else {
+            return url
+        }
+
+        if let fixedURL = URL(string: "http://" + url.absoluteString) {
+            debugPrint("[ReCaptcha] - Prepending 'http://' to url (\(url))")
+            return fixedURL
+        }
+
+        return url
     }
 }

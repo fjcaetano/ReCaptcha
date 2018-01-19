@@ -23,7 +23,7 @@ when creating your [API Key](https://www.google.com/recaptcha/admin).
 ## Installation
 
 ReCaptcha is available through [CocoaPods](http://cocoapods.org) and [Carthage](https://github.com/Carthage/Carthage).
-To install it, simply add the following line to your depedencies file:
+To install it, simply add the following line to your dependencies file:
 
 #### Cocoapods
 ``` ruby
@@ -42,7 +42,7 @@ extension for the ReCaptcha framework.
 
 ## Usage
 
-Simply add `ReCaptchaKey` and `ReCaptchaDomain` to your Info.plist and run:
+Simply add `ReCaptchaKey` and `ReCaptchaDomain` (with a protocol) to your Info.plist and run:
 
 ``` swift
 let recaptcha = try? ReCaptcha()

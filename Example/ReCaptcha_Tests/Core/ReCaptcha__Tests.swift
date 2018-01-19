@@ -26,7 +26,6 @@ class ReCaptcha__Tests: XCTestCase {
             toAlterSelector: #selector(Bundle.failHTMLLoad(_:type:))
         )
 
-
         do {
             _ = try ReCaptcha()
             XCTFail("Should have failed")
@@ -57,14 +56,26 @@ class ReCaptcha__Tests: XCTestCase {
         }
 
         // Ensures plist url if nil key
-        let plistURL = URL(string: "bar")!
+        let plistURL = URL(string: "https://bar")!
         let config1 = try? ReCaptcha.Config(apiKey: "", infoPlistKey: nil, baseURL: nil, infoPlistURL: plistURL)
         XCTAssertEqual(config1?.baseURL, plistURL)
 
         // Ensures preference of given url over plist entry
-        let url = URL(string: "foo")!
+        let url = URL(string: "ftp://foo")!
         let config2 = try? ReCaptcha.Config(apiKey: "", infoPlistKey: nil, baseURL: url, infoPlistURL: plistURL)
         XCTAssertEqual(config2?.baseURL, url)
+    }
+
+    func test__Base_URL_Without_Scheme() {
+        // Ignores URL with scheme
+        let goodURL = URL(string: "https://foo.bar")!
+        let config0 = try? ReCaptcha.Config(apiKey: "", infoPlistKey: nil, baseURL: goodURL, infoPlistURL: nil)
+        XCTAssertEqual(config0?.baseURL, goodURL)
+
+        // Fixes URL without scheme
+        let badURL = URL(string: "foo")!
+        let config = try? ReCaptcha.Config(apiKey: "", infoPlistKey: nil, baseURL: badURL, infoPlistURL: nil)
+        XCTAssertEqual(config?.baseURL.absoluteString, "http://" + badURL.absoluteString)
     }
 
     func test__API_Key() {
