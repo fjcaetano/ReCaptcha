@@ -143,8 +143,11 @@ private extension ReCaptcha.Config {
             return url
         }
 
+#if DEBUG
+        print("⚠️ WARNING! Protocol not found for ReCaptcha domain (\(url))! You should add http:// or https:// to it!")
+#endif
+
         if let fixedURL = URL(string: "http://" + url.absoluteString) {
-            debugPrint("[ReCaptcha] - Prepending 'http://' to url (\(url))")
             return fixedURL
         }
 
