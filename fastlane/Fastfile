@@ -10,9 +10,9 @@ default_platform :ios
 platform :ios do
   skip_docs
 
-  devices = [["iPhone X", "11"]]
-  devices << ["iPhone 7", "10"] if !Helper.is_ci?
-  devices << ["iPhone 5s", "9"] if !Helper.is_ci?
+  devices = ["iPhone X (~> 11)"]
+  devices << "iPhone 7 (~> 10)" if !Helper.is_ci?
+  devices << "iPhone 5s (~> 9)" if !Helper.is_ci?
 
   desc "Runs the following lanes:\n- test\n- pod_lint\n- carthage_lint"
   lane :ci do
@@ -127,12 +127,14 @@ platform :ios do
   # Private
 
   def select_similar_simulator(args)
-    args.map { |name, ver|
+    args.map { |device_string|
+      pieces = device_string.split(' (')
       FastlaneCore::Simulator.all
-        .select { |s| s.name == name }
+        .select { |s| s.name == pieces.first }
         .sort_by { |s| Gem::Version.create(s.os_version) }
-        .detect { |s| s.ios_version.start_with?(ver) }
+        .detect { |s| Gem::Requirement.new(pieces[1].tr('()', '')).satisfied_by?(Gem::Version.create(s.os_version)) }
     }
+    .compact
     .map { |s| "#{s.name} (#{s.ios_version})"}
   end
 end
