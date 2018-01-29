@@ -1,3 +1,9 @@
+# 1.1
+
+- Fix: better logging for when protocol isn't found on
+- Fix: Alternate endpoint not loading
+- Fix: Prepends a scheme if `baseURL` doesn't have one
+
 # 1.0.2
 
 - Fix: Better detection of resources loading end (#16)
