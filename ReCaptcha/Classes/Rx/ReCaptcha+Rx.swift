@@ -3,7 +3,7 @@
 //  ReCaptcha
 //
 //  Created by Flávio Caetano on 11/04/17.
-//  Copyright © 2017 ReCaptcha. All rights reserved.
+//  Copyright © 2018 ReCaptcha. All rights reserved.
 //
 
 import RxSwift

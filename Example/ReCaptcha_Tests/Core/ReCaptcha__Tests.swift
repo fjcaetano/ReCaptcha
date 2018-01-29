@@ -3,7 +3,7 @@
 //  ReCaptcha
 //
 //  Created by Flávio Caetano on 26/09/17.
-//  Copyright © 2017 ReCaptcha. All rights reserved.
+//  Copyright © 2018 ReCaptcha. All rights reserved.
 //
 
 import AppSwizzle
