@@ -27,6 +27,9 @@ internal class ReCaptchaDecoder: NSObject {
 
         /// Did finish loading resources
         case didLoad
+
+        /// Logs a string onto the console
+        case log(String)
     }
 
     /// The closure that receives messages
@@ -98,6 +101,10 @@ fileprivate extension ReCaptchaDecoder.Result {
             default:
                 break
             }
+        }
+
+        if let message = response["log"] as? String {
+            return .log(message)
         }
 
         return .error(.wrongMessageFormat)

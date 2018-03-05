@@ -2,6 +2,19 @@
 <head>
   <meta name="viewport" content="width=device-width" />
   <script type="text/javascript">
+  var post = function(value) {
+    window.webkit.messageHandlers.recaptcha.postMessage(value);
+  };
+
+  console.log = function(message) {
+      post({log: message});
+  };
+
+  var showReCaptcha = function() {
+      console.log("showReCaptcha");
+      post({action: "showReCaptcha"});
+  };
+  
   var observeDOM = function(element, completion) {
     new MutationObserver(function(mutations) {
       mutations.forEach(function(mutationRecord) {
@@ -20,20 +33,19 @@
     }
 
     // Listens to changes on the div element that presents the ReCaptcha challenge
-    observeDOM(document.getElementsByTagName("div")[3], function() {
-      console.log({action: "showReCaptcha"});
-      window.webkit.messageHandlers.recaptcha.postMessage({action: "showReCaptcha"});
-    });
+    observeDOM(document.getElementsByTagName("div")[3], showReCaptcha);
 
+    console.log("executing");
     grecaptcha.execute();
-  }
+  };
 
   var onSubmit = function(token) {
     console.log(token);
-    window.webkit.messageHandlers.recaptcha.postMessage({token: token});
+    post({token: token});
   };
 
   var onloadCallback = function() {
+    console.log("did load");
     grecaptcha.render('submit', {
       'sitekey' : '${apiKey}',
       'callback' : onSubmit,

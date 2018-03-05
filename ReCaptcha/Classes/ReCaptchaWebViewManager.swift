@@ -257,6 +257,11 @@ fileprivate extension ReCaptchaWebViewManager {
         case .didLoad:
             // For testing purposes
             webviewDelegate.execute()
+
+        case .log(let message):
+            #if DEBUG
+            print("[JS LOG]:", message)
+            #endif
         }
     }
 
