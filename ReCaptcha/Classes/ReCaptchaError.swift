@@ -22,7 +22,7 @@ public enum ReCaptchaError: Error, CustomStringConvertible {
     /// ReCaptchaDomain was not provided
     case baseURLNotFound
 
-    /// Received an unexpeted message from javascript
+    /// Received an unexpected message from javascript
     case wrongMessageFormat
 
 

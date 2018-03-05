@@ -23,7 +23,7 @@ open class ReCaptcha: ReCaptchaWebViewManager {
     /// The JS API endpoint to be loaded onto the HTML file.
     public enum Endpoint {
         /** Google's default endpoint. Points to
-         https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit
+         https://www.google.com/recaptcha/api.js
          */
         case `default`
 
