@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>DispatchQueue Extension Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Extension/DispatchQueue" class="dashAnchor"></a>
+    <a title="DispatchQueue Extension Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">ReCaptcha Docs</a> (87% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">ReCaptcha Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        DispatchQueue Extension Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ReCaptcha.html">ReCaptcha</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ReCaptcha/Constants.html">– Constants</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ReCaptcha/Endpoint.html">– Endpoint</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ReCaptcha/Config.html">– Config</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ReCaptchaDecoder.html">ReCaptchaDecoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ReCaptchaDecoder/Result.html">– Result</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ReCaptchaWebViewManager.html">ReCaptchaWebViewManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ReCaptchaWebViewManager/WebViewDelegate.html">– WebViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ReCaptchaWebViewManager/Constants.html">– Constants</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/ReCaptchaError.html">ReCaptchaError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/DispatchQueue.html">DispatchQueue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Reactive.html">Reactive</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>DispatchQueue</h1>
+            <p>Adds throttling to dispatch queues</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:So13DispatchQueueC9ReCaptchaE9workItems33_A71C1F561DF67E81B642ECB4A19E19BELLs10DictionaryVys11AnyHashableV0A00A8WorkItemCGvZ"></a>
+                    <a name="//apple_ref/swift/Variable/workItems" class="dashAnchor"></a>
+                    <a class="token" href="#/s:So13DispatchQueueC9ReCaptchaE9workItems33_A71C1F561DF67E81B642ECB4A19E19BELLs10DictionaryVys11AnyHashableV0A00A8WorkItemCGvZ">workItems</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Stores a throttle DispatchWorkItem instance for a given context</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">workItems</span> <span class="o">=</span> <span class="p">[</span><span class="kt">AnyHashable</span><span class="p">:</span> <span class="kt">DispatchWorkItem</span><span class="p">]()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:So13DispatchQueueC9ReCaptchaE10nilContext33_A71C1F561DF67E81B642ECB4A19E19BELL10Foundation4UUIDVvZ"></a>
+                    <a name="//apple_ref/swift/Variable/nilContext" class="dashAnchor"></a>
+                    <a class="token" href="#/s:So13DispatchQueueC9ReCaptchaE10nilContext33_A71C1F561DF67E81B642ECB4A19E19BELL10Foundation4UUIDVvZ">nilContext</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An object representing a context if none is given</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">nilContext</span> <span class="o">=</span> <span class="kt">UUID</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:So13DispatchQueueC9ReCaptchaE8throttley0A00A4TimeV8deadline_s11AnyHashableV7contextyyc6actiontF"></a>
+                    <a name="//apple_ref/swift/Method/throttle(deadline:context:action:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:So13DispatchQueueC9ReCaptchaE8throttley0A00A4TimeV8deadline_s11AnyHashableV7contextyyc6actiontF">throttle(deadline:context:action:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Delays a closure execution and ensures no other executions are made during deadline for that context</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">throttle</span><span class="p">(</span><span class="nv">deadline</span><span class="p">:</span> <span class="kt">DispatchTime</span><span class="p">,</span> <span class="nv">context</span><span class="p">:</span> <span class="kt">AnyHashable</span> <span class="o">=</span> <span class="n"><a href="../Extensions/DispatchQueue.html#/s:So13DispatchQueueC9ReCaptchaE10nilContext33_A71C1F561DF67E81B642ECB4A19E19BELL10Foundation4UUIDVvZ">nilContext</a></span><span class="p">,</span> <span class="nv">action</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>deadline</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The timespan to delay a closure execution</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>context</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The context in which the throttle should be executed</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>action</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The closure to be executed</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="https://github.com/fjcaetano/ReCaptcha" target="_blank" rel="external">Flávio Caetano</a>. All rights reserved. (Last updated: 2018-03-06)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

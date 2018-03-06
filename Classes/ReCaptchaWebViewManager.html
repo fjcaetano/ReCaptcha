@@ -78,9 +78,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9ReCaptcha0aB14WebViewManagerC8validateySo6UIViewC2on_y6ResultAHOySSAA0aB5ErrorOGc10completiontF"></a>
-                    <a name="//apple_ref/swift/Method/validate(on:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9ReCaptcha0aB14WebViewManagerC8validateySo6UIViewC2on_y6ResultAHOySSAA0aB5ErrorOGc10completiontF">validate(on:completion:)</a>
+                    <a name="/s:9ReCaptcha0aB14WebViewManagerC8validateySo6UIViewC2on_Sb12resetOnErrory6ResultAIOySSAA0abK0OGc10completiontF"></a>
+                    <a name="//apple_ref/swift/Method/validate(on:resetOnError:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReCaptcha0aB14WebViewManagerC8validateySo6UIViewC2on_Sb12resetOnErrory6ResultAIOySSAA0abK0OGc10completiontF">validate(on:resetOnError:completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -95,7 +95,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">validate</span><span class="p">(</span><span class="n">on</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Response</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">validate</span><span class="p">(</span><span class="n">on</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span> <span class="nv">resetOnError</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Response</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -112,6 +112,18 @@
                               <td>
                                 <div>
                                   <p>The view that should present the webview.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>resetOnError</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>If ReCaptcha should be reset if it errors. Defaults to <code>true</code>.</p>
                                 </div>
                               </td>
                             </tr>
@@ -209,12 +221,41 @@ it might need to be added in a view currently visible.</p>
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9ReCaptcha0aB14WebViewManagerC5resetyyF"></a>
+                    <a name="//apple_ref/swift/Method/reset()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReCaptcha0aB14WebViewManagerC5resetyyF">reset()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Resets the ReCaptcha.</p>
+
+<p>The reset is achieved by calling <code>grecaptcha.reset()</code> on the JS API.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">reset</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/fjcaetano/ReCaptcha" target="_blank" rel="external">Flávio Caetano</a>. All rights reserved. (Last updated: 2018-01-29)</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/fjcaetano/ReCaptcha" target="_blank" rel="external">Flávio Caetano</a>. All rights reserved. (Last updated: 2018-03-06)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

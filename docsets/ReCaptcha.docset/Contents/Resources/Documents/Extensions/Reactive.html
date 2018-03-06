@@ -78,9 +78,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7RxSwift8ReactiveV9ReCaptchaAD0dE14WebViewManagerCRbzlE8validateAA10ObservableCy6ResultAJOySSAD0dE5ErrorOGGSo6UIViewC2on_tF"></a>
-                    <a name="//apple_ref/swift/Method/validate(on:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7RxSwift8ReactiveV9ReCaptchaAD0dE14WebViewManagerCRbzlE8validateAA10ObservableCy6ResultAJOySSAD0dE5ErrorOGGSo6UIViewC2on_tF">validate(on:)</a>
+                    <a name="/s:7RxSwift8ReactiveV9ReCaptchaAD0dE14WebViewManagerCRbzlE8validateAA10ObservableCy6ResultAJOySSAD0dE5ErrorOGGSo6UIViewC2on_Sb07resetOnL0tF"></a>
+                    <a name="//apple_ref/swift/Method/validate(on:resetOnError:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7RxSwift8ReactiveV9ReCaptchaAD0dE14WebViewManagerCRbzlE8validateAA10ObservableCy6ResultAJOySSAD0dE5ErrorOGGSo6UIViewC2on_Sb07resetOnL0tF">validate(on:resetOnError:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -95,7 +95,7 @@
 <p>Sends <code>stop()</code> uppon disposal.</p>
 <div class="aside aside-see">
     <p class="aside-title">See</p>
-    <code><a href="../Classes/ReCaptchaWebViewManager.html#/s:9ReCaptcha0aB14WebViewManagerC8validateySo6UIViewC2on_y6ResultAHOySSAA0aB5ErrorOGc10completiontF">ReCaptchaWebViewManager.validate(on:completion:)</a></code>
+    <code><a href="../Classes/ReCaptchaWebViewManager.html#/s:9ReCaptcha0aB14WebViewManagerC8validateySo6UIViewC2on_Sb12resetOnErrory6ResultAIOySSAA0abK0OGc10completiontF">ReCaptchaWebViewManager.validate(on:resetOnError:completion:)</a></code>
 
 </div>
 <div class="aside aside-see">
@@ -109,7 +109,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">validate</span><span class="p">(</span><span class="n">on</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Observable</span><span class="o">&lt;</span><span class="kt">Base</span><span class="o">.</span><span class="kt">Response</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">validate</span><span class="p">(</span><span class="n">on</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span> <span class="nv">resetOnError</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Observable</span><span class="o">&lt;</span><span class="kt">Base</span><span class="o">.</span><span class="kt">Response</span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
@@ -129,8 +129,54 @@
                                 </div>
                               </td>
                             </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>resetOnError</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>If ReCaptcha should be reset if it errors. Defaults to <code>true</code></p>
+                                </div>
+                              </td>
+                            </tr>
                           </tbody>
                         </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7RxSwift8ReactiveV9ReCaptchaAD0dE14WebViewManagerCRbzlE5resetAA11AnyObserverVyytGv"></a>
+                    <a name="//apple_ref/swift/Property/reset" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7RxSwift8ReactiveV9ReCaptchaAD0dE14WebViewManagerCRbzlE5resetAA11AnyObserverVyytGv">reset</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Resets the ReCaptcha.</p>
+
+<p>The reset is achieved by calling <code>grecaptcha.reset()</code> on the JS API.</p>
+<div class="aside aside-see">
+    <p class="aside-title">See</p>
+    <code><a href="../Classes/ReCaptchaWebViewManager.html#/s:9ReCaptcha0aB14WebViewManagerC5resetyyF">ReCaptchaWebViewManager.reset()</a></code>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">reset</span><span class="p">:</span> <span class="kt">AnyObserver</span><span class="o">&lt;</span><span class="kt">Void</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -140,7 +186,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/fjcaetano/ReCaptcha" target="_blank" rel="external">Flávio Caetano</a>. All rights reserved. (Last updated: 2018-01-29)</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/fjcaetano/ReCaptcha" target="_blank" rel="external">Flávio Caetano</a>. All rights reserved. (Last updated: 2018-03-06)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

@@ -1,6 +1,75 @@
 {
   "warnings": [
-
+    {
+      "file": "/Users/flaviocaetano/github/ReCaptcha/ReCaptcha/Classes/ReCaptcha.swift",
+      "line": 16,
+      "symbol": "ReCaptcha.Constants",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/flaviocaetano/github/ReCaptcha/ReCaptcha/Classes/ReCaptcha.swift",
+      "line": 17,
+      "symbol": "ReCaptcha.Constants.InfoDictKeys",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/flaviocaetano/github/ReCaptcha/ReCaptcha/Classes/ReCaptcha.swift",
+      "line": 18,
+      "symbol": "ReCaptcha.Constants.InfoDictKeys.APIKey",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/flaviocaetano/github/ReCaptcha/ReCaptcha/Classes/ReCaptcha.swift",
+      "line": 19,
+      "symbol": "ReCaptcha.Constants.InfoDictKeys.Domain",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/flaviocaetano/github/ReCaptcha/ReCaptcha/Classes/ReCaptcha.swift",
+      "line": 33,
+      "symbol": "ReCaptcha.Endpoint.url",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/flaviocaetano/github/ReCaptcha/ReCaptcha/Classes/ReCaptchaDecoder.swift",
+      "line": 66,
+      "symbol": "ReCaptchaDecoder.userContentController(_:didReceive:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/flaviocaetano/github/ReCaptcha/ReCaptcha/Classes/ReCaptchaWebViewManager.swift",
+      "line": 22,
+      "symbol": "ReCaptchaWebViewManager.WebViewDelegate.Constants",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/flaviocaetano/github/ReCaptcha/ReCaptcha/Classes/ReCaptchaWebViewManager.swift",
+      "line": 95,
+      "symbol": "ReCaptchaWebViewManager.Constants",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/flaviocaetano/github/ReCaptcha/ReCaptcha/Classes/ReCaptchaWebViewManager.swift",
+      "line": 96,
+      "symbol": "ReCaptchaWebViewManager.Constants.ExecuteJSCommand",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/flaviocaetano/github/ReCaptcha/ReCaptcha/Classes/ReCaptchaWebViewManager.swift",
+      "line": 97,
+      "symbol": "ReCaptchaWebViewManager.Constants.ResetCommand",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    }
   ],
   "source_directory": "/Users/flaviocaetano/github/ReCaptcha"
 }
