@@ -47,6 +47,9 @@
               <li class="nav-group-task">
                 <a href="../Enums/ReCaptchaError.html">ReCaptchaError</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ReCaptchaResult.html">ReCaptchaResult</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -78,9 +81,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9ReCaptcha0aB14WebViewManagerC8validateySo6UIViewC2on_Sb12resetOnErrory6ResultAIOySSAA0abK0OGc10completiontF"></a>
+                    <a name="/s:9ReCaptcha0aB14WebViewManagerC8validateySo6UIViewC2on_Sb12resetOnErroryAA0aB6ResultOc10completiontF"></a>
                     <a name="//apple_ref/swift/Method/validate(on:resetOnError:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9ReCaptcha0aB14WebViewManagerC8validateySo6UIViewC2on_Sb12resetOnErrory6ResultAIOySSAA0abK0OGc10completiontF">validate(on:resetOnError:completion:)</a>
+                    <a class="token" href="#/s:9ReCaptcha0aB14WebViewManagerC8validateySo6UIViewC2on_Sb12resetOnErroryAA0aB6ResultOc10completiontF">validate(on:resetOnError:completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -95,7 +98,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">validate</span><span class="p">(</span><span class="n">on</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span> <span class="nv">resetOnError</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Response</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">validate</span><span class="p">(</span><span class="n">on</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span> <span class="nv">resetOnError</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/ReCaptchaResult.html">ReCaptchaResult</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -135,7 +138,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>A closure that receives a Result<String, NSError> which may contain a valid result token.</p>
+                                  <p>A closure that receives a ReCaptchaResult which may contain a valid result token.</p>
                                 </div>
                               </td>
                             </tr>

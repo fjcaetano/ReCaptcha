@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Reactive Extension Reference</title>
+    <title>ReCaptchaResult Enumeration Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Extension/Reactive" class="dashAnchor"></a>
-    <a title="Reactive Extension Reference"></a>
+    <a name="//apple_ref/swift/Enum/ReCaptchaResult" class="dashAnchor"></a>
+    <a title="ReCaptchaResult Enumeration Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">ReCaptcha Docs</a> (100% documented)</p>
@@ -21,7 +21,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">ReCaptcha Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Reactive Extension Reference
+        ReCaptchaResult Enumeration Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -65,14 +65,16 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Reactive</h1>
+            <h1>ReCaptchaResult</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Reactive</span><span class="o">&lt;</span><span class="kt">Base</span><span class="o">&gt;</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ReCaptchaResult</span></code></pre>
 
                 </div>
               </div>
-            <p>Provides a public extension on ReCaptchaWebViewManager that makes it reactive.</p>
+            <p>The ReCaptcha result.</p>
+
+<p>This may contain the validation token on success, or an error that may have occurred.</p>
 
           </section>
           <section class="section task-group-section">
@@ -81,9 +83,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7RxSwift8ReactiveV9ReCaptchaAD0dE14WebViewManagerCRbzlE8validateAA10ObservableCySSGSo6UIViewC2on_Sb12resetOnErrortF"></a>
-                    <a name="//apple_ref/swift/Method/validate(on:resetOnError:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7RxSwift8ReactiveV9ReCaptchaAD0dE14WebViewManagerCRbzlE8validateAA10ObservableCySSGSo6UIViewC2on_Sb12resetOnErrortF">validate(on:resetOnError:)</a>
+                    <a name="/s:9ReCaptcha0aB6ResultO5tokenACSScACmF"></a>
+                    <a name="//apple_ref/swift/Element/token" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReCaptcha0aB6ResultO5tokenACSScACmF">token</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -91,71 +93,30 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Starts the challenge validation uppon subscription.</p>
-
-<p>The stream&rsquo;s element is a String with the validation token.</p>
-
-<p>Sends <code>stop()</code> uppon disposal.</p>
-<div class="aside aside-see">
-    <p class="aside-title">See</p>
-    <code><a href="../Classes/ReCaptchaWebViewManager.html#/s:9ReCaptcha0aB14WebViewManagerC8validateySo6UIViewC2on_Sb12resetOnErroryAA0aB6ResultOc10completiontF">ReCaptchaWebViewManager.validate(on:resetOnError:completion:)</a></code>
-
-</div>
-<div class="aside aside-see">
-    <p class="aside-title">See</p>
-    <code><a href="../Classes/ReCaptchaWebViewManager.html#/s:9ReCaptcha0aB14WebViewManagerC4stopyyF">ReCaptchaWebViewManager.stop()</a></code>
-
-</div>
+                        <p>The validation token.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">validate</span><span class="p">(</span><span class="n">on</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span> <span class="nv">resetOnError</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Observable</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">token</span><span class="p">(</span><span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>view</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The view that should present the webview.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>resetOnError</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>If ReCaptcha should be reset if it errors. Defaults to <code>true</code></p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7RxSwift8ReactiveV9ReCaptchaAD0dE14WebViewManagerCRbzlE5resetAA11AnyObserverVyytGv"></a>
-                    <a name="//apple_ref/swift/Property/reset" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7RxSwift8ReactiveV9ReCaptchaAD0dE14WebViewManagerCRbzlE5resetAA11AnyObserverVyytGv">reset</a>
+                    <a name="/s:9ReCaptcha0aB6ResultO5errorAcA0aB5ErrorOcACmF"></a>
+                    <a name="//apple_ref/swift/Element/error" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReCaptcha0aB6ResultO5errorAcA0aB5ErrorOcACmF">error</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -163,12 +124,41 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Resets the ReCaptcha.</p>
+                        <p>An error that may have occurred.</p>
 
-<p>The reset is achieved by calling <code>grecaptcha.reset()</code> on the JS API.</p>
-<div class="aside aside-see">
-    <p class="aside-title">See</p>
-    <code><a href="../Classes/ReCaptchaWebViewManager.html#/s:9ReCaptcha0aB14WebViewManagerC5resetyyF">ReCaptchaWebViewManager.reset()</a></code>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">error</span><span class="p">(</span><span class="kt"><a href="../Enums/ReCaptchaError.html">ReCaptchaError</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9ReCaptcha0aB6ResultO13dematerializeSSyKF"></a>
+                    <a name="//apple_ref/swift/Method/dematerialize()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReCaptcha0aB6ResultO13dematerializeSSyKF">dematerialize()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Tries to unwrap the Result and retrieve the token if it&rsquo;s successful.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code><a href="../Enums/ReCaptchaError.html">ReCaptchaError</a></code>
 
 </div>
 
@@ -177,9 +167,13 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">reset</span><span class="p">:</span> <span class="kt">AnyObserver</span><span class="o">&lt;</span><span class="kt">Void</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">dematerialize</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The validation token uppon success.</p>
                       </div>
                     </section>
                   </div>
