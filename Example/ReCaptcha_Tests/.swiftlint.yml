@@ -3,3 +3,4 @@ disabled_rules:
   - nesting
   - force_unwrapping
   - explicit_top_level_acl
+  - function_body_length

@@ -11,15 +11,26 @@ import Foundation
 
 
 extension ReCaptchaWebViewManager {
-    convenience init(messageBody: String, apiKey: String? = nil, endpoint: String? = nil) {
-        let localhost = URL(string: "http://localhost")!
-        let html = Bundle(for: ReCaptchaWebViewManager__Tests.self)
+    private static let unformattedHTML: String! = {
+        Bundle(for: ReCaptchaWebViewManager__Tests.self)
             .path(forResource: "mock", ofType: "html")
             .flatMap { try? String(contentsOfFile: $0) }
-            .map { String(format: $0, arguments: ["message": messageBody]) }
+    }()
+
+    convenience init(
+        messageBody: String,
+        apiKey: String? = nil,
+        endpoint: String? = nil,
+        shouldFail: Bool = false
+    ) {
+        let localhost = URL(string: "http://localhost")!
+        let html = String(format: ReCaptchaWebViewManager.unformattedHTML, arguments: [
+            "message": messageBody,
+            "shouldFail": shouldFail.description
+        ])
 
         self.init(
-            html: html!,
+            html: html,
             apiKey: apiKey ?? String(arc4random()),
             baseURL: localhost,
             endpoint: endpoint ?? localhost.absoluteString

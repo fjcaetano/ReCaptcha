@@ -4,14 +4,29 @@
   <script type="text/javascript">
   var key = "${apiKey}";
   var endpoint = "${endpoint}";
+  var shouldFail = ${shouldFail};
+
+  var post = function(value) {
+      window.webkit.messageHandlers.recaptcha.postMessage(value);
+  };
 
   var execute = function() {
-    window.webkit.messageHandlers.recaptcha.postMessage(${message});
-  }
+      if (shouldFail) {
+          post("error");
+      }
+      else {
+          post(${message});
+      }
+  };
 
   window.onload = function() {
-    window.webkit.messageHandlers.recaptcha.postMessage({action: "didLoad"});
-  }
+      post({action: "didLoad"});
+  };
+
+  var reset = function() {
+      shouldFail = false;
+      post({action: "didLoad"});
+  };
   </script>
 </head>
 <body>

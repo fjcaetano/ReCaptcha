@@ -25,6 +25,8 @@
   };
 
   var execute = function() {
+    console.log("executing");
+
     // Removes ReCaptcha dismissal when clicking outside div area
     try {
         document.getElementsByTagName("div")[4].outerHTML = ""
@@ -35,7 +37,6 @@
     // Listens to changes on the div element that presents the ReCaptcha challenge
     observeDOM(document.getElementsByTagName("div")[3], showReCaptcha);
 
-    console.log("executing");
     grecaptcha.execute();
   };
 
@@ -51,6 +52,11 @@
       'callback' : onSubmit,
       'size': 'invisible'
     });
+  };
+
+  var reset = function() {
+      console.log("resetting");
+      grecaptcha.reset();
   };
   </script>
 </head>

@@ -8,6 +8,7 @@
 
 @testable import ReCaptcha
 
+import RxCocoa
 import RxSwift
 import XCTest
 
@@ -110,7 +111,7 @@ class ReCaptcha_Rx__Tests: XCTestCase {
         let exp = expectation(description: "validate token")
 
         // Validate
-        manager.rx.validate(on: presenterView)
+        manager.rx.validate(on: presenterView, resetOnError: false)
             .subscribe { event in
                 switch event {
                 case .next(let value):
@@ -156,5 +157,106 @@ class ReCaptcha_Rx__Tests: XCTestCase {
         }
 
         waitForExpectations(timeout: 10)
+    }
+
+    // MARK: Reset
+
+    func test__Reset() {
+        let exp1 = expectation(description: "fail on first execution")
+        let exp2 = expectation(description: "resets after failure")
+        var result1: ReCaptchaWebViewManager.Response?
+
+        // Validate
+        let manager = ReCaptchaWebViewManager(messageBody: "{token: key}", apiKey: apiKey, shouldFail: true)
+        manager.configureWebView { _ in
+            XCTFail("should not ask to configure the webview")
+        }
+
+        // Error
+        let validate = manager.rx.validate(on: presenterView, resetOnError: false)
+            .share(replay: 1)
+
+        validate
+            .subscribe { event in
+                switch event {
+                case .next(let value):
+                    result1 = value
+
+                case .error(let error):
+                    XCTFail(error.localizedDescription)
+
+                case .completed:
+                    exp1.fulfill()
+                }
+            }
+            .disposed(by: disposeBag)
+
+        // Resets after failure
+        validate
+            .flatMap { result -> Observable<Void> in
+                switch result {
+                case .failure: return .just(())
+                default: return .empty()
+                }
+            }
+            .take(1)
+            .do(onCompleted: exp2.fulfill)
+            .bind(to: manager.rx.reset)
+            .disposed(by: disposeBag)
+
+        waitForExpectations(timeout: 10)
+        XCTAssertEqual(result1?.error, .wrongMessageFormat)
+
+        // Resets and tries again
+        let exp3 = expectation(description: "validates after reset")
+        var result2: ReCaptchaWebViewManager.Response?
+
+        manager.rx.validate(on: presenterView, resetOnError: false)
+            .subscribe { event in
+                switch event {
+                case .next(let value):
+                    result2 = value
+
+                case .error(let error):
+                    XCTFail(error.localizedDescription)
+
+                case .completed:
+                    exp3.fulfill()
+                }
+            }
+            .disposed(by: disposeBag)
+
+        waitForExpectations(timeout: 10)
+        XCTAssertEqual(result2?.value, apiKey)
+    }
+
+    func test__Validate__Reset_On_Error() {
+        let exp = expectation(description: "executes after failure on first execution")
+        var result: ReCaptchaWebViewManager.Response?
+
+        // Validate
+        let manager = ReCaptchaWebViewManager(messageBody: "{token: key}", apiKey: apiKey, shouldFail: true)
+        manager.configureWebView { _ in
+            XCTFail("should not ask to configure the webview")
+        }
+
+        // Error
+        manager.rx.validate(on: presenterView, resetOnError: true)
+            .subscribe { event in
+                switch event {
+                case .next(let value):
+                    result = value
+
+                case .error(let error):
+                    XCTFail(error.localizedDescription)
+
+                case .completed:
+                    exp.fulfill()
+                }
+            }
+            .disposed(by: disposeBag)
+
+        waitForExpectations(timeout: 10)
+        XCTAssertEqual(result?.value, apiKey)
     }
 }

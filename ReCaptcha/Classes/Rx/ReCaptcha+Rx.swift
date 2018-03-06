@@ -16,7 +16,9 @@ extension ReCaptchaWebViewManager: ReactiveCompatible {}
 public extension Reactive where Base: ReCaptchaWebViewManager {
 
     /**
-     - parameter view: The view that should present the webview.
+     - parameters:
+        - view: The view that should present the webview.
+        - resetOnError: If ReCaptcha should be reset if it errors. Defaults to `true`
      
      Starts the challenge validation uppon subscription.
 
@@ -24,12 +26,12 @@ public extension Reactive where Base: ReCaptchaWebViewManager {
 
      Sends `stop()` uppon disposal.
      
-     - See: `ReCaptchaWebViewManager.validate(on:completion:)`
+     - See: `ReCaptchaWebViewManager.validate(on:resetOnError:completion:)`
      - See: `ReCaptchaWebViewManager.stop()`
      */
-    func validate(on view: UIView) -> Observable<Base.Response> {
+    func validate(on view: UIView, resetOnError: Bool = true) -> Observable<Base.Response> {
         return Observable<Base.Response>.create { [weak base] (observer: AnyObserver<Base.Response>) in
-            base?.validate(on: view) { response in
+            base?.validate(on: view, resetOnError: resetOnError) { response in
                 observer.onNext(response)
                 observer.onCompleted()
             }
@@ -37,6 +39,23 @@ public extension Reactive where Base: ReCaptchaWebViewManager {
             return Disposables.create { [weak base] in
                 base?.stop()
             }
+        }
+    }
+
+    /**
+     Resets the ReCaptcha.
+
+     The reset is achieved by calling `grecaptcha.reset()` on the JS API.
+
+     - See: `ReCaptchaWebViewManager.reset()`
+     */
+    var reset: AnyObserver<Void> {
+        return AnyObserver { [weak base] event in
+            guard case .next = event else {
+                return
+            }
+
+            base?.reset()
         }
     }
 }

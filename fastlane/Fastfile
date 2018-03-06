@@ -126,15 +126,15 @@ platform :ios do
 
   # Private
 
-  def select_similar_simulator(args)
-    args.map { |device_string|
-      pieces = device_string.split(' (')
-      FastlaneCore::Simulator.all
-        .select { |s| s.name == pieces.first }
-        .sort_by { |s| Gem::Version.create(s.os_version) }
-        .detect { |s| Gem::Requirement.new(pieces[1].tr('()', '')).satisfied_by?(Gem::Version.create(s.os_version)) }
-    }
-    .compact
-    .map { |s| "#{s.name} (#{s.ios_version})"}
-  end
+def select_similar_simulator(args)
+  args.map { |device_string|
+    pieces = device_string.split(' (')
+    FastlaneCore::Simulator.all
+      .select { |s| s.name == pieces.first }
+      .sort_by { |s| Gem::Version.create(s.os_version) }
+      .detect { |s| Gem::Requirement.new(pieces[1].tr('()', '')).satisfied_by?(Gem::Version.create(s.os_version)) }
+  }
+  .compact
+  .map { |s| "#{s.name} (#{s.ios_version})"}
+end
 end

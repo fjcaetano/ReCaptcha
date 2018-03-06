@@ -94,6 +94,7 @@ open class ReCaptchaWebViewManager {
 
     fileprivate struct Constants {
         static let ExecuteJSCommand = "execute();"
+        static let ResetCommand = "reset();"
     }
 
     /// Sends the result message
@@ -113,6 +114,9 @@ open class ReCaptchaWebViewManager {
 
     /// The endpoint url being used
     fileprivate var endpoint: String
+
+    /// If the ReCaptcha should be reset when it errors
+    fileprivate var shouldResetOnError = true
 
     /// The `webView` delegate implementation
     fileprivate lazy var webviewDelegate: WebViewDelegate = {
@@ -166,16 +170,17 @@ open class ReCaptchaWebViewManager {
 
     /**
      - parameters:
-         - view: The view that should present the webview.
-         - completion: A closure that receives a Result<String, NSError> which may contain a valid result token.
+        - view: The view that should present the webview.
+        - resetOnError: If ReCaptcha should be reset if it errors. Defaults to `true`.
+        - completion: A closure that receives a Result<String, NSError> which may contain a valid result token.
 
      Starts the challenge validation
      */
-    open func validate(on view: UIView, completion: @escaping (Response) -> Void) {
+    open func validate(on view: UIView, resetOnError: Bool = true, completion: @escaping (Response) -> Void) {
         self.completion = completion
+        self.shouldResetOnError = resetOnError
 
         webView.isHidden = false
-        webView.removeFromSuperview()
         view.addSubview(webView)
 
         execute()
@@ -198,6 +203,21 @@ open class ReCaptchaWebViewManager {
      */
     open func configureWebView(_ configure: @escaping (WKWebView) -> Void) {
         self.configureWebView = configure
+    }
+
+    /**
+     Resets the ReCaptcha.
+
+     The reset is achieved by calling `grecaptcha.reset()` on the JS API.
+     */
+    open func reset() {
+        didFinishLoading = false
+
+        webView.evaluateJavaScript(Constants.ResetCommand) { [weak self] _, error in
+            if let error = error {
+                self?.decoder.send(error: .unexpected(error))
+            }
+        }
     }
 }
 
@@ -249,7 +269,13 @@ fileprivate extension ReCaptchaWebViewManager {
             completion?(.success(token))
 
         case .error(let error):
-            completion?(.failure(error))
+            if shouldResetOnError, let view = webView.superview, let completion = completion {
+                reset()
+                validate(on: view, completion: completion)
+            }
+            else {
+                completion?(.failure(error))
+            }
 
         case .showReCaptcha:
             configureWebView?(webView)
