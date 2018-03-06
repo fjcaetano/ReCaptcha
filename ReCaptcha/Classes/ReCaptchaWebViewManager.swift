@@ -7,15 +7,12 @@
 //
 
 import Foundation
-import Result
 import WebKit
 
 
 /** Handles comunications with the webview containing the ReCaptcha challenge.
  */
 open class ReCaptchaWebViewManager {
-    public typealias Response = Result<String, ReCaptchaError>
-
     /** The `webView` delegate object that performs execution uppon script loading
      */
     fileprivate class WebViewDelegate: NSObject, WKNavigationDelegate {
@@ -98,7 +95,7 @@ open class ReCaptchaWebViewManager {
     }
 
     /// Sends the result message
-    fileprivate var completion: ((Response) -> Void)?
+    fileprivate var completion: ((ReCaptchaResult) -> Void)?
 
     /// Configures the webview for display when required
     fileprivate var configureWebView: ((WKWebView) -> Void)?
@@ -172,11 +169,11 @@ open class ReCaptchaWebViewManager {
      - parameters:
         - view: The view that should present the webview.
         - resetOnError: If ReCaptcha should be reset if it errors. Defaults to `true`.
-        - completion: A closure that receives a Result<String, NSError> which may contain a valid result token.
+        - completion: A closure that receives a ReCaptchaResult which may contain a valid result token.
 
      Starts the challenge validation
      */
-    open func validate(on view: UIView, resetOnError: Bool = true, completion: @escaping (Response) -> Void) {
+    open func validate(on view: UIView, resetOnError: Bool = true, completion: @escaping (ReCaptchaResult) -> Void) {
         self.completion = completion
         self.shouldResetOnError = resetOnError
 
@@ -266,7 +263,7 @@ fileprivate extension ReCaptchaWebViewManager {
     func handle(result: ReCaptchaDecoder.Result) {
         switch result {
         case .token(let token):
-            completion?(.success(token))
+            completion?(.token(token))
 
         case .error(let error):
             if shouldResetOnError, let view = webView.superview, let completion = completion {
@@ -274,7 +271,7 @@ fileprivate extension ReCaptchaWebViewManager {
                 validate(on: view, completion: completion)
             }
             else {
-                completion?(.failure(error))
+                completion?(.error(error))
             }
 
         case .showReCaptcha:

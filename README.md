@@ -57,7 +57,7 @@ override func viewDidLoad() {
 
 
 func validate() {
-    recaptcha?.validate(on: view) { [weak self] result in
+    recaptcha?.validate(on: view) { [weak self] (result: ReCaptchaResult) in
         print(try? result.dematerialize())
     }
 }

@@ -6,17 +6,17 @@
 //  Copyright © 2018 ReCaptcha. All rights reserved.
 //
 
-import Result
+@testable import ReCaptcha
 
 
-extension Result {
-    var value: T? {
-        guard case .success(let value) = self else { return nil }
+extension ReCaptchaResult {
+    var token: String? {
+        guard case .token(let value) = self else { return nil }
         return value
     }
 
-    var error: Error? {
-        guard case .failure(let error) = self else { return nil }
+    var error: ReCaptchaError? {
+        guard case .error(let error) = self else { return nil }
         return error
     }
 }

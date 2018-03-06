@@ -8,7 +8,6 @@
 
 @testable import ReCaptcha
 
-import Result
 import WebKit
 import XCTest
 
@@ -36,7 +35,7 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
 
     func test__Validate__Token() {
         let exp1 = expectation(description: "load token")
-        var result1: ReCaptchaWebViewManager.Response?
+        var result1: ReCaptchaResult?
 
         // Validate
         let manager = ReCaptchaWebViewManager(messageBody: "{token: key}", apiKey: apiKey)
@@ -55,12 +54,12 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
         // Verify
         XCTAssertNotNil(result1)
         XCTAssertNil(result1?.error)
-        XCTAssertEqual(result1?.value, apiKey)
+        XCTAssertEqual(result1?.token, apiKey)
 
 
         // Validate again
         let exp2 = expectation(description: "reload token")
-        var result2: ReCaptchaWebViewManager.Response?
+        var result2: ReCaptchaResult?
 
         // Validate
         manager.validate(on: presenterView) { response in
@@ -74,7 +73,7 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
         // Verify
         XCTAssertNotNil(result2)
         XCTAssertNil(result2?.error)
-        XCTAssertEqual(result2?.value, apiKey)
+        XCTAssertEqual(result2?.token, apiKey)
     }
 
 
@@ -96,7 +95,7 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
 
 
     func test__Validate__Message_Error() {
-        var result: ReCaptchaWebViewManager.Response?
+        var result: ReCaptchaResult?
         let exp = expectation(description: "message error")
 
         // Validate
@@ -115,11 +114,11 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
         // Verify
         XCTAssertNotNil(result)
         XCTAssertEqual(result?.error, .wrongMessageFormat)
-        XCTAssertNil(result?.value)
+        XCTAssertNil(result?.token)
     }
 
     func test__Validate__JS_Error() {
-        var result: ReCaptchaWebViewManager.Response?
+        var result: ReCaptchaResult?
         let exp = expectation(description: "js error")
 
         // Validate
@@ -138,7 +137,7 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
         // Verify
         XCTAssertNotNil(result)
         XCTAssertNotNil(result?.error)
-        XCTAssertNil(result?.value)
+        XCTAssertNil(result?.token)
 
         switch result!.error! {
         case .unexpected(let error as NSError):
@@ -210,7 +209,7 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
 
     func test__Key_Setup() {
         let exp = expectation(description: "setup key")
-        var result: ReCaptchaWebViewManager.Response?
+        var result: ReCaptchaResult?
 
         // Validate
         let manager = ReCaptchaWebViewManager(messageBody: "{token: key}", apiKey: apiKey)
@@ -227,13 +226,13 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
 
         XCTAssertNotNil(result)
         XCTAssertNil(result?.error)
-        XCTAssertEqual(result?.value, apiKey)
+        XCTAssertEqual(result?.token, apiKey)
     }
 
     func test__Endpoint_Setup() {
         let exp = expectation(description: "setup endpoint")
-        let endpoint = String(describing: arc4random())
-        var result: ReCaptchaWebViewManager.Response?
+        let endpoint = ReCaptcha.Endpoint.alternate.url
+        var result: ReCaptchaResult?
 
         let manager = ReCaptchaWebViewManager(messageBody: "{token: endpoint}", endpoint: endpoint)
         manager.configureWebView { _ in
@@ -249,14 +248,14 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
 
         XCTAssertNotNil(result)
         XCTAssertNil(result?.error)
-        XCTAssertEqual(result?.value, endpoint)
+        XCTAssertEqual(result?.token, endpoint)
     }
 
     // MARK: Reset
 
     func test__Reset() {
         let exp1 = expectation(description: "fail on first execution")
-        var result1: ReCaptchaWebViewManager.Response?
+        var result1: ReCaptchaResult?
 
         // Validate
         let manager = ReCaptchaWebViewManager(messageBody: "{token: key}", apiKey: apiKey, shouldFail: true)
@@ -275,7 +274,7 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
 
         // Resets and tries again
         let exp2 = expectation(description: "validates after reset")
-        var result2: ReCaptchaWebViewManager.Response?
+        var result2: ReCaptchaResult?
 
         manager.reset()
         manager.validate(on: presenterView, resetOnError: false) { result in
@@ -285,12 +284,13 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
 
         waitForExpectations(timeout: 10)
 
-        XCTAssertEqual(result2?.value, apiKey)
+        XCTAssertNil(result2?.error)
+        XCTAssertEqual(result2?.token, apiKey)
     }
 
     func test__Validate__Reset_On_Error() {
         let exp = expectation(description: "fail on first execution")
-        var result: ReCaptchaWebViewManager.Response?
+        var result: ReCaptchaResult?
 
         // Validate
         let manager = ReCaptchaWebViewManager(messageBody: "{token: key}", apiKey: apiKey, shouldFail: true)
@@ -305,6 +305,8 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
         }
 
         waitForExpectations(timeout: 10)
-        XCTAssertEqual(result?.value, apiKey)
+
+        XCTAssertNil(result?.error)
+        XCTAssertEqual(result?.token, apiKey)
     }
 }
