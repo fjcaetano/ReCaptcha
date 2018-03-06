@@ -30,16 +30,14 @@ public extension Reactive where Base: ReCaptchaWebViewManager {
      - See: `ReCaptchaWebViewManager.stop()`
      */
     func validate(on view: UIView, resetOnError: Bool = true) -> Observable<String> {
-        return Observable<String>.create { [weak base] (observer: AnyObserver<String>) in
+        return Single<String>.create { [weak base] single in
             base?.validate(on: view, resetOnError: resetOnError) { result in
-                defer { observer.onCompleted() }
-
                 switch result {
                 case .token(let token):
-                    observer.onNext(token)
+                    single(.success(token))
 
                 case .error(let error):
-                    observer.onError(error)
+                    single(.error(error))
                 }
             }
 
@@ -47,6 +45,7 @@ public extension Reactive where Base: ReCaptchaWebViewManager {
                 base?.stop()
             }
         }
+        .asObservable()
     }
 
     /**

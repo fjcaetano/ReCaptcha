@@ -90,7 +90,7 @@ class ReCaptcha_Rx__Tests: XCTestCase {
             _ = try manager.rx.validate(on: presenterView, resetOnError: false)
                 .toBlocking()
                 .single()
-                
+
             XCTFail("should have thrown exception")
         }
         catch let error {
