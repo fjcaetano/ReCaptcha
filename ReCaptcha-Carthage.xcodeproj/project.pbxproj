@@ -20,6 +20,7 @@
 		F24EA1E61F968403001DEC17 /* ReCaptcha.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24EA1DE1F9683F5001DEC17 /* ReCaptcha.swift */; };
 		F24EA1E71F968406001DEC17 /* recaptcha.html in Resources */ = {isa = PBXBuildFile; fileRef = F24EA1E01F9683F5001DEC17 /* recaptcha.html */; };
 		F255FBEC1F8D5654002F5FA8 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F255FBEB1F8D5654002F5FA8 /* Result.framework */; };
+		F2AE8614204F3B42002E28D7 /* ReCaptchaResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AE8613204F3B41002E28D7 /* ReCaptchaResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		F24EA1DE1F9683F5001DEC17 /* ReCaptcha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReCaptcha.swift; sourceTree = "<group>"; };
 		F24EA1E01F9683F5001DEC17 /* recaptcha.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = recaptcha.html; sourceTree = "<group>"; };
 		F255FBEB1F8D5654002F5FA8 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = "../ReCaptcha Carthage Test/Carthage/Build/iOS/Result.framework"; sourceTree = "<group>"; };
+		F2AE8613204F3B41002E28D7 /* ReCaptchaResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReCaptchaResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 				F24EA1D91F9683F5001DEC17 /* ReCaptchaWebViewManager.swift */,
 				F24EA1DA1F9683F5001DEC17 /* String+Dict.swift */,
 				F24EA1DB1F9683F5001DEC17 /* ReCaptchaError.swift */,
+				F2AE8613204F3B41002E28D7 /* ReCaptchaResult.swift */,
 				F231B3991FEC51C800F82943 /* DispatchQueue+Throttle.swift */,
 				F24EA1DC1F9683F5001DEC17 /* Rx */,
 				F24EA1DE1F9683F5001DEC17 /* ReCaptcha.swift */,
@@ -291,6 +294,7 @@
 			files = (
 				F24EA1E51F968403001DEC17 /* ReCaptchaError.swift in Sources */,
 				F24EA1E21F968403001DEC17 /* ReCaptchaDecoder.swift in Sources */,
+				F2AE8614204F3B42002E28D7 /* ReCaptchaResult.swift in Sources */,
 				F24EA1E61F968403001DEC17 /* ReCaptcha.swift in Sources */,
 				F24EA1E31F968403001DEC17 /* ReCaptchaWebViewManager.swift in Sources */,
 				F24EA1E41F968403001DEC17 /* String+Dict.swift in Sources */,

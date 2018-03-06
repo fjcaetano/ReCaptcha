@@ -7,7 +7,6 @@
 //
 
 import ReCaptcha
-import Result
 import RxCocoa
 import RxSwift
 import UIKit
@@ -79,7 +78,6 @@ class ViewController: UIViewController {
             .disposed(by: disposeBag)
 
         validate
-            .map { try $0.dematerialize() }
             .bind(to: label.rx.text)
             .disposed(by: disposeBag)
     }

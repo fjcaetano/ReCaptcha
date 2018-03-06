@@ -22,7 +22,6 @@ invisibility is not possible.
   s.subspec 'Core' do |core|
     core.source_files = 'ReCaptcha/Classes/*'
     core.frameworks = 'WebKit'
-    core.dependency 'Result', '~> 3.0'
 
     core.resource_bundles = {
       'ReCaptcha' => ['ReCaptcha/Assets/**/*']

@@ -22,18 +22,25 @@ public extension Reactive where Base: ReCaptchaWebViewManager {
      
      Starts the challenge validation uppon subscription.
 
-     The stream's element is a `Result<String, ReCaptchaError>` that may contain a valid token.
+     The stream's element is a String with the validation token.
 
      Sends `stop()` uppon disposal.
      
      - See: `ReCaptchaWebViewManager.validate(on:resetOnError:completion:)`
      - See: `ReCaptchaWebViewManager.stop()`
      */
-    func validate(on view: UIView, resetOnError: Bool = true) -> Observable<Base.Response> {
-        return Observable<Base.Response>.create { [weak base] (observer: AnyObserver<Base.Response>) in
-            base?.validate(on: view, resetOnError: resetOnError) { response in
-                observer.onNext(response)
-                observer.onCompleted()
+    func validate(on view: UIView, resetOnError: Bool = true) -> Observable<String> {
+        return Observable<String>.create { [weak base] (observer: AnyObserver<String>) in
+            base?.validate(on: view, resetOnError: resetOnError) { result in
+                defer { observer.onCompleted() }
+
+                switch result {
+                case .token(let token):
+                    observer.onNext(token)
+
+                case .error(let error):
+                    observer.onError(error)
+                }
             }
 
             return Disposables.create { [weak base] in
