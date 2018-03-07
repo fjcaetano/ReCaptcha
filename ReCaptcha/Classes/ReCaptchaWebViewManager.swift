@@ -77,6 +77,8 @@ open class ReCaptchaWebViewManager {
 
         /// Flag the requests as finished and call ReCaptcha execution if necessary
         func execute() {
+            guard manager?.didFinishLoading != true else { return }
+
             DispatchQueue.main.throttle(deadline: .now() + 1, context: self) { [weak self] in
                 // Did finish loading the ReCaptcha JS source
                 self?.manager?.didFinishLoading = true
