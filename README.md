@@ -67,7 +67,6 @@ You can also install the reactive subpod and use it with RxSwift:
 
 ``` swift
 recaptcha.rx.validate(on: view)
-    .map { try $0.dematerialize() }
     .subscribe(onNext: { (token: String) in
         // Do something
     })
