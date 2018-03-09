@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RDW-bD-rSo">
-                                <rect key="frame" x="50" y="505" width="275" height="50"/>
+                                <rect key="frame" x="50" y="498" width="275" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Bt8-Ou-ht2"/>
                                 </constraints>
@@ -34,15 +34,15 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="jHc-GP-v1Z">
                                 <rect key="frame" x="177" y="323" width="20" height="20"/>
                             </activityIndicatorView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6f-cL-1PF">
-                                <rect key="frame" x="20" y="192" width="335" height="283"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6f-cL-1PF">
+                                <rect key="frame" x="20" y="199" width="335" height="269"/>
                                 <accessibility key="accessibilityConfiguration" identifier="resultLabel"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="X8E-G9-9IV">
-                                <rect key="frame" x="117" y="594" width="141" height="29"/>
+                                <rect key="frame" x="117" y="568" width="141" height="29"/>
                                 <segments>
                                     <segment title="Default"/>
                                     <segment title="Alternate"/>
@@ -51,30 +51,59 @@
                                     <action selector="didPressSegmentedControl:" destination="vXZ-lx-hvc" eventType="valueChanged" id="e5Z-W5-Q1d"/>
                                 </connections>
                             </segmentedControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uyt-0M-CR7">
+                                <rect key="frame" x="77" y="616" width="221" height="31"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Force visible captcha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awK-8H-OCQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="162" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mGh-Ox-cFf">
+                                        <rect key="frame" x="172" y="0.0" width="51" height="31"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="Switch"/>
+                                    </switch>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="awK-8H-OCQ" secondAttribute="bottom" id="0Wx-IJ-Kwg"/>
+                                    <constraint firstAttribute="trailing" secondItem="mGh-Ox-cFf" secondAttribute="trailing" id="8Xc-zN-tVW"/>
+                                    <constraint firstItem="awK-8H-OCQ" firstAttribute="top" secondItem="Uyt-0M-CR7" secondAttribute="top" id="IbZ-YP-G0R"/>
+                                    <constraint firstItem="mGh-Ox-cFf" firstAttribute="top" secondItem="Uyt-0M-CR7" secondAttribute="top" id="P27-Ua-aX7"/>
+                                    <constraint firstItem="awK-8H-OCQ" firstAttribute="leading" secondItem="Uyt-0M-CR7" secondAttribute="leading" id="fna-4f-wRD"/>
+                                    <constraint firstAttribute="bottom" secondItem="mGh-Ox-cFf" secondAttribute="bottom" id="vnT-b0-5h3"/>
+                                    <constraint firstItem="mGh-Ox-cFf" firstAttribute="leading" secondItem="awK-8H-OCQ" secondAttribute="trailing" constant="10" id="wzo-g0-VEj"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="o6f-cL-1PF" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="0dV-t0-W0Y"/>
                             <constraint firstItem="X8E-G9-9IV" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="92w-cw-lR2"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="RDW-bD-rSo" secondAttribute="bottom" constant="112" id="E4K-Vp-ZL2"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Uyt-0M-CR7" secondAttribute="bottom" constant="20" id="Bfs-p5-IBM"/>
                             <constraint firstItem="o6f-cL-1PF" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" priority="750" id="NMD-ir-PXe"/>
+                            <constraint firstItem="X8E-G9-9IV" firstAttribute="top" secondItem="RDW-bD-rSo" secondAttribute="bottom" constant="20" id="Qbw-Jp-xGV"/>
                             <constraint firstItem="RDW-bD-rSo" firstAttribute="top" secondItem="o6f-cL-1PF" secondAttribute="bottom" constant="30" id="TZe-z9-MZS"/>
                             <constraint firstItem="jHc-GP-v1Z" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="VOe-WJ-FKo"/>
                             <constraint firstItem="jHc-GP-v1Z" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="XkT-zr-eUO"/>
                             <constraint firstAttribute="trailing" secondItem="o6f-cL-1PF" secondAttribute="trailing" constant="20" id="c74-nm-rgi"/>
                             <constraint firstAttribute="trailing" secondItem="RDW-bD-rSo" secondAttribute="trailing" constant="50" id="c7q-Rw-n0F"/>
                             <constraint firstItem="RDW-bD-rSo" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="50" id="iXO-hP-XZ7"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="X8E-G9-9IV" secondAttribute="bottom" constant="45" id="y2a-Mw-eWb"/>
+                            <constraint firstItem="Uyt-0M-CR7" firstAttribute="top" secondItem="X8E-G9-9IV" secondAttribute="bottom" constant="20" id="nIE-QT-RpQ"/>
+                            <constraint firstItem="Uyt-0M-CR7" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="qfG-68-ySO"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="label" destination="o6f-cL-1PF" id="KQV-3X-RKr"/>
                         <outlet property="segmentedControl" destination="X8E-G9-9IV" id="sS0-3k-Alu"/>
                         <outlet property="spinner" destination="jHc-GP-v1Z" id="gRn-JW-FIK"/>
+                        <outlet property="visibleChallengeSwitch" destination="mGh-Ox-cFf" id="R13-nD-EXL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="117.39130434782609"/>
         </scene>
     </scenes>
 </document>

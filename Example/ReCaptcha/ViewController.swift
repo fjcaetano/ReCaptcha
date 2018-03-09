@@ -15,6 +15,7 @@ import UIKit
 class ViewController: UIViewController {
     private struct Constants {
         static let webViewTag = 123
+        static let testLabelTag = 321
     }
 
     private var recaptcha: ReCaptcha!
@@ -23,7 +24,7 @@ class ViewController: UIViewController {
     @IBOutlet private weak var label: UILabel!
     @IBOutlet private weak var spinner: UIActivityIndicatorView!
     @IBOutlet private weak var segmentedControl: UISegmentedControl!
-
+    @IBOutlet private weak var visibleChallengeSwitch: UISwitch!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,6 +81,12 @@ class ViewController: UIViewController {
         validate
             .bind(to: label.rx.text)
             .disposed(by: disposeBag)
+
+        visibleChallengeSwitch.rx.value
+            .subscribe(onNext: { [weak recaptcha] value in
+                recaptcha?.forceVisibleChallenge = value
+            })
+            .disposed(by: disposeBag)
     }
 
     private func setupReCaptcha(endpoint: ReCaptcha.Endpoint) {
@@ -92,7 +99,9 @@ class ViewController: UIViewController {
 
             // For testing purposes
             // If the webview requires presentation, this should work as a way of detecting the webview in UI tests
+            self?.view.viewWithTag(Constants.testLabelTag)?.removeFromSuperview()
             let label = UILabel(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
+            label.tag = Constants.testLabelTag
             label.accessibilityLabel = "webview"
             self?.view.addSubview(label)
         }

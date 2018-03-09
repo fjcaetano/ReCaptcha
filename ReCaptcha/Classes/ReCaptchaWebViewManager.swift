@@ -94,7 +94,22 @@ open class ReCaptchaWebViewManager {
     fileprivate struct Constants {
         static let ExecuteJSCommand = "execute();"
         static let ResetCommand = "reset();"
+        static let BotUserAgent = "Googlebot/2.1"
     }
+
+#if DEBUG
+    /// Forces the challenge to be explicitly displayed.
+    public var forceVisibleChallenge = false {
+        didSet {
+            // Also works on iOS < 9
+            webView.performSelector(
+                onMainThread: "_setCustomUserAgent:",
+                with: forceVisibleChallenge ? Constants.BotUserAgent : nil,
+                waitUntilDone: true
+            )
+        }
+    }
+#endif
 
     /// Sends the result message
     fileprivate var completion: ((ReCaptchaResult) -> Void)?

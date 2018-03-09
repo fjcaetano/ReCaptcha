@@ -24,6 +24,7 @@ class ReCaptcha_UITests: XCTestCase {
     func test__Validate__Default_Endpoint() {
         let app = XCUIApplication()
         app.segmentedControls.buttons["Default"].tap()
+        app.switches["Switch"].tap()
         app.buttons["Validate"].tap()
 
         verifyValidation()
@@ -32,6 +33,7 @@ class ReCaptcha_UITests: XCTestCase {
     func test__Validate__Alternate_Endpoint() {
         let app = XCUIApplication()
         app.segmentedControls.buttons["Alternate"].tap()
+        app.switches["Switch"].tap()
         app.buttons["Validate"].tap()
 
         verifyValidation()
@@ -44,19 +46,6 @@ class ReCaptcha_UITests: XCTestCase {
         let webview = app.staticTexts.element(matching: .any, identifier: "webview")
         let webviewExists = webview.waitForExistence(timeout: 10)
 
-        if webviewExists {
-            // Did show recaptcha to the user
-            // Assumes endpoint and comms are working correctly
-            print("WEBVIEW DETECTED")
-        }
-        else {
-            let label = app.staticTexts.element(matching: .any, identifier: "resultLabel")
-            _ = label.waitForExistence(timeout: 10)
-
-            XCTAssertFalse(label.label.isEmpty)
-            // Did automatically resolve the challenge
-            // Endpoint and comms are working correctly
-            print("LABEL WITH CONTENT")
-        }
+        XCTAssertTrue(webviewExists)
     }
 }
