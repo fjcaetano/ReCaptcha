@@ -35,14 +35,14 @@ class ReCaptcha_Rx__Tests: XCTestCase {
 
 
     func test__Validate__Token() {
-        let manager = ReCaptchaWebViewManager(messageBody: "{token: key}", apiKey: apiKey)
-        manager.configureWebView { _ in
+        let recaptcha = ReCaptcha(manager: ReCaptchaWebViewManager(messageBody: "{token: key}", apiKey: apiKey))
+        recaptcha.configureWebView { _ in
             XCTFail("should not ask to configure the webview")
         }
 
         do {
             // Validate
-            let result = try manager.rx.validate(on: presenterView)
+            let result = try recaptcha.rx.validate(on: presenterView)
                 .toBlocking()
                 .single()
 
@@ -56,16 +56,19 @@ class ReCaptcha_Rx__Tests: XCTestCase {
 
 
     func test__Validate__Show_ReCaptcha() {
-        let manager = ReCaptchaWebViewManager(messageBody: "{action: \"showReCaptcha\"}", apiKey: apiKey)
+        let recaptcha = ReCaptcha(
+            manager: ReCaptchaWebViewManager(messageBody: "{action: \"showReCaptcha\"}", apiKey: apiKey)
+        )
+
         var didConfigureWebView = false
 
-        manager.configureWebView { _ in
+        recaptcha.configureWebView { _ in
             didConfigureWebView = true
         }
 
         do {
             // Validate
-            _ = try manager.rx.validate(on: presenterView)
+            _ = try recaptcha.rx.validate(on: presenterView)
                 .timeout(2, scheduler: MainScheduler.instance)
                 .toBlocking()
                 .single()
@@ -80,14 +83,14 @@ class ReCaptcha_Rx__Tests: XCTestCase {
 
 
     func test__Validate__Error() {
-        let manager = ReCaptchaWebViewManager(messageBody: "\"foobar\"", apiKey: apiKey)
-        manager.configureWebView { _ in
+        let recaptcha = ReCaptcha(manager: ReCaptchaWebViewManager(messageBody: "\"foobar\"", apiKey: apiKey))
+        recaptcha.configureWebView { _ in
             XCTFail("should not ask to configure the webview")
         }
 
         do {
             // Validate
-            _ = try manager.rx.validate(on: presenterView, resetOnError: false)
+            _ = try recaptcha.rx.validate(on: presenterView, resetOnError: false)
                 .toBlocking()
                 .single()
 
@@ -104,12 +107,12 @@ class ReCaptcha_Rx__Tests: XCTestCase {
         let exp = expectation(description: "stop loading")
 
         // Stop
-        let manager = ReCaptchaWebViewManager(messageBody: "{action: \"showReCaptcha\"}")
-        manager.configureWebView { _ in
+        let recaptcha = ReCaptcha(manager: ReCaptchaWebViewManager(messageBody: "{action: \"showReCaptcha\"}"))
+        recaptcha.configureWebView { _ in
             XCTFail("should not ask to configure the webview")
         }
 
-        let disposable = manager.rx.validate(on: presenterView)
+        let disposable = recaptcha.rx.validate(on: presenterView)
             .do(onDispose: exp.fulfill)
             .subscribe { _ in
                 XCTFail("should not validate")
@@ -126,14 +129,17 @@ class ReCaptcha_Rx__Tests: XCTestCase {
 
     func test__Reset() {
         // Validate
-        let manager = ReCaptchaWebViewManager(messageBody: "{token: key}", apiKey: apiKey, shouldFail: true)
-        manager.configureWebView { _ in
+        let recaptcha = ReCaptcha(
+            manager: ReCaptchaWebViewManager(messageBody: "{token: key}", apiKey: apiKey, shouldFail: true)
+        )
+
+        recaptcha.configureWebView { _ in
             XCTFail("should not ask to configure the webview")
         }
 
         do {
             // Error
-            _ = try manager.rx.validate(on: presenterView, resetOnError: false)
+            _ = try recaptcha.rx.validate(on: presenterView, resetOnError: false)
                 .toBlocking()
                 .single()
         }
@@ -142,12 +148,12 @@ class ReCaptcha_Rx__Tests: XCTestCase {
 
             // Resets after failure
             _ = Observable<Void>.just(())
-                .bind(to: manager.rx.reset)
+                .bind(to: recaptcha.rx.reset)
         }
 
         do {
             // Resets and tries again
-            let result = try manager.rx.validate(on: presenterView, resetOnError: false)
+            let result = try recaptcha.rx.validate(on: presenterView, resetOnError: false)
                 .toBlocking()
                 .single()
 
@@ -160,14 +166,17 @@ class ReCaptcha_Rx__Tests: XCTestCase {
 
     func test__Validate__Reset_On_Error() {
         // Validate
-        let manager = ReCaptchaWebViewManager(messageBody: "{token: key}", apiKey: apiKey, shouldFail: true)
-        manager.configureWebView { _ in
+        let recaptcha = ReCaptcha(
+            manager: ReCaptchaWebViewManager(messageBody: "{token: key}", apiKey: apiKey, shouldFail: true)
+        )
+
+        recaptcha.configureWebView { _ in
             XCTFail("should not ask to configure the webview")
         }
 
         do {
             // Error
-            let result = try manager.rx.validate(on: presenterView, resetOnError: true)
+            let result = try recaptcha.rx.validate(on: presenterView, resetOnError: true)
                 .toBlocking()
                 .single()
 

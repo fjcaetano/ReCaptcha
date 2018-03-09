@@ -8,7 +8,7 @@
 
 import Foundation
 @testable import ReCaptcha
-
+import WebKit
 
 extension ReCaptchaWebViewManager {
     private static let unformattedHTML: String! = {
@@ -18,7 +18,7 @@ extension ReCaptchaWebViewManager {
     }()
 
     convenience init(
-        messageBody: String,
+        messageBody: String = "",
         apiKey: String? = nil,
         endpoint: String? = nil,
         shouldFail: Bool = false
@@ -35,5 +35,16 @@ extension ReCaptchaWebViewManager {
             baseURL: localhost,
             endpoint: endpoint ?? localhost.absoluteString
         )
+    }
+
+    func configureWebView(_ configure: @escaping (WKWebView) -> Void) {
+        configureWebView = configure
+    }
+
+    func validate(on view: UIView, resetOnError: Bool = true, completion: @escaping (ReCaptchaResult) -> Void) {
+        self.shouldResetOnError = resetOnError
+        self.completion = completion
+
+        validate(on: view)
     }
 }

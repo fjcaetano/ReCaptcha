@@ -309,4 +309,21 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
         XCTAssertNil(result?.error)
         XCTAssertEqual(result?.token, apiKey)
     }
+
+    // MARK: Force Challenge Visible
+
+    func test__Force_Visible_Challenge() {
+        let manager = ReCaptchaWebViewManager()
+
+        // Initial value
+        XCTAssertFalse(manager.forceVisibleChallenge)
+
+        // Set True
+        manager.forceVisibleChallenge = true
+        XCTAssertEqual(manager.webView.customUserAgent, "Googlebot/2.1")
+
+        // Set False
+        manager.forceVisibleChallenge = false
+        XCTAssertNotEqual(manager.webView.customUserAgent?.isEmpty, false)
+    }
 }
