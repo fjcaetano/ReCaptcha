@@ -10,9 +10,9 @@ import Foundation
 import WebKit
 
 
-/** The public facade of ReCaptcha
+/**
 */
-open class ReCaptcha: ReCaptchaWebViewManager {
+public class ReCaptcha {
     fileprivate struct Constants {
         struct InfoDictKeys {
             static let APIKey = "ReCaptchaKey"
@@ -97,6 +97,9 @@ open class ReCaptcha: ReCaptchaWebViewManager {
         }
     }
 
+    /// The worker that handles webview events and communication
+    let manager: ReCaptchaWebViewManager
+
     /**
      - parameters:
          - apiKey: The API key sent to the ReCaptcha init
@@ -118,15 +121,81 @@ open class ReCaptcha: ReCaptchaWebViewManager {
          Info.plist.
      - Throws: Rethrows any exceptions thrown by `String(contentsOfFile:)`
      */
-    public init(apiKey: String? = nil, baseURL: URL? = nil, endpoint: Endpoint = .default) throws {
+    public convenience init(apiKey: String? = nil, baseURL: URL? = nil, endpoint: Endpoint = .default) throws {
         let infoDict = Bundle.main.infoDictionary
 
         let plistApiKey = infoDict?[Constants.InfoDictKeys.APIKey] as? String
         let plistDomain = (infoDict?[Constants.InfoDictKeys.Domain] as? String).flatMap(URL.init(string:))
 
         let config = try Config(apiKey: apiKey, infoPlistKey: plistApiKey, baseURL: baseURL, infoPlistURL: plistDomain)
-        super.init(html: config.html, apiKey: config.apiKey, baseURL: config.baseURL, endpoint: endpoint.url)
+
+        self.init(manager: ReCaptchaWebViewManager(
+            html: config.html,
+            apiKey: config.apiKey,
+            baseURL: config.baseURL,
+            endpoint: endpoint.url
+        ))
     }
+
+    /**
+     - parameter manager: A ReCaptchaWebViewManager instance.
+
+      Initializes ReCaptcha with the given manager
+    */
+    init(manager: ReCaptchaWebViewManager) {
+        self.manager = manager
+    }
+
+    /**
+     - parameters:
+         - view: The view that should present the webview.
+         - resetOnError: If ReCaptcha should be reset if it errors. Defaults to `true`.
+         - completion: A closure that receives a ReCaptchaResult which may contain a valid result token.
+
+     Starts the challenge validation
+    */
+    public func validate(on view: UIView, resetOnError: Bool = true, completion: @escaping (ReCaptchaResult) -> Void) {
+        manager.shouldResetOnError = resetOnError
+        manager.completion = completion
+
+        manager.validate(on: view)
+    }
+
+
+    /// Stops the execution of the webview
+    public func stop() {
+        manager.stop()
+    }
+
+
+    /**
+     - parameter configure: A closure that receives an instance of `WKWebView` for configuration.
+
+     Provides a closure to configure the webview for presentation if necessary.
+
+     If presentation is required, the webview will already be a subview of `presenterView` if one is provided. Otherwise
+     it might need to be added in a view currently visible.
+    */
+    public func configureWebView(_ configure: @escaping (WKWebView) -> Void) {
+        manager.configureWebView = configure
+    }
+
+    /**
+     Resets the ReCaptcha.
+
+     The reset is achieved by calling `grecaptcha.reset()` on the JS API.
+    */
+    public func reset() {
+        manager.reset()
+    }
+
+#if DEBUG
+    /// Forces the challenge to be explicitly displayed.
+    public var forceVisibleChallenge: Bool {
+        get { return manager.forceVisibleChallenge }
+        set { manager.forceVisibleChallenge = newValue }
+    }
+#endif
 }
 
 // MARK: - Private Methods

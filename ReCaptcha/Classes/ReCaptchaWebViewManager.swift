@@ -12,7 +12,7 @@ import WebKit
 
 /** Handles comunications with the webview containing the ReCaptcha challenge.
  */
-open class ReCaptchaWebViewManager {
+internal class ReCaptchaWebViewManager {
     /** The `webView` delegate object that performs execution uppon script loading
      */
     fileprivate class WebViewDelegate: NSObject, WKNavigationDelegate {
@@ -99,7 +99,7 @@ open class ReCaptchaWebViewManager {
 
 #if DEBUG
     /// Forces the challenge to be explicitly displayed.
-    public var forceVisibleChallenge = false {
+    var forceVisibleChallenge = false {
         didSet {
             // Also works on iOS < 9
             webView.performSelector(
@@ -112,10 +112,13 @@ open class ReCaptchaWebViewManager {
 #endif
 
     /// Sends the result message
-    fileprivate var completion: ((ReCaptchaResult) -> Void)?
+    var completion: ((ReCaptchaResult) -> Void)?
 
     /// Configures the webview for display when required
-    fileprivate var configureWebView: ((WKWebView) -> Void)?
+    var configureWebView: ((WKWebView) -> Void)?
+
+    /// If the ReCaptcha should be reset when it errors
+    var shouldResetOnError = true
 
     /// The JS message recoder
     fileprivate var decoder: ReCaptchaDecoder!
@@ -129,16 +132,13 @@ open class ReCaptchaWebViewManager {
     /// The endpoint url being used
     fileprivate var endpoint: String
 
-    /// If the ReCaptcha should be reset when it errors
-    fileprivate var shouldResetOnError = true
-
     /// The `webView` delegate implementation
     fileprivate lazy var webviewDelegate: WebViewDelegate = {
         WebViewDelegate(manager: self)
     }()
 
     /// The webview that executes JS code
-    fileprivate lazy var webView: WKWebView = {
+    lazy var webView: WKWebView = {
         let webview = WKWebView(
             frame: CGRect(x: 0, y: 0, width: 1, height: 1),
             configuration: self.buildConfiguration()
@@ -181,19 +181,12 @@ open class ReCaptchaWebViewManager {
         }
     }
 
-
     /**
-     - parameters:
-        - view: The view that should present the webview.
-        - resetOnError: If ReCaptcha should be reset if it errors. Defaults to `true`.
-        - completion: A closure that receives a ReCaptchaResult which may contain a valid result token.
+     - parameter view: The view that should present the webview.
 
      Starts the challenge validation
      */
-    open func validate(on view: UIView, resetOnError: Bool = true, completion: @escaping (ReCaptchaResult) -> Void) {
-        self.completion = completion
-        self.shouldResetOnError = resetOnError
-
+     func validate(on view: UIView) {
         webView.isHidden = false
         view.addSubview(webView)
 
@@ -202,21 +195,8 @@ open class ReCaptchaWebViewManager {
 
 
     /// Stops the execution of the webview
-    open func stop() {
+    func stop() {
         webView.stopLoading()
-    }
-
-
-    /**
-     - parameter configure: A closure that receives an instance of `WKWebView` for configuration.
-
-     Provides a closure to configure the webview for presentation if necessary.
-
-     If presentation is required, the webview will already be a subview of `presenterView` if one is provided. Otherwise
-     it might need to be added in a view currently visible.
-     */
-    open func configureWebView(_ configure: @escaping (WKWebView) -> Void) {
-        self.configureWebView = configure
     }
 
     /**
@@ -224,7 +204,7 @@ open class ReCaptchaWebViewManager {
 
      The reset is achieved by calling `grecaptcha.reset()` on the JS API.
      */
-    open func reset() {
+    func reset() {
         didFinishLoading = false
 
         webView.evaluateJavaScript(Constants.ResetCommand) { [weak self] _, error in
@@ -240,7 +220,6 @@ open class ReCaptchaWebViewManager {
 /** Private methods for ReCaptchaWebViewManager
  */
 fileprivate extension ReCaptchaWebViewManager {
-
     /** Executes the JS command that loads the ReCaptcha challenge.
      This method has no effect if the webview hasn't finished loading.
      */
@@ -283,9 +262,9 @@ fileprivate extension ReCaptchaWebViewManager {
             completion?(.token(token))
 
         case .error(let error):
-            if shouldResetOnError, let view = webView.superview, let completion = completion {
+            if shouldResetOnError, let view = webView.superview {
                 reset()
-                validate(on: view, completion: completion)
+                validate(on: view)
             }
             else {
                 completion?(.error(error))

@@ -9,11 +9,11 @@
 import RxSwift
 import UIKit
 
-/// Makes ReCaptchaWebViewManager compatible with RxSwift extensions
-extension ReCaptchaWebViewManager: ReactiveCompatible {}
+/// Makes ReCaptcha compatible with RxSwift extensions
+extension ReCaptcha: ReactiveCompatible {}
 
-/// Provides a public extension on ReCaptchaWebViewManager that makes it reactive.
-public extension Reactive where Base: ReCaptchaWebViewManager {
+/// Provides a public extension on ReCaptcha that makes it reactive.
+public extension Reactive where Base: ReCaptcha {
 
     /**
      - parameters:
@@ -26,8 +26,8 @@ public extension Reactive where Base: ReCaptchaWebViewManager {
 
      Sends `stop()` uppon disposal.
      
-     - See: `ReCaptchaWebViewManager.validate(on:resetOnError:completion:)`
-     - See: `ReCaptchaWebViewManager.stop()`
+     - See: `ReCaptcha.validate(on:resetOnError:completion:)`
+     - See: `ReCaptcha.stop()`
      */
     func validate(on view: UIView, resetOnError: Bool = true) -> Observable<String> {
         return Single<String>.create { [weak base] single in
@@ -53,7 +53,7 @@ public extension Reactive where Base: ReCaptchaWebViewManager {
 
      The reset is achieved by calling `grecaptcha.reset()` on the JS API.
 
-     - See: `ReCaptchaWebViewManager.reset()`
+     - See: `ReCaptcha.reset()`
      */
     var reset: AnyObserver<Void> {
         return AnyObserver { [weak base] event in
