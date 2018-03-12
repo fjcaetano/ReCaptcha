@@ -138,7 +138,7 @@ open class ReCaptchaWebViewManager {
     }()
 
     /// The webview that executes JS code
-    fileprivate lazy var webView: WKWebView = {
+    lazy var webView: WKWebView = {
         let webview = WKWebView(
             frame: CGRect(x: 0, y: 0, width: 1, height: 1),
             configuration: self.buildConfiguration()
@@ -292,7 +292,11 @@ fileprivate extension ReCaptchaWebViewManager {
             }
 
         case .showReCaptcha:
-            configureWebView?(webView)
+            // Ensures `configureWebView` won't get called multiple times in a short period
+            DispatchQueue.main.debounce(interval: 1) { [weak self] in
+                guard let `self` = self else { return }
+                self.configureWebView?(self.webView)
+            }
 
         case .didLoad:
             // For testing purposes

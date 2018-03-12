@@ -13,6 +13,9 @@ extension DispatchQueue {
     /// Stores a throttle DispatchWorkItem instance for a given context
     private static var workItems = [AnyHashable: DispatchWorkItem]()
 
+    /// Stores the last call times for a given context
+    private static var lastDebounceCallTimes = [AnyHashable: DispatchTime]()
+
     /// An object representing a context if none is given
     private static let nilContext = UUID()
 
@@ -34,5 +37,28 @@ extension DispatchQueue {
 
         DispatchQueue.workItems[context]?.cancel()
         DispatchQueue.workItems[context] = worker
+    }
+
+    /**
+     - parameters:
+         - interval: The interval in which new calls will be ignored
+         - context: The context in which the debounce should be executed
+         - action: The closure to be executed
+
+     Executes a closure and ensures no other executions will be made during the interval.
+     */
+    func debounce(interval: Double, context: AnyHashable = nilContext, action: @escaping () -> Void) {
+        let now = DispatchTime.now()
+        if let last = DispatchQueue.lastDebounceCallTimes[context], last + interval > now {
+            return
+        }
+
+        DispatchQueue.lastDebounceCallTimes[context] = now + interval
+        async(execute: action)
+
+        // Cleanup & release context
+        throttle(deadline: now + interval) {
+            DispatchQueue.lastDebounceCallTimes.removeValue(forKey: context)
+        }
     }
 }
