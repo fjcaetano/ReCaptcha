@@ -182,6 +182,34 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
         waitForExpectations(timeout: 10)
     }
 
+    func test__Configure_Web_View__Called_Once() {
+        var count = 0
+        let exp0 = expectation(description: "configure webview")
+
+        // Configure WebView
+        let manager = ReCaptchaWebViewManager(messageBody: "{action: \"showReCaptcha\"}")
+        manager.configureWebView { _ in
+            if count < 3 {
+                manager.webView.evaluateJavaScript("execute();") { XCTAssertNil($1) }
+            }
+
+            count += 1
+            exp0.fulfill()
+        }
+
+        manager.validate(on: presenterView) { _ in
+            XCTFail("should not call completion")
+        }
+
+        waitForExpectations(timeout: 10)
+
+        let exp1 = expectation(description: "waiting for extra calls")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: exp1.fulfill)
+        waitForExpectations(timeout: 2)
+
+        XCTAssertEqual(count, 1)
+    }
+
     // MARK: Stop
 
     func test__Stop() {
