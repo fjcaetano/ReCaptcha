@@ -1,3 +1,13 @@
+# 1.2
+
+- Feature: Resettable ReCaptchas. (#23)
+- Feature: Forcing visible challenge on DEBUG. (#19)
+
+- Fix: Better encapsulation architecture.
+- Fix: Retiring Result dependency. (#24)
+- Fix: `validate` completion closure being called consecutively. (#29)
+- Fix: `configureWebView` being called multiple times. (#31)
+
 # 1.1
 
 - Fix: better logging for when protocol isn't found on
