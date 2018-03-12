@@ -85,6 +85,8 @@ public enum Endpoint {
 let recaptcha = try? ReCaptcha(endpoint: .alternate) // Defaults to `default` when unset
 ```
 
+## [Full Documentation](http://fjcaetano.github.io/ReCaptcha)
+
 ## License
 
 ReCaptcha is available under the MIT license. See the LICENSE file for more info.
