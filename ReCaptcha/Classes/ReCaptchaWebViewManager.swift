@@ -89,6 +89,11 @@ internal class ReCaptchaWebViewManager {
                 }
             }
         }
+
+        /// Flags all requests as finished
+        func reset() {
+            activeRequests.removeAll()
+        }
     }
 
     fileprivate struct Constants {
@@ -206,6 +211,7 @@ internal class ReCaptchaWebViewManager {
      */
     func reset() {
         didFinishLoading = false
+        webviewDelegate.reset()
 
         webView.evaluateJavaScript(Constants.ResetCommand) { [weak self] _, error in
             if let error = error {
