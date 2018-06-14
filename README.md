@@ -85,6 +85,11 @@ public enum Endpoint {
 let recaptcha = try? ReCaptcha(endpoint: .alternate) // Defaults to `default` when unset
 ```
 
+## Help Wanted
+
+Do you love ReCaptcha and work actively on apps that use it? We'd love if you could help us keep improving it!
+Feel free to message us or to start contributing right away!
+
 ## [Full Documentation](http://fjcaetano.github.io/ReCaptcha)
 
 ## License
