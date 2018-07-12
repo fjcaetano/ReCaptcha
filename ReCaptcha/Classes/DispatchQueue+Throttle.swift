@@ -16,6 +16,9 @@ extension DispatchQueue {
     /// Stores the last call times for a given context
     private static var lastDebounceCallTimes = [AnyHashable: DispatchTime]()
 
+    /// Dispatched actions' token storage
+    private static var onceTokenStorage = Set<AnyHashable>()
+
     /// An object representing a context if none is given
     private static let nilContext = UUID()
 
@@ -60,5 +63,22 @@ extension DispatchQueue {
         throttle(deadline: now + interval) {
             DispatchQueue.lastDebounceCallTimes.removeValue(forKey: context)
         }
+    }
+
+    /**
+     - parameters:
+         - token: The control token for each dispatched action
+         - action: The closure to be executed
+
+     Dispatch the action only once for each given token
+    */
+    static func once(token: AnyHashable, action: () -> Void) {
+        guard !onceTokenStorage.contains(token) else { return }
+
+        defer { objc_sync_exit(self) }
+        objc_sync_enter(self)
+
+        onceTokenStorage.insert(token)
+        action()
     }
 }

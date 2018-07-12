@@ -122,6 +122,9 @@ internal class ReCaptchaWebViewManager {
     /// Configures the webview for display when required
     var configureWebView: ((WKWebView) -> Void)?
 
+    /// The dispatch token used to ensure `configureWebView` is only called once.
+    var configureWebViewDispatchToken = UUID()
+
     /// If the ReCaptcha should be reset when it errors
     var shouldResetOnError = true
 
@@ -152,6 +155,7 @@ internal class ReCaptchaWebViewManager {
         webview.accessibilityIdentifier = "webview"
         webview.accessibilityTraits = UIAccessibilityTraitLink
         webview.isHidden = true
+        print("HIDDEN")
 
         return webview
     }()
@@ -211,6 +215,7 @@ internal class ReCaptchaWebViewManager {
      */
     func reset() {
         didFinishLoading = false
+        configureWebViewDispatchToken = UUID()
         webviewDelegate.reset()
 
         webView.evaluateJavaScript(Constants.ResetCommand) { [weak self] _, error in
@@ -277,8 +282,7 @@ fileprivate extension ReCaptchaWebViewManager {
             }
 
         case .showReCaptcha:
-            // Ensures `configureWebView` won't get called multiple times in a short period
-            DispatchQueue.main.debounce(interval: 1) { [weak self] in
+            DispatchQueue.once(token: configureWebViewDispatchToken) { [weak self] in
                 guard let `self` = self else { return }
                 self.configureWebView?(self.webView)
             }
