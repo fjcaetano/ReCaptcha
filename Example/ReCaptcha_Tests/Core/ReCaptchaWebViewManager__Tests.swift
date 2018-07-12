@@ -210,6 +210,34 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
         XCTAssertEqual(count, 1)
     }
 
+    func test__Configure_Web_View__Called_Again_With_Reset() {
+        let exp0 = expectation(description: "configure webview 0")
+
+        let manager = ReCaptchaWebViewManager(messageBody: "{action: \"showReCaptcha\"}")
+        manager.validate(on: presenterView) { _ in
+            XCTFail("should not call completion")
+        }
+
+        // Configure Webview
+        manager.configureWebView { _ in
+            manager.webView.evaluateJavaScript("execute();") { XCTAssertNil($1) }
+            exp0.fulfill()
+        }
+
+        waitForExpectations(timeout: 10)
+
+        // Reset and ensure it calls again
+        let exp1 = expectation(description: "configure webview 1")
+
+        manager.configureWebView { _ in
+            manager.webView.evaluateJavaScript("execute();") { XCTAssertNil($1) }
+            exp1.fulfill()
+        }
+
+        manager.reset()
+        waitForExpectations(timeout: 10)
+    }
+
     // MARK: Stop
 
     func test__Stop() {
