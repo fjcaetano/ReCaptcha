@@ -4,3 +4,4 @@ disabled_rules:
   - force_unwrapping
   - explicit_top_level_acl
   - function_body_length
+  - identifier_name
