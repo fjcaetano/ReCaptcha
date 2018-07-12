@@ -30,10 +30,14 @@ public class ReCaptcha {
         /// Alternate endpoint. Points to https://www.recaptcha.net/recaptcha/api.js
         case alternate
 
-        internal var url: String {
+        internal func getURL(locale: Locale?) -> String {
+            let localeAppendix = locale.map { "&hl=\($0.identifier)" } ?? ""
             switch self {
-            case .default: return "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-            case .alternate: return "https://www.recaptcha.net/recaptcha/api.js?onload=onloadCallback&render=explicit"
+            case .default:
+                return "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" + localeAppendix
+            case .alternate:
+                return "https://www.recaptcha.net/recaptcha/api.js?onload=onloadCallback&render=explicit"
+                    + localeAppendix
             }
         }
     }
@@ -106,6 +110,7 @@ public class ReCaptcha {
          - infoPlistKey: The API key retrived from the application's Info.plist
          - baseURL: The base URL sent to the ReCaptcha init
          - infoPlistURL: The base URL retrieved from the application's Info.plist
+         - locale: A locale value to translate ReCaptcha into a different language
      
      Initializes a ReCaptcha object
 
@@ -121,7 +126,12 @@ public class ReCaptcha {
          Info.plist.
      - Throws: Rethrows any exceptions thrown by `String(contentsOfFile:)`
      */
-    public convenience init(apiKey: String? = nil, baseURL: URL? = nil, endpoint: Endpoint = .default) throws {
+    public convenience init(
+        apiKey: String? = nil,
+        baseURL: URL? = nil,
+        endpoint: Endpoint = .default,
+        locale: Locale? = nil
+    ) throws {
         let infoDict = Bundle.main.infoDictionary
 
         let plistApiKey = infoDict?[Constants.InfoDictKeys.APIKey] as? String
@@ -133,7 +143,7 @@ public class ReCaptcha {
             html: config.html,
             apiKey: config.apiKey,
             baseURL: config.baseURL,
-            endpoint: endpoint.url
+            endpoint: endpoint.getURL(locale: locale)
         ))
     }
 

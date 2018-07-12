@@ -259,7 +259,7 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
 
     func test__Endpoint_Setup() {
         let exp = expectation(description: "setup endpoint")
-        let endpoint = ReCaptcha.Endpoint.alternate.url
+        let endpoint = ReCaptcha.Endpoint.alternate.getURL(locale: nil)
         var result: ReCaptchaResult?
 
         let manager = ReCaptchaWebViewManager(messageBody: "{token: endpoint}", endpoint: endpoint)

@@ -23,7 +23,7 @@ class ReCaptcha_UITests: XCTestCase {
 
     func test__Validate__Default_Endpoint() {
         let app = XCUIApplication()
-        app.segmentedControls.buttons["Default"].tap()
+        app.segmentedControls.buttons["Default Endpoint"].tap()
         app.switches["Switch"].tap()
         app.buttons["Validate"].tap()
 

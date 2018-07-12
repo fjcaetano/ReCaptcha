@@ -21,23 +21,40 @@ class ViewController: UIViewController {
     private var recaptcha: ReCaptcha!
     private var disposeBag = DisposeBag()
 
+    private var locale: Locale?
+    private var endpoint = ReCaptcha.Endpoint.default
+
     @IBOutlet private weak var label: UILabel!
     @IBOutlet private weak var spinner: UIActivityIndicatorView!
-    @IBOutlet private weak var segmentedControl: UISegmentedControl!
+    @IBOutlet private weak var localeSegmentedControl: UISegmentedControl!
+    @IBOutlet private weak var endpointSegmentedControl: UISegmentedControl!
     @IBOutlet private weak var visibleChallengeSwitch: UISwitch!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupReCaptcha(endpoint: .default)
+        setupReCaptcha()
     }
 
-    @IBAction func didPressSegmentedControl(_ sender: UISegmentedControl) {
+    @IBAction func didPressEndpointSegmentedControl(_ sender: UISegmentedControl) {
         label.text = ""
         switch sender.selectedSegmentIndex {
-        case 0: setupReCaptcha(endpoint: .default)
-        case 1: setupReCaptcha(endpoint: .alternate)
+        case 0: endpoint = .default
+        case 1: endpoint = .alternate
         default: assertionFailure("invalid index")
         }
+
+        setupReCaptcha()
+    }
+
+    @IBAction func didPressLocaleSegmentedControl(_ sender: UISegmentedControl) {
+        label.text = ""
+        switch sender.selectedSegmentIndex {
+        case 0: locale = nil
+        case 1: locale = Locale(identifier: "zh-CN")
+        default: assertionFailure("invalid index")
+        }
+
+        setupReCaptcha()
     }
 
     @IBAction private func didPressButton(button: UIButton) {
@@ -66,7 +83,7 @@ class ViewController: UIViewController {
             .disposed(by: disposeBag)
 
         isEnabled
-            .bind(to: segmentedControl.rx.isEnabled)
+            .bind(to: endpointSegmentedControl.rx.isEnabled)
             .disposed(by: disposeBag)
 
         validate
@@ -89,9 +106,9 @@ class ViewController: UIViewController {
             .disposed(by: disposeBag)
     }
 
-    private func setupReCaptcha(endpoint: ReCaptcha.Endpoint) {
+    private func setupReCaptcha() {
         // swiftlint:disable:next force_try
-        recaptcha = try! ReCaptcha(endpoint: endpoint)
+        recaptcha = try! ReCaptcha(endpoint: endpoint, locale: locale)
 
         recaptcha.configureWebView { [weak self] webview in
             webview.frame = self?.view.bounds ?? CGRect.zero
