@@ -10,11 +10,12 @@ automatically handles ReCaptcha's events and retrieves the validation token or n
 invisibility is not possible.
                        DESC
 
-  s.homepage         = 'https://github.com/fjcaetano/ReCaptcha'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Flávio Caetano' => 'flavio@vieiracaetano.com' }
-  s.source           = { :git => 'https://github.com/fjcaetano/ReCaptcha.git', :tag => s.version.to_s }
-  s.social_media_url = 'https://twitter.com/flavio_caetano'
+  s.homepage          = 'https://github.com/fjcaetano/ReCaptcha'
+  s.license           = { :type => 'MIT', :file => 'LICENSE' }
+  s.author            = { 'Flávio Caetano' => 'flavio@vieiracaetano.com' }
+  s.source            = { :git => 'https://github.com/fjcaetano/ReCaptcha.git', :tag => s.version.to_s }
+  s.social_media_url  = 'https://twitter.com/flavio_caetano'
+  s.documentation_url = 'http://fjcaetano.github.io/ReCaptcha'
 
   s.ios.deployment_target = '8.0'
   s.default_subspecs = 'Core'
