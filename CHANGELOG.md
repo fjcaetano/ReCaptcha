@@ -1,3 +1,10 @@
+# 1.3
+
+- Feature: Locale support (#39)
+
+- Fix: Reset not flagging ReCaptha as ready-to-execute (#36)
+- Fix: Multiple configure calls after app being idle (#40)
+
 # 1.2
 
 - Feature: Resettable ReCaptchas. (#23)
