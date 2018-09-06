@@ -1,0 +1,14 @@
+author: Flávio Caetano (@fjcaetano)
+author_url: https://github.com/fjcaetano
+github_url: https://github.com/fjcaetano/ReCaptcha
+
+readme: README.md
+
+module: ReCaptcha
+xcodebuild_arguments: 
+  - -workspace
+  - Example/ReCaptcha.xcworkspace
+  - -scheme
+  - ReCaptcha-Example
+  - -configuration
+  - Release
