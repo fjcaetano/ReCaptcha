@@ -15,6 +15,7 @@
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">ReCaptcha Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/fjcaetano/ReCaptcha"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -105,9 +106,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9ReCaptchaAACABSSSg6apiKey_10Foundation3URLVSg04baseF0AB8EndpointO8endpointtKcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(apiKey:baseURL:endpoint:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9ReCaptchaAACABSSSg6apiKey_10Foundation3URLVSg04baseF0AB8EndpointO8endpointtKcfc">init(apiKey:baseURL:endpoint:)</a>
+                    <a name="/s:9ReCaptchaAACABSSSg6apiKey_10Foundation3URLVSg04baseF0AB8EndpointO8endpointAE6LocaleVSg6localetKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(apiKey:baseURL:endpoint:locale:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReCaptchaAACABSSSg6apiKey_10Foundation3URLVSg04baseF0AB8EndpointO8endpointAE6LocaleVSg6localetKcfc">init(apiKey:baseURL:endpoint:locale:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -149,7 +150,12 @@ Info.plist.
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">apiKey</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">baseURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">endpoint</span><span class="p">:</span> <span class="kt"><a href="../Classes/ReCaptcha/Endpoint.html">Endpoint</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span>
+        <span class="nv">apiKey</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+        <span class="nv">baseURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+        <span class="nv">endpoint</span><span class="p">:</span> <span class="kt"><a href="../Classes/ReCaptcha/Endpoint.html">Endpoint</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">,</span>
+        <span class="nv">locale</span><span class="p">:</span> <span class="kt">Locale</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span>
+    <span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -202,6 +208,18 @@ Info.plist.
                               <td>
                                 <div>
                                   <p>The base URL retrieved from the application&rsquo;s Info.plist</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>locale</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A locale value to translate ReCaptcha into a different language</p>
                                 </div>
                               </td>
                             </tr>
@@ -386,39 +404,12 @@ it might need to be added in a view currently visible.</p>
                     </section>
                   </div>
                 </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9ReCaptchaAAC21forceVisibleChallengeSbv"></a>
-                    <a name="//apple_ref/swift/Property/forceVisibleChallenge" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9ReCaptchaAAC21forceVisibleChallengeSbv">forceVisibleChallenge</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Forces the challenge to be explicitly displayed.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">forceVisibleChallenge</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
               </ul>
             </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/fjcaetano/ReCaptcha" target="_blank" rel="external">Flávio Caetano</a>. All rights reserved. (Last updated: 2018-03-12)</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/fjcaetano" target="_blank" rel="external">Flávio Caetano (@fjcaetano)</a>. All rights reserved. (Last updated: 2018-09-06)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
