@@ -155,7 +155,6 @@ internal class ReCaptchaWebViewManager {
         webview.accessibilityIdentifier = "webview"
         webview.accessibilityTraits = UIAccessibilityTraitLink
         webview.isHidden = true
-        print("HIDDEN")
 
         return webview
     }()
