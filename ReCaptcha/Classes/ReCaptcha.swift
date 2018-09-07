@@ -20,6 +20,9 @@ public class ReCaptcha {
         }
     }
 
+    /// Property should be used only for UITests, to bypass capatcha in tests, it doesn't return token
+    static var shouldSkipForUITests = false
+
     /// The JS API endpoint to be loaded onto the HTML file.
     public enum Endpoint {
         /** Google's default endpoint. Points to

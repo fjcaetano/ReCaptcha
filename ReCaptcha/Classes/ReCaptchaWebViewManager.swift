@@ -199,7 +199,12 @@ internal class ReCaptchaWebViewManager {
         webView.isHidden = false
         view.addSubview(webView)
 
-        execute()
+        if ReCaptcha.shouldSkipForUITests {
+            completion?(.token("UI_TESTS_CAPATCHA_VALIDATION_TOKEN"))
+        } else {
+            execute()
+        }
+
     }
 
 
