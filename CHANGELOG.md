@@ -1,3 +1,8 @@
+# 1.3.1
+
+- Fix: Removing leftover print
+- Fix: Removing Result dependency from Carthage
+
 # 1.3
 
 - Feature: Locale support (#39)
