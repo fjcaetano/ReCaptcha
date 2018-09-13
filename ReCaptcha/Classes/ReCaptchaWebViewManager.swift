@@ -153,7 +153,7 @@ internal class ReCaptchaWebViewManager {
         )
         webview.navigationDelegate = self.webviewDelegate
         webview.accessibilityIdentifier = "webview"
-        webview.accessibilityTraits = UIAccessibilityTraitLink
+        webview.accessibilityTraits = UIAccessibilityTraits.link
         webview.isHidden = true
 
         return webview
@@ -179,7 +179,7 @@ internal class ReCaptchaWebViewManager {
         }
         else {
             observer = NotificationCenter.default.addObserver(
-                forName: .UIWindowDidBecomeVisible,
+                forName: UIWindow.didBecomeVisibleNotification,
                 object: nil,
                 queue: nil
             ) { [weak self] notification in
