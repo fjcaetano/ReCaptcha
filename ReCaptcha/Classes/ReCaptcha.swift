@@ -167,7 +167,6 @@ public class ReCaptcha {
     public func validate(on view: UIView, resetOnError: Bool = true, completion: @escaping (ReCaptchaResult) -> Void) {
         manager.shouldResetOnError = resetOnError
         manager.completion = completion
-
         manager.validate(on: view)
     }
 
@@ -205,6 +204,9 @@ public class ReCaptcha {
         get { return manager.forceVisibleChallenge }
         set { manager.forceVisibleChallenge = newValue }
     }
+
+    /// Property should be used only for UITests, to bypass capatcha in tests, it doesn't return token
+    public static var shouldSkipForUITests = false
 #endif
 }
 

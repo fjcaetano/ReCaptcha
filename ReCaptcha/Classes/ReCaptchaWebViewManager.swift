@@ -195,6 +195,12 @@ internal class ReCaptchaWebViewManager {
      Starts the challenge validation
      */
      func validate(on view: UIView) {
+#if DEBUG
+        guard !ReCaptcha.shouldSkipForUITests else {
+            completion?(.token(""))
+            return
+        }
+#endif
         webView.isHidden = false
         view.addSubview(webView)
 

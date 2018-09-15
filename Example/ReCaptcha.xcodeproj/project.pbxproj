@@ -15,6 +15,7 @@
 		9D85E832734B73CFBD0156E0 /* Pods_ReCaptcha_UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4C17A11F39B6DC940891AE0 /* Pods_ReCaptcha_UITests.framework */; };
 		BD850CB2DF4C9C94FC51226C /* Pods_ReCaptcha_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62BEEA62161F672468CCFD64 /* Pods_ReCaptcha_Example.framework */; };
 		D091B6E053FD250B4757E34C /* Pods_ReCaptcha_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9417A28DC340FF0BC1627B3F /* Pods_ReCaptcha_Tests.framework */; };
+		E428302A214C8AE300C5102E /* MainMenuPageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4283029214C8AE300C5102E /* MainMenuPageObject.swift */; };
 		F206BAD51F8D3FEB00A25807 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = F206BAD41F8D3FEB00A25807 /* Cartfile */; };
 		F211C22220F7E0B100709B26 /* ReCaptcha_Endpoint__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F211C22120F7E0B100709B26 /* ReCaptcha_Endpoint__Tests.swift */; };
 		F231B3971FEC325A00F82943 /* DispatchQueue__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231B3961FEC325A00F82943 /* DispatchQueue__Tests.swift */; };
@@ -68,6 +69,7 @@
 		B4C17A11F39B6DC940891AE0 /* Pods_ReCaptcha_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReCaptcha_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2A0BDD35B5E219129E9BC65 /* Pods-ReCaptcha_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReCaptcha_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReCaptcha_Example/Pods-ReCaptcha_Example.release.xcconfig"; sourceTree = "<group>"; };
 		C8537003ECC47117AF54DCA9 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		E4283029214C8AE300C5102E /* MainMenuPageObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuPageObject.swift; sourceTree = "<group>"; };
 		F206BAD41F8D3FEB00A25807 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Cartfile; path = ../Cartfile; sourceTree = "<group>"; };
 		F211C22120F7E0B100709B26 /* ReCaptcha_Endpoint__Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReCaptcha_Endpoint__Tests.swift; sourceTree = "<group>"; };
 		F21901D91F98D62F00D8E2C9 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			children = (
 				F28FAC9E200E425600E14987 /* ReCaptcha_UITests.swift */,
 				F28FACA0200E425600E14987 /* Info.plist */,
+				E4283029214C8AE300C5102E /* MainMenuPageObject.swift */,
 			);
 			path = ReCaptcha_UITests;
 			sourceTree = "<group>";
@@ -262,7 +265,6 @@
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
 				8F03FFB3F5C55E873C23C682 /* [CP] Embed Pods Frameworks */,
-				ED1C0E07490C9C4B4A401061 /* [CP] Copy Pods Resources */,
 				F231B3981FEC3B7F00F82943 /* SwiftLint */,
 			);
 			buildRules = (
@@ -282,8 +284,6 @@
 				F28FAC98200E425600E14987 /* Sources */,
 				F28FAC99200E425600E14987 /* Frameworks */,
 				F28FAC9A200E425600E14987 /* Resources */,
-				BF2909E4520B29BFFBC94AD6 /* [CP] Embed Pods Frameworks */,
-				DCB1D99E77E589CD76CD3186 /* [CP] Copy Pods Resources */,
 				F28FACA6200E447600E14987 /* ShellScript */,
 			);
 			buildRules = (
@@ -305,7 +305,6 @@
 				F2ECCF731E9FC47B0097B199 /* Frameworks */,
 				F2ECCF741E9FC47B0097B199 /* Resources */,
 				77003100630E7783A936C451 /* [CP] Embed Pods Frameworks */,
-				44209D7CDDDE3A11075B8104 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -394,21 +393,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		44209D7CDDDE3A11075B8104 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReCaptcha_Tests/Pods-ReCaptcha_Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		51299F67A8756E2B3EAE411A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -489,36 +473,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BF2909E4520B29BFFBC94AD6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReCaptcha_UITests/Pods-ReCaptcha_UITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DCB1D99E77E589CD76CD3186 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReCaptcha_UITests/Pods-ReCaptcha_UITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		DDB47454887253730AB35230 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -537,21 +491,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		ED1C0E07490C9C4B4A401061 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReCaptcha_Example/Pods-ReCaptcha_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		F231B3981FEC3B7F00F82943 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -564,7 +503,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\" --path \"${PROJECT_DIR}/..\"";
+			shellScript = "#\"${PODS_ROOT}/SwiftLint/swiftlint\" --path \"${PROJECT_DIR}/..\"\n";
 		};
 		F28FACA6200E447600E14987 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -596,6 +535,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F28FAC9F200E425600E14987 /* ReCaptcha_UITests.swift in Sources */,
+				E428302A214C8AE300C5102E /* MainMenuPageObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

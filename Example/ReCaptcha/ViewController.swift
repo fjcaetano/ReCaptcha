@@ -30,6 +30,10 @@ class ViewController: UIViewController {
     @IBOutlet private weak var endpointSegmentedControl: UISegmentedControl!
     @IBOutlet private weak var visibleChallengeSwitch: UISwitch!
 
+
+    @IBOutlet weak var shouldSkipForUITestsSwitch: UISwitch!
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupReCaptcha()
@@ -55,6 +59,10 @@ class ViewController: UIViewController {
         }
 
         setupReCaptcha()
+    }
+
+    @IBAction func didChangeValueForUITestsSwitch(_ sender: UISwitch) {
+        ReCaptcha.shouldSkipForUITests = sender.isOn
     }
 
     @IBAction private func didPressButton(button: UIButton) {
