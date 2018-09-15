@@ -20,9 +20,6 @@ public class ReCaptcha {
         }
     }
 
-    /// Property should be used only for UITests, to bypass capatcha in tests, it doesn't return token
-    public static var shouldSkipForUITests = false
-
     /// The JS API endpoint to be loaded onto the HTML file.
     public enum Endpoint {
         /** Google's default endpoint. Points to
@@ -168,14 +165,9 @@ public class ReCaptcha {
      Starts the challenge validation
     */
     public func validate(on view: UIView, resetOnError: Bool = true, completion: @escaping (ReCaptchaResult) -> Void) {
-        if ReCaptcha.shouldSkipForUITests {
-            completion(.token(""))
-        } else {
-            manager.shouldResetOnError = resetOnError
-            manager.completion = completion
-
-            manager.validate(on: view)
-        }
+        manager.shouldResetOnError = resetOnError
+        manager.completion = completion
+        manager.validate(on: view)
     }
 
 
@@ -212,6 +204,9 @@ public class ReCaptcha {
         get { return manager.forceVisibleChallenge }
         set { manager.forceVisibleChallenge = newValue }
     }
+
+    /// Property should be used only for UITests, to bypass capatcha in tests, it doesn't return token
+    public static var shouldSkipForUITests = false
 #endif
 }
 

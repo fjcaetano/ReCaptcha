@@ -1,7 +1,7 @@
 PODS:
   - AppSwizzle (1.3.1)
-  - ReCaptcha/Core (1.2)
-  - ReCaptcha/RxSwift (1.2):
+  - ReCaptcha/Core (1.3)
+  - ReCaptcha/RxSwift (1.3):
     - ReCaptcha/Core
     - RxSwift (~> 4.0)
   - RxBlocking (4.2.0):
@@ -18,13 +18,21 @@ DEPENDENCIES:
   - RxCocoa (~> 4.0)
   - SwiftLint (~> 0.24)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AppSwizzle
+    - RxBlocking
+    - RxCocoa
+    - RxSwift
+    - SwiftLint
+
 EXTERNAL SOURCES:
   ReCaptcha:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
   AppSwizzle: db36e436f56110d93e5ae0147683435df593cabc
-  ReCaptcha: ffa108380b3eaca6c1448dcfe38eb5dab8083a67
+  ReCaptcha: 815601c4ddcb2d3638605f7d6d24a1d56cfc5699
   RxBlocking: e339d8a6e752e25ade95ff858466c55436668f59
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
@@ -32,4 +40,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 0b5282c7433d7f669094e5e24684866bae899e4b
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

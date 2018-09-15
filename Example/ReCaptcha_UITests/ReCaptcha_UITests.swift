@@ -13,39 +13,44 @@ import XCTest
 
 class ReCaptcha_UITests: XCTestCase {
 
+    var app: XCUIApplication!
+    var mainMenu: MainMenuPageObject!
+
     override func setUp() {
         super.setUp()
 
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-        XCUIApplication().launch()
+        app = XCUIApplication()
+        mainMenu = MainMenuPageObject(queryProvider: app)
+        app.launch()
+    }
+
+    override func tearDown() {
+        app = nil
+        super.tearDown()
     }
 
     func test__Validate__Default_Endpoint() {
-        let app = XCUIApplication()
-        app.segmentedControls.buttons["Default Endpoint"].tap()
-        app.switches["Switch"].tap()
-        app.buttons["Validate"].tap()
+        mainMenu.defaultEndpointButton.tap()
+        mainMenu.visibleChallengeSwitch.tap()
+        mainMenu.validateButton.tap()
 
-        verifyValidation()
+        XCTAssertTrue(mainMenu.webview.waitForExistence(timeout: 10))
     }
 
     func test__Validate__Alternate_Endpoint() {
-        let app = XCUIApplication()
-        app.segmentedControls.buttons["Alternate"].tap()
-        app.switches["Switch"].tap()
-        app.buttons["Validate"].tap()
+        mainMenu.alternateEndpointButton.tap()
+        mainMenu.visibleChallengeSwitch.tap()
+        mainMenu.validateButton.tap()
 
-        verifyValidation()
+        XCTAssertTrue(mainMenu.webview.waitForExistence(timeout: 10))
     }
 
-    // MARK: Private Methods
+    func test_Validate_skipForUITestsFlag() {
+        mainMenu.skipForUITestsSwitch.tap()
+        mainMenu.validateButton.tap()
 
-    private func verifyValidation() {
-        let app = XCUIApplication()
-        let webview = app.staticTexts.element(matching: .any, identifier: "webview")
-        let webviewExists = webview.waitForExistence(timeout: 10)
-
-        XCTAssertTrue(webviewExists)
+        XCTAssertFalse(mainMenu.webview.waitForExistence(timeout: 5))
     }
+
 }

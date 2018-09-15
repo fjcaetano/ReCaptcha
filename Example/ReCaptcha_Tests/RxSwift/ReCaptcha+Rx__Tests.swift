@@ -69,7 +69,7 @@ class ReCaptcha_Rx__Tests: XCTestCase {
         do {
             // Validate
             _ = try recaptcha.rx.validate(on: presenterView)
-                .timeout(2, scheduler: MainScheduler.instance)
+                .timeout(10, scheduler: MainScheduler.instance)
                 .toBlocking()
                 .single()
 

@@ -366,6 +366,22 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
         XCTAssertEqual(result?.token, apiKey)
     }
 
+    func test__Validate__Should_Skip_For_UITests() {
+        let exp = expectation(description: "Completion block called")
+        ReCaptcha.shouldSkipForUITests = true
+
+        let manager = ReCaptchaWebViewManager(html: "", apiKey: "", baseURL: URL(string: "google.com")!, endpoint: "")
+
+        manager.completion = { result in
+            XCTAssertEqual(result.token, "")
+            exp.fulfill()
+        }
+
+        manager.validate(on: presenterView)
+
+        waitForExpectations(timeout: 1)
+    }
+
     // MARK: Force Challenge Visible
 
     func test__Force_Visible_Challenge() {
