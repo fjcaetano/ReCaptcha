@@ -32,6 +32,6 @@ invisibility is not possible.
   s.subspec 'RxSwift' do |rx|
     rx.source_files = 'ReCaptcha/Classes/Rx/**/*'
     rx.dependency 'ReCaptcha/Core'
-    rx.dependency 'RxSwift', '~> 4.0'
+    rx.dependency 'RxSwift', '~> 4.3.1'
   end
 end
