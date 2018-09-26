@@ -3,7 +3,8 @@ Pod::Spec.new do |s|
   s.name             = 'ReCaptcha'
   s.version          = '1.3.1'
   s.summary          = 'ReCaptcha for iOS'
-
+  s.swift_version = '4.2'
+  
   s.description      = <<-DESC
 Add Google's [Invisible ReCaptcha](https://developers.google.com/recaptcha/docs/invisible) to your project. This library
 automatically handles ReCaptcha's events and retrieves the validation token or notifies you to present the challenge if

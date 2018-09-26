@@ -18,9 +18,17 @@ DEPENDENCIES:
   - RxCocoa (~> 4.3.1)
   - SwiftLint (~> 0.27)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AppSwizzle
+    - RxBlocking
+    - RxCocoa
+    - RxSwift
+    - SwiftLint
+
 EXTERNAL SOURCES:
   ReCaptcha:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
   AppSwizzle: db36e436f56110d93e5ae0147683435df593cabc
@@ -32,4 +40,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: a23c69eb7704b3587227f939a054e176f34b8d90
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3
