@@ -5,3 +5,5 @@ disabled_rules:
   - explicit_top_level_acl
   - function_body_length
   - identifier_name
+  - file_length
+  - type_body_length
