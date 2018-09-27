@@ -10,7 +10,8 @@ default_platform :ios
 platform :ios do
   skip_docs
 
-  devices = ["iPhone X (~> 11)"]
+  devices = ["iPhone XR (~> 12)"]
+  devices << "iPhone X (~> 11)" if !Helper.is_ci?
   devices << "iPhone 7 (~> 10)" if !Helper.is_ci?
   devices << "iPhone 5s (~> 9)" if !Helper.is_ci?
 
@@ -31,6 +32,8 @@ platform :ios do
     swiftlint(
       executable: "Example/Pods/Swiftlint/swiftlint",
       strict: true,
+      reporter: "emoji",
+
     )
 
     # The problem lies in the fact (or rather: serious bug in xcodebuild) that
