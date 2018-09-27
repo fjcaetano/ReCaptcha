@@ -1,3 +1,8 @@
+# 1.4
+
+- Feature: Support Swift 4.2
+- Feature: enable validation to be skipped for testing
+
 # 1.3.1
 
 - Fix: Removing leftover print
