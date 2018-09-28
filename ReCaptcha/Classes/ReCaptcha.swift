@@ -199,14 +199,22 @@ public class ReCaptcha {
         manager.reset()
     }
 
+    // MARK: - Development
+
 #if DEBUG
-    /// Forces the challenge to be explicitly displayed.
+    /// Forces the challenge widget to be explicitly displayed.
     public var forceVisibleChallenge: Bool {
         get { return manager.forceVisibleChallenge }
         set { manager.forceVisibleChallenge = newValue }
     }
 
-    /// Allows validation stubbing for testing
+    /**
+     Allows validation stubbing for testing
+
+     When this property is set to `true`, every call to `validate()` will immediately be resolved with `.token("")`.
+     
+     Use only when testing your application.
+    */
     public var shouldSkipForTests: Bool {
         get { return manager.shouldSkipForTests }
         set { manager.shouldSkipForTests = newValue }

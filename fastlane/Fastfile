@@ -33,7 +33,6 @@ platform :ios do
       executable: "Example/Pods/Swiftlint/swiftlint",
       strict: true,
       reporter: "emoji",
-
     )
 
     # The problem lies in the fact (or rather: serious bug in xcodebuild) that
