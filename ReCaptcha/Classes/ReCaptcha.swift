@@ -205,13 +205,11 @@ public class ReCaptcha {
         get { return manager.forceVisibleChallenge }
         set { manager.forceVisibleChallenge = newValue }
     }
+#endif
 
     /// Allows validation stubbing for testing
-    public var shouldSkipForTests: Bool {
-        get { return manager.shouldSkipForTests }
-        set { manager.shouldSkipForTests = newValue }
-    }
-#endif
+    public static var shouldSkipForTests: Bool = false
+
 }
 
 // MARK: - Private Methods

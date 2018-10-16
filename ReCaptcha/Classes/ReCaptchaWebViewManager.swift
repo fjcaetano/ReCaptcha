@@ -116,7 +116,7 @@ internal class ReCaptchaWebViewManager {
     }
 
     /// Allows validation stubbing for testing
-    public var shouldSkipForTests = false
+    public var shouldSkipForTests = ReCaptcha.shouldSkipForTests
 #endif
 
     /// Sends the result message
@@ -198,12 +198,10 @@ internal class ReCaptchaWebViewManager {
      Starts the challenge validation
      */
      func validate(on view: UIView) {
-#if DEBUG
         guard !shouldSkipForTests else {
             completion?(.token(""))
             return
         }
-#endif
         webView.isHidden = false
         view.addSubview(webView)
 
