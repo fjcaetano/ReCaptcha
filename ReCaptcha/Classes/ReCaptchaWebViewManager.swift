@@ -114,10 +114,10 @@ internal class ReCaptchaWebViewManager {
             )
         }
     }
-
+#endif
     /// Allows validation stubbing for testing
     public var shouldSkipForTests = ReCaptcha.shouldSkipForTests
-#endif
+
 
     /// Sends the result message
     var completion: ((ReCaptchaResult) -> Void)?
