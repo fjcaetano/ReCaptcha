@@ -1,3 +1,7 @@
+# 1.4.1
+
+- Fix RxSwift dependency version (#58)
+
 # 1.4
 
 - Feature: Support Swift 4.2
