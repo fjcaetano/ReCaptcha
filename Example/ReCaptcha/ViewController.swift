@@ -108,7 +108,7 @@ class ViewController: UIViewController {
 
     private func setupReCaptcha() {
         // swiftlint:disable:next force_try
-        recaptcha = try! ReCaptcha(endpoint: endpoint, locale: locale)
+		recaptcha = try! ReCaptcha(endpoint: endpoint, locale: locale, useDebugChecks: true)
 
         recaptcha.configureWebView { [weak self] webview in
             webview.frame = self?.view.bounds ?? CGRect.zero

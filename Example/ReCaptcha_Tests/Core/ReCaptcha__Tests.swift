@@ -112,7 +112,7 @@ class ReCaptcha__Tests: XCTestCase {
     }
 
     func test__Force_Visible_Challenge() {
-        let recaptcha = ReCaptcha(manager: ReCaptchaWebViewManager())
+		let recaptcha = ReCaptcha(manager: ReCaptchaWebViewManager(), useDebugChecks: true)
 
         // Initial value
         XCTAssertFalse(recaptcha.forceVisibleChallenge)

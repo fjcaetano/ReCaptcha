@@ -20,6 +20,8 @@ public class ReCaptcha {
         }
     }
 
+	private let useDebugChecks: Bool
+
     /// The JS API endpoint to be loaded onto the HTML file.
     public enum Endpoint {
         /** Google's default endpoint. Points to
@@ -111,6 +113,7 @@ public class ReCaptcha {
          - baseURL: The base URL sent to the ReCaptcha init
          - infoPlistURL: The base URL retrieved from the application's Info.plist
          - locale: A locale value to translate ReCaptcha into a different language
+         - parameter useDebugChecks: Whether we can use debug methods
      
      Initializes a ReCaptcha object
 
@@ -130,7 +133,8 @@ public class ReCaptcha {
         apiKey: String? = nil,
         baseURL: URL? = nil,
         endpoint: Endpoint = .default,
-        locale: Locale? = nil
+        locale: Locale? = nil,
+        useDebugChecks: Bool = false
     ) throws {
         let infoDict = Bundle.main.infoDictionary
 
@@ -143,17 +147,20 @@ public class ReCaptcha {
             html: config.html,
             apiKey: config.apiKey,
             baseURL: config.baseURL,
-            endpoint: endpoint.getURL(locale: locale)
-        ))
+            endpoint: endpoint.getURL(locale: locale)),
+			useDebugChecks: useDebugChecks
+        )
     }
 
     /**
      - parameter manager: A ReCaptchaWebViewManager instance.
+	 - parameter useDebugChecks: Whether we can use debug methods
 
       Initializes ReCaptcha with the given manager
     */
-    init(manager: ReCaptchaWebViewManager) {
+	init(manager: ReCaptchaWebViewManager, useDebugChecks: Bool = false) {
         self.manager = manager
+		self.useDebugChecks = useDebugChecks
     }
 
     /**
@@ -201,11 +208,14 @@ public class ReCaptcha {
 
     // MARK: - Development
 
-#if DEBUG
     /// Forces the challenge widget to be explicitly displayed.
     public var forceVisibleChallenge: Bool {
         get { return manager.forceVisibleChallenge }
-        set { manager.forceVisibleChallenge = newValue }
+        set {
+			assert(useDebugChecks)
+			manager.forceVisibleChallenge = newValue
+
+		}
     }
 
     /**
@@ -216,10 +226,16 @@ public class ReCaptcha {
      Use only when testing your application.
     */
     public var shouldSkipForTests: Bool {
-        get { return manager.shouldSkipForTests }
-        set { manager.shouldSkipForTests = newValue }
+        get {
+			assert(useDebugChecks)
+			return manager.shouldSkipForTests
+		}
+        set {
+			assert(useDebugChecks)
+			manager.shouldSkipForTests = newValue
+		}
     }
-#endif
+
 }
 
 // MARK: - Private Methods

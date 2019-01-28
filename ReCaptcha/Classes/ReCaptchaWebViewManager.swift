@@ -20,7 +20,6 @@ internal class ReCaptchaWebViewManager {
         static let BotUserAgent = "Googlebot/2.1"
     }
 
-#if DEBUG
     /// Forces the challenge to be explicitly displayed.
     var forceVisibleChallenge = false {
         didSet {
@@ -35,7 +34,6 @@ internal class ReCaptchaWebViewManager {
 
     /// Allows validation stubbing for testing
     public var shouldSkipForTests = false
-#endif
 
     /// Sends the result message
     var completion: ((ReCaptchaResult) -> Void)?
@@ -126,12 +124,10 @@ internal class ReCaptchaWebViewManager {
      Starts the challenge validation
      */
      func validate(on view: UIView) {
-#if DEBUG
         guard !shouldSkipForTests else {
             completion?(.token(""))
             return
         }
-#endif
         webView.isHidden = false
         view.addSubview(webView)
 
