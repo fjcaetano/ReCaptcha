@@ -22,6 +22,9 @@ when creating your [API Key](https://www.google.com/recaptcha/admin).
 
 When using http://localhost domain make sure the `Verify the origin of reCAPTCHA solutions` tickbox is unchecked in Recaptcha Admin Console.
 
+![Example Verify Origin](https://raw.githubusercontent.com/rachitmishra/ReCaptcha/patch-1/example-verify-domain.png)
+      
+
 
 ## Installation
 
