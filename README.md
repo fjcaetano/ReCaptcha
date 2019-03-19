@@ -25,7 +25,6 @@ When using http://localhost domain make sure the `Verify the origin of reCAPTCHA
 ![Example Verify Origin](https://raw.githubusercontent.com/rachitmishra/ReCaptcha/patch-1/example-verify-domain.png)
       
 
-
 ## Installation
 
 ReCaptcha is available through [CocoaPods](http://cocoapods.org) and [Carthage](https://github.com/Carthage/Carthage).
