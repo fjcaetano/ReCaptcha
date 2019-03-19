@@ -20,6 +20,9 @@ invisibility is not possible.
 Beware that this library only works for Invisible ReCaptcha keys! Make sure to check the Invisible reCAPTCHA option
 when creating your [API Key](https://www.google.com/recaptcha/admin).
 
+When using http://localhost domain make sure the `Verify the origin of reCAPTCHA solutions` tickbox is unchecked in Recaptcha Admin Console.
+
+
 ## Installation
 
 ReCaptcha is available through [CocoaPods](http://cocoapods.org) and [Carthage](https://github.com/Carthage/Carthage).
@@ -42,7 +45,7 @@ extension for the ReCaptcha framework.
 
 ## Usage
 
-Simply add `ReCaptchaKey` and `ReCaptchaDomain` (with a protocol) to your Info.plist and run:
+Simply add `ReCaptchaKey` and `ReCaptchaDomain` (with a protocol ex. http:// or https://) to your Info.plist and run:
 
 ``` swift
 let recaptcha = try? ReCaptcha()
