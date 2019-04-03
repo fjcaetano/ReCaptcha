@@ -13,88 +13,6 @@ import WebKit
 /** Handles comunications with the webview containing the ReCaptcha challenge.
  */
 internal class ReCaptchaWebViewManager {
-    /** The `webView` delegate object that performs execution uppon script loading
-     */
-    fileprivate class WebViewDelegate: NSObject, WKNavigationDelegate {
-        struct Constants {
-            /// The host that loaded requests should have
-            static let apiURLHost = "www.google.com"
-        }
-
-        /// The parent manager
-        private weak var manager: ReCaptchaWebViewManager?
-
-        /// The active requests' urls
-        private var activeRequests = Set<String>(minimumCapacity: 0)
-
-        /// - parameter manager: The parent manager
-        init(manager: ReCaptchaWebViewManager) {
-            self.manager = manager
-        }
-
-        /**
-         - parameters:
-             - webView: The web view invoking the delegate method.
-             - navigationAction: Descriptive information about the action triggering the navigation request.
-             - decisionHandler: The decision handler to call to allow or cancel the navigation. The argument is one of
-         the constants of the enumerated type WKNavigationActionPolicy.
-
-         Decides whether to allow or cancel a navigation.
-         */
-        func webView(
-            _ webView: WKWebView,
-            decidePolicyFor navigationAction: WKNavigationAction,
-            decisionHandler: @escaping (WKNavigationActionPolicy
-        ) -> Void) {
-            defer { decisionHandler(.allow) }
-
-            if let url = navigationAction.request.url, url.host == Constants.apiURLHost {
-                activeRequests.insert(url.absoluteString)
-            }
-        }
-
-        /**
-         - parameters:
-            - webView: The web view invoking the delegate method.
-            - navigationResponse: Descriptive information about the navigation response.
-            - decisionHandler: A block to be called when your app has decided whether to allow or cancel the navigation
-
-         Decides whether to allow or cancel a navigation after its response is known.
-         */
-        func webView(
-            _ webView: WKWebView,
-            decidePolicyFor navigationResponse: WKNavigationResponse,
-            decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void
-        ) {
-            defer { decisionHandler(.allow) }
-            guard let url = navigationResponse.response.url?.absoluteString,
-                activeRequests.remove(url) != nil, activeRequests.isEmpty else {
-                    return
-            }
-
-            execute()
-        }
-
-        /// Flag the requests as finished and call ReCaptcha execution if necessary
-        func execute() {
-            guard manager?.didFinishLoading != true else { return }
-
-            DispatchQueue.main.throttle(deadline: .now() + 1, context: self) { [weak self] in
-                // Did finish loading the ReCaptcha JS source
-                self?.manager?.didFinishLoading = true
-
-                if self?.manager?.completion != nil {
-                    // User has requested for validation
-                    self?.manager?.execute()
-                }
-            }
-        }
-
-        /// Flags all requests as finished
-        func reset() {
-            activeRequests.removeAll()
-        }
-    }
 
     fileprivate struct Constants {
         static let ExecuteJSCommand = "execute();"
@@ -135,18 +53,26 @@ internal class ReCaptchaWebViewManager {
     fileprivate var decoder: ReCaptchaDecoder!
 
     /// Indicates if the script has already been loaded by the `webView`
-    fileprivate var didFinishLoading = false // webView.isLoading does not work in this case
+    fileprivate var didFinishLoading = false { // webView.isLoading does not work for WKWebview.loadHTMLString
+        didSet {
+            if didFinishLoading && completion != nil {
+                // User has requested for validation
+                // A small delay is necessary to allow JS to wrap its operations and avoid errors.
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) { [weak self] in
+                    self?.execute()
+                }
+            }
+        }
+    }
 
     /// The observer for `.UIWindowDidBecomeVisible`
     fileprivate var observer: NSObjectProtocol?
 
+    /// The observer for `\WKWebView.estimatedProgress`
+    fileprivate var loadingObservation: NSKeyValueObservation?
+
     /// The endpoint url being used
     fileprivate var endpoint: String
-
-    /// The `webView` delegate implementation
-    fileprivate lazy var webviewDelegate: WebViewDelegate = {
-        WebViewDelegate(manager: self)
-    }()
 
     /// The webview that executes JS code
     lazy var webView: WKWebView = {
@@ -154,10 +80,12 @@ internal class ReCaptchaWebViewManager {
             frame: CGRect(x: 0, y: 0, width: 1, height: 1),
             configuration: self.buildConfiguration()
         )
-        webview.navigationDelegate = self.webviewDelegate
         webview.accessibilityIdentifier = "webview"
         webview.accessibilityTraits = UIAccessibilityTraits.link
         webview.isHidden = true
+        self.loadingObservation = webview.observe(\.estimatedProgress, options: [.new]) { [weak self] _, change in
+            self?.didFinishLoading = change.newValue == 1
+        }
 
         return webview
     }()
@@ -222,7 +150,6 @@ internal class ReCaptchaWebViewManager {
     func reset() {
         didFinishLoading = false
         configureWebViewDispatchToken = UUID()
-        webviewDelegate.reset()
 
         webView.evaluateJavaScript(Constants.ResetCommand) { [weak self] _, error in
             if let error = error {
@@ -295,7 +222,7 @@ fileprivate extension ReCaptchaWebViewManager {
 
         case .didLoad:
             // For testing purposes
-            webviewDelegate.execute()
+            didFinishLoading = true
 
         case .log(let message):
             #if DEBUG

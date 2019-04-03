@@ -1,9 +1,9 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ReCaptcha'
-  s.version          = '1.4'
+  s.version          = '1.4.2'
   s.summary          = 'ReCaptcha for iOS'
-  s.swift_version = '4.2'
+  s.swift_version    = '4.2'
   
   s.description      = <<-DESC
 Add Google's [Invisible ReCaptcha](https://developers.google.com/recaptcha/docs/invisible) to your project. This library
@@ -33,6 +33,6 @@ invisibility is not possible.
   s.subspec 'RxSwift' do |rx|
     rx.source_files = 'ReCaptcha/Classes/Rx/**/*'
     rx.dependency 'ReCaptcha/Core'
-    rx.dependency 'RxSwift', '~> 4.3.1'
+    rx.dependency 'RxSwift', '~> 4.3'
   end
 end

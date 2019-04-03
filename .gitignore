@@ -51,3 +51,6 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/README.md
 fastlane/test_output
+
+## VS Code
+.vscode

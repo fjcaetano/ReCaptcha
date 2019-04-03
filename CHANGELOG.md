@@ -1,3 +1,11 @@
+# 1.4.2
+
+- Fix: Webview's resource loading detection (#56 #60)
+
+# 1.4.1
+
+- Fix RxSwift dependency version (#58)
+
 # 1.4
 
 - Feature: Support Swift 4.2

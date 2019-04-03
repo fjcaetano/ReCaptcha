@@ -107,7 +107,7 @@ class ReCaptcha_Rx__Tests: XCTestCase {
         let exp = expectation(description: "stop loading")
 
         // Stop
-        let recaptcha = ReCaptcha(manager: ReCaptchaWebViewManager(messageBody: "{action: \"showReCaptcha\"}"))
+        let recaptcha = ReCaptcha(manager: ReCaptchaWebViewManager(messageBody: "{log: \"foo\"}"))
         recaptcha.configureWebView { _ in
             XCTFail("should not ask to configure the webview")
         }
