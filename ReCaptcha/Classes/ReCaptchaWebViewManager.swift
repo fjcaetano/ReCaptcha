@@ -34,7 +34,7 @@ internal class ReCaptchaWebViewManager {
     }
 #endif
     /// Allows validation stubbing for testing
-    public var shouldSkipForTests = ReCaptcha.shouldSkipForTests
+    public var shouldSkipForTests = false
 
 
     /// Sends the result message

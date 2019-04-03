@@ -220,7 +220,6 @@ public class ReCaptcha {
         get { return manager.shouldSkipForTests }
         set { manager.shouldSkipForTests = newValue }
     }
-#endif
 }
 
 // MARK: - Private Methods
