@@ -9,7 +9,7 @@
 
 -----
 
-Add Google's [Invisible ReCaptcha](https://developers.google.com/recaptcha/docs/invisible) to your project. This library
+Add Google's [Invisible ReCaptcha v2](https://developers.google.com/recaptcha/docs/invisible) to your project. This library
 automatically handles ReCaptcha's events and retrieves the validation token or notifies you to present the challenge if
 invisibility is not possible.
 
@@ -17,13 +17,15 @@ invisibility is not possible.
 
 #### _Warning_ ⚠️
 
-Beware that this library only works for Invisible ReCaptcha keys! Make sure to check the Invisible reCAPTCHA option
-when creating your [API Key](https://www.google.com/recaptcha/admin).
+Beware that this library only works for ReCaptcha v2 Invisible keys! Make sure to check the reCAPTCHA
+v2 Invisible badge option when creating your [API Key](https://www.google.com/recaptcha/admin/create).
 
-When using http://localhost domain make sure the `Verify the origin of reCAPTCHA solutions` tickbox is unchecked in Recaptcha Admin Console.
+![ReCaptcha v2 invisible key example](https://raw.githubusercontent.com/fjcaetano/ReCaptcha/master/example-v2-key.png)
 
-![Example Verify Origin](https://raw.githubusercontent.com/rachitmishra/ReCaptcha/patch-1/example-verify-domain.png)
-      
+You won't be able to use a ReCaptcha v3 key because it requires server-side validation. On v3, all
+challenges succeed into a token which is then validated in the server for a score. For this reason,
+a frontend app can't know on its own wether or not a user is valid since the challenge will always
+result in a valid token.
 
 ## Installation
 
