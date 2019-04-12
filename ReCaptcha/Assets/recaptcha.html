@@ -2,65 +2,85 @@
 <head>
   <meta name="viewport" content="width=device-width" />
   <script type="text/javascript">
-  var post = function(value) {
-    window.webkit.messageHandlers.recaptcha.postMessage(value);
+    const post = (value) => window.webkit.messageHandlers.recaptcha.postMessage(value);
+    console.log = (message) => post({ log: message });
+
+    let observers = []
+    const observeDOM = (element, completion) => {
+      const obs = new MutationObserver(completion);        
+      obs.observe(element, {
+            attributes: true, 
+            childList: true,
+            subtree: true,
+            attributeFilter: ['style'],
+          });
+
+      observers.push(obs);
   };
 
-  console.log = function(message) {
-      post({log: message});
+  const clearObservers = () => {
+    observers.forEach(o => o.disconnect());
+    observers = [];
   };
 
-  var showReCaptcha = function() {
-      console.log("showReCaptcha");
-      post({action: "showReCaptcha"});
-  };
-  
-  var observeDOM = function(element, completion) {
-    new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutationRecord) {
-        completion();
-      });
-    })
-    .observe(element, {attributes: true, attributeFilter: ['style']})
-  };
-
-  var execute = function() {
-    console.log("executing");
+  const execute = () => {
+    console.log('executing');
 
     // Removes ReCaptcha dismissal when clicking outside div area
     try {
-        document.getElementsByTagName("div")[4].outerHTML = ""
+        document.getElementsByTagName('div')[4].outerHTML = ''
     }
     catch(e) {
     }
 
-    // Listens to changes on the div element that presents the ReCaptcha challenge
-    observeDOM(document.getElementsByTagName("div")[3], showReCaptcha);
+    try {
+      // Listens to changes on the div element that presents the ReCaptcha challenge
+      observeDOM(document.getElementsByTagName('div')[3], () => {
+        post({ action: 'showReCaptcha' });
+      });
+    } catch(e) {
+      post({ error: 27 })
+    }
 
     grecaptcha.execute();
   };
 
-  var onSubmit = function(token) {
-    console.log(token);
-    post({token: token});
-  };
+  const reset = () => {
+    console.log('resetting');
+    grecaptcha.reset();
+    grecaptcha.ready(() => post({ action: 'didLoad' }));
+  };    
 
-  var onloadCallback = function() {
-    console.log("did load");
+  var onloadCallback = () => {
     grecaptcha.render('submit', {
-      'sitekey' : '${apiKey}',
-      'callback' : onSubmit,
-      'size': 'invisible'
+      sitekey: '${apiKey}',
+      callback: (token) => {
+        console.log(token);
+        post({ token });
+        clearObservers();
+      },
+      size: 'invisible'
     });
-  };
 
-  var reset = function() {
-      console.log("resetting");
-      grecaptcha.reset();
+    grecaptcha.ready(() => {
+      observeDOM(document.getElementById('body'), mut => {
+        const success = !!mut.find(
+          ({ addedNodes }) =>
+            Array.from(addedNodes.values())
+              .find(({ nodeName, name }) =>
+                nodeName === 'IFRAME' && !!name
+              )
+        );
+
+        if (success) {
+          post({ action: 'didLoad' });
+        }
+      });
+    });
   };
   </script>
 </head>
-<body>
+<body id='body'>
   <span id="submit" style="visibility: hidden;"></span>
   <script src="${endpoint}" async defer></script>
 </body>

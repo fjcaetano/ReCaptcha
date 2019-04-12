@@ -164,4 +164,23 @@ class ReCaptchaDecoder__Tests: XCTestCase {
         // Check
         XCTAssertEqual(result, .didLoad)
     }
+
+    func test__Decode__Error_Setup_Failed() {
+        let exp = expectation(description: "send error")
+        var result: Result?
+
+        assertResult = { res in
+            result = res
+            exp.fulfill()
+        }
+
+        // Send
+        let message = MockMessage(message: ["error": 27])
+        decoder.send(message: message)
+
+        waitForExpectations(timeout: 1)
+
+        // Check
+        XCTAssertEqual(result, .error(.failedSetup))
+    }
 }

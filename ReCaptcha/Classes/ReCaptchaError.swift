@@ -25,6 +25,8 @@ public enum ReCaptchaError: Error, CustomStringConvertible {
     /// Received an unexpected message from javascript
     case wrongMessageFormat
 
+    /// ReCaptcha setup failed
+    case failedSetup
 
     /// A human-readable description for each error
     public var description: String {
@@ -43,6 +45,14 @@ public enum ReCaptchaError: Error, CustomStringConvertible {
 
         case .wrongMessageFormat:
             return "Unexpected message from javascript"
+
+        case .failedSetup:
+            // swiftlint:disable line_length
+            return """
+            ⚠️ WARNING! ReCaptcha wasn't successfully configured. Please double check your ReCaptchaKey and ReCaptchaDomain.
+            Also check that you're using ReCaptcha's **SITE KEY** for client side integration.
+            """
+            // swiftlint:enable line_length
         }
     }
 }

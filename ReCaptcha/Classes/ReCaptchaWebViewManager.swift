@@ -13,6 +13,10 @@ import WebKit
 /** Handles comunications with the webview containing the ReCaptcha challenge.
  */
 internal class ReCaptchaWebViewManager {
+    enum JSCommand: String {
+        case execute = "execute();"
+        case reset = "reset();"
+    }
 
     fileprivate struct Constants {
         static let ExecuteJSCommand = "execute();"
@@ -53,23 +57,10 @@ internal class ReCaptchaWebViewManager {
     fileprivate var decoder: ReCaptchaDecoder!
 
     /// Indicates if the script has already been loaded by the `webView`
-    fileprivate var didFinishLoading = false { // webView.isLoading does not work for WKWebview.loadHTMLString
-        didSet {
-            if didFinishLoading && completion != nil {
-                // User has requested for validation
-                // A small delay is necessary to allow JS to wrap its operations and avoid errors.
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) { [weak self] in
-                    self?.execute()
-                }
-            }
-        }
-    }
+    fileprivate var didFinishLoading = false
 
     /// The observer for `.UIWindowDidBecomeVisible`
     fileprivate var observer: NSObjectProtocol?
-
-    /// The observer for `\WKWebView.estimatedProgress`
-    fileprivate var loadingObservation: NSKeyValueObservation?
 
     /// The endpoint url being used
     fileprivate var endpoint: String
@@ -83,9 +74,6 @@ internal class ReCaptchaWebViewManager {
         webview.accessibilityIdentifier = "webview"
         webview.accessibilityTraits = UIAccessibilityTraits.link
         webview.isHidden = true
-        self.loadingObservation = webview.observe(\.estimatedProgress, options: [.new]) { [weak self] _, change in
-            self?.didFinishLoading = change.newValue == 1
-        }
 
         return webview
     }()
@@ -135,7 +123,7 @@ internal class ReCaptchaWebViewManager {
         webView.isHidden = false
         view.addSubview(webView)
 
-        execute()
+        executeJS(command: .execute)
     }
 
 
@@ -150,14 +138,9 @@ internal class ReCaptchaWebViewManager {
      The reset is achieved by calling `grecaptcha.reset()` on the JS API.
      */
     func reset() {
-        didFinishLoading = false
         configureWebViewDispatchToken = UUID()
-
-        webView.evaluateJavaScript(Constants.ResetCommand) { [weak self] _, error in
-            if let error = error {
-                self?.decoder.send(error: .unexpected(error))
-            }
-        }
+        executeJS(command: .reset)
+        didFinishLoading = false
     }
 }
 
@@ -166,22 +149,6 @@ internal class ReCaptchaWebViewManager {
 /** Private methods for ReCaptchaWebViewManager
  */
 fileprivate extension ReCaptchaWebViewManager {
-    /** Executes the JS command that loads the ReCaptcha challenge.
-     This method has no effect if the webview hasn't finished loading.
-     */
-    func execute() {
-        guard didFinishLoading else {
-            // Hasn't finished loading the HTML yet
-            return
-        }
-
-        webView.evaluateJavaScript(Constants.ExecuteJSCommand) { [weak self] _, error in
-            if let error = error {
-                self?.decoder.send(error: .unexpected(error))
-            }
-        }
-    }
-
     /**
      - returns: An instance of `WKWebViewConfiguration`
 
@@ -223,12 +190,14 @@ fileprivate extension ReCaptchaWebViewManager {
             }
 
         case .didLoad:
-            // For testing purposes
             didFinishLoading = true
+            if completion != nil {
+                executeJS(command: .execute)
+            }
 
         case .log(let message):
             #if DEBUG
-            print("[JS LOG]:", message)
+                print("[JS LOG]:", message)
             #endif
         }
     }
@@ -247,6 +216,26 @@ fileprivate extension ReCaptchaWebViewManager {
 
         if let observer = observer {
             NotificationCenter.default.removeObserver(observer)
+        }
+    }
+
+    /**
+     - parameters:
+         - command: The JavaScript command to be executed
+
+     Executes the JS command that loads the ReCaptcha challenge. This method has no effect if the webview hasn't
+     finished loading.
+     */
+    func executeJS(command: JSCommand) {
+        guard didFinishLoading else {
+            // Hasn't finished loading all the resources
+            return
+        }
+
+        webView.evaluateJavaScript(command.rawValue) { [weak self] _, error in
+            if let error = error {
+                self?.decoder.send(error: .unexpected(error))
+            }
         }
     }
 }

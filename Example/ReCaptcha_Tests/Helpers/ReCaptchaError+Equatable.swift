@@ -15,7 +15,8 @@ extension ReCaptchaError: Equatable {
         case (.htmlLoadError, .htmlLoadError),
              (.apiKeyNotFound, .apiKeyNotFound),
              (.baseURLNotFound, .baseURLNotFound),
-             (.wrongMessageFormat, .wrongMessageFormat):
+             (.wrongMessageFormat, .wrongMessageFormat),
+             (.failedSetup, .failedSetup):
             return true
         case (.unexpected(let lhe as NSError), .unexpected(let rhe as NSError)):
             return lhe == rhe
@@ -25,11 +26,12 @@ extension ReCaptchaError: Equatable {
     }
 
     static func random() -> ReCaptchaError {
-        switch arc4random_uniform(4) {
+        switch arc4random_uniform(5) {
         case 0: return .htmlLoadError
         case 1: return .apiKeyNotFound
         case 2: return .baseURLNotFound
         case 3: return .wrongMessageFormat
+        case 4: return .failedSetup
         default: return .unexpected(NSError())
         }
     }

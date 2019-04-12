@@ -89,6 +89,12 @@ fileprivate extension ReCaptchaDecoder.Result {
         if let token = response["token"] as? String {
             return .token(token)
         }
+        else if let message = response["log"] as? String {
+            return .log(message)
+        }
+        else if let message = response["error"] as? Int {
+            return .error(.failedSetup)
+        }
 
         if let action = response["action"] as? String {
             switch action {

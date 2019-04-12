@@ -6,11 +6,11 @@
   var endpoint = "${endpoint}";
   var shouldFail = ${shouldFail};
 
-  var post = function(value) {
+  var post = (value) => {
       window.webkit.messageHandlers.recaptcha.postMessage(value);
   };
 
-  var execute = function() {
+  var execute = () => {
       if (shouldFail) {
           post("error");
       }
@@ -19,10 +19,12 @@
       }
   };
 
-  var reset = function() {
+  var reset = () => {
       shouldFail = false;
-      post({action: "didLoad"});
+      post({ action: "didLoad" });
   };
+
+  post({ action: "didLoad" });
   </script>
 </head>
 <body>
