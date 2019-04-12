@@ -1,7 +1,7 @@
 PODS:
   - AppSwizzle (1.3.1)
-  - ReCaptcha/Core (1.4.1)
-  - ReCaptcha/RxSwift (1.4.1):
+  - ReCaptcha/Core (1.4.2)
+  - ReCaptcha/RxSwift (1.4.2):
     - ReCaptcha/Core
     - RxSwift (~> 4.3)
   - RxAtomic (4.4.0)
@@ -36,7 +36,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AppSwizzle: db36e436f56110d93e5ae0147683435df593cabc
-  ReCaptcha: 520a707a38dfbb1e5de812aa3c041df60bd31827
+  ReCaptcha: 9a0e1c02a9db9dface31cca63515e28fc3ed6ba8
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxBlocking: 138ad53217434444d6eeeb4fb406a45431d92e31
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749

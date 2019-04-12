@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0900"
+   LastUpgradeVersion = "0910"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -9,28 +9,14 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-               BuildableName = "ReCaptcha_Example.app"
-               BlueprintName = "ReCaptcha_Example"
-               ReferencedContainer = "container:ReCaptcha.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
             buildForProfiling = "NO"
             buildForArchiving = "NO"
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F2ECCF751E9FC47B0097B199"
-               BuildableName = "ReCaptcha_Tests.xctest"
-               BlueprintName = "ReCaptcha_Tests"
+               BlueprintIdentifier = "F28FAC9B200E425600E14987"
+               BuildableName = "ReCaptcha_UITests.xctest"
+               BlueprintName = "ReCaptcha_UITests"
                ReferencedContainer = "container:ReCaptcha.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -40,21 +26,10 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      codeCoverageEnabled = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F2ECCF751E9FC47B0097B199"
-               BuildableName = "ReCaptcha_Tests.xctest"
-               BlueprintName = "ReCaptcha_Tests"
-               ReferencedContainer = "container:ReCaptcha.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F28FAC9B200E425600E14987"
@@ -64,15 +39,6 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "ReCaptcha_Example.app"
-            BlueprintName = "ReCaptcha_Example"
-            ReferencedContainer = "container:ReCaptcha.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -86,16 +52,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "ReCaptcha_Example.app"
-            BlueprintName = "ReCaptcha_Example"
+            BlueprintIdentifier = "F28FAC9B200E425600E14987"
+            BuildableName = "ReCaptcha_UITests.xctest"
+            BlueprintName = "ReCaptcha_UITests"
             ReferencedContainer = "container:ReCaptcha.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -105,16 +70,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "ReCaptcha_Example.app"
-            BlueprintName = "ReCaptcha_Example"
+            BlueprintIdentifier = "F28FAC9B200E425600E14987"
+            BuildableName = "ReCaptcha_UITests.xctest"
+            BlueprintName = "ReCaptcha_UITests"
             ReferencedContainer = "container:ReCaptcha.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

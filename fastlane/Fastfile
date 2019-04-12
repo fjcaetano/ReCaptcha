@@ -10,10 +10,10 @@ default_platform :ios
 platform :ios do
   skip_docs
 
-  devices = ["iPhone XR (~> 12)"]
-  devices << "iPhone X (~> 11)" if !Helper.is_ci?
-  devices << "iPhone 7 (~> 10)" if !Helper.is_ci?
-  devices << "iPhone 6s (~> 9)" if !Helper.is_ci?
+  devices = ["iPhone X (~> 12)"]
+  # devices << "iPhone X (~> 11)" if !Helper.is_ci?
+  # devices << "iPhone 7 (~> 10)" if !Helper.is_ci?
+  # devices << "iPhone 6s (~> 9)" if !Helper.is_ci?
 
   desc "Runs the following lanes:\n- test\n- pod_lint\n- carthage_lint"
   lane :ci do
@@ -57,12 +57,21 @@ platform :ios do
       code_coverage: true,
     )
 
-    if is_ci
+    if Helper.is_ci?
       codecov(
         project_name: 'ReCaptcha',
         use_xcodeplist: true,
       )
     else
+      puts "Running UI Tests"
+      scan(
+        test_without_building: true,
+        devices: self.select_similar_simulator(devices),
+        scheme: "ReCaptcha_UITests",
+        workspace: "Example/ReCaptcha.xcworkspace",
+        code_coverage: true,
+      )
+
       puts "Not CI: Skipping coverage files upload"
     end
   end
