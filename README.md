@@ -49,7 +49,9 @@ extension for the ReCaptcha framework.
 
 ## Usage
 
-Simply add `ReCaptchaKey` and `ReCaptchaDomain` (with a protocol ex. http:// or https://) to your Info.plist and run:
+The reCAPTCHA keys can be specified as Info.plist keys or can be passed as parameters when instantiating ReCaptcha().
+
+For the Info.plist configuration, add `ReCaptchaKey` and `ReCaptchaDomain` (with a protocol ex. http:// or https://) to your Info.plist and run:
 
 ``` swift
 let recaptcha = try? ReCaptcha()
@@ -68,6 +70,16 @@ func validate() {
         print(try? result.dematerialize())
     }
 }
+```
+
+If instead you prefer to keep the information out of the Info.plist, you can use:
+``` swift
+let recaptcha = try? ReCaptcha(
+    apiKey: "YOUR_RECAPTCHA_KEY", 
+    baseURL: URL(string: "YOUR_RECAPTCHA_DOMAIN")!
+)
+
+...
 ```
 
 You can also install the reactive subpod and use it with RxSwift:
