@@ -18,6 +18,13 @@ internal class ReCaptchaWebViewManager {
         static let ExecuteJSCommand = "execute();"
         static let ResetCommand = "reset();"
         static let BotUserAgent = "Googlebot/2.1"
+        static let NumberOfDivsCommand = "document.getElementsByTagName(\"div\").length"
+
+        static let MinNumberOfDivs = 5
+        static let NumberOfDivsFinishedLoadingAttempts = 10
+
+        // A page doesn't have enough time to load on old devices
+        static let NumberOfDivsLoadingDelay = 0.5
     }
 
 #if DEBUG
@@ -166,7 +173,7 @@ internal class ReCaptchaWebViewManager {
 /** Private methods for ReCaptchaWebViewManager
  */
 fileprivate extension ReCaptchaWebViewManager {
-    /** Executes the JS command that loads the ReCaptcha challenge.
+    /** Executes the JS command that loads the ReCaptcha challenge after a page finished loading.
      This method has no effect if the webview hasn't finished loading.
      */
     func execute() {
@@ -175,6 +182,58 @@ fileprivate extension ReCaptchaWebViewManager {
             return
         }
 
+        evaluateExecuteWhenLoadingFinished(count: 0)
+    }
+
+    /**
+     - parameter count: Number of checks of number of divs
+
+     Executes the JS command that returns number of divs.
+     */
+    func evaluateExecuteWhenLoadingFinished(count: Int) {
+        webView.evaluateJavaScript(Constants.NumberOfDivsCommand) { [weak self] (result, error) -> Void in
+            if let error = error {
+                self?.decoder.send(error: .unexpected(error))
+            } else {
+                self?.handleNumberOfDivs(result: result, count: count)
+            }
+        }
+    }
+
+    /**
+     - parameters:
+        - result: Result of number of divs command evaluation
+        - count: Number of checks of divs count
+
+     Handles number of divs command result.
+     */
+    func handleNumberOfDivs(result: Any?, count: Int) {
+        if let result = result as? Int, result >= Constants.MinNumberOfDivs {
+            evaluateExecute()
+        } else {
+            handleInvalidNumberOfDivsResult(count: count)
+        }
+    }
+
+    /**
+     - parameter count: Number of checks of number of divs
+
+     Handles invalid number of divs.
+     */
+    func handleInvalidNumberOfDivsResult(count: Int) {
+        if count < Constants.NumberOfDivsFinishedLoadingAttempts {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Constants.NumberOfDivsLoadingDelay) { [weak self] in
+                self?.evaluateExecuteWhenLoadingFinished(count: count + 1)
+            }
+        } else {
+            decoder.send(error: .htmlLoadError)
+        }
+    }
+
+    /**
+     Executes the JS command that loads the ReCaptcha challenge.
+     */
+    func evaluateExecute() {
         webView.evaluateJavaScript(Constants.ExecuteJSCommand) { [weak self] _, error in
             if let error = error {
                 self?.decoder.send(error: .unexpected(error))
