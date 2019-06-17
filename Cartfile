@@ -1,1 +1,1 @@
-github "ReactiveX/RxSwift" ~> 4.3
+binary "https://raw.github.com/TouchInstinct/CarthageBinaries/master/RxSwift/RxSwift.json"
