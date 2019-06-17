@@ -9,6 +9,10 @@
 import RxSwift
 import UIKit
 
+public enum ReCaptchaRxError: Error {
+    case baseWasReleased
+}
+
 /// Makes ReCaptcha compatible with RxSwift extensions
 extension ReCaptcha: ReactiveCompatible {}
 
@@ -62,6 +66,22 @@ public extension Reactive where Base: ReCaptcha {
             }
 
             base?.reset()
+        }
+    }
+
+    /**
+     Observable of loading state
+     (will not work if someone changes onLoadingChanged variable; current onLodinglChanged will not work after subscription)
+    */
+    var loadingObservable: Observable<Bool> {
+        return .create { [weak base] observer -> Disposable in
+            guard let base = base else {
+                observer.onError(ReCaptchaRxError.baseWasReleased)
+                return Disposables.create()
+            }
+
+            base.onLoadingChanged = { observer.onNext($0) }
+            return Disposables.create { [weak base] in base?.onLoadingChanged = nil }
         }
     }
 }
