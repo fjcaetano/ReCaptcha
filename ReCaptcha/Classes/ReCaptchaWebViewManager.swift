@@ -44,6 +44,9 @@ internal class ReCaptchaWebViewManager {
     public var shouldSkipForTests = false
 #endif
 
+    /// Callback for loading state changing
+    var onLoadingChanged: ReCaptcha.BoolParameterClosure?
+
     /// Sends the result message
     var completion: ((ReCaptchaResult) -> Void)?
 
@@ -106,6 +109,7 @@ internal class ReCaptchaWebViewManager {
      */
     init(html: String, apiKey: String, baseURL: URL, endpoint: String) {
         self.endpoint = endpoint
+
         self.decoder = ReCaptchaDecoder { [weak self] result in
             self?.handle(result: result)
         }
@@ -133,6 +137,7 @@ internal class ReCaptchaWebViewManager {
      Starts the challenge validation
      */
      func validate(on view: UIView) {
+        onLoadingChanged?(true)
 #if DEBUG
         guard !shouldSkipForTests else {
             completion?(.token(""))
@@ -194,6 +199,7 @@ fileprivate extension ReCaptchaWebViewManager {
         webView.evaluateJavaScript(Constants.NumberOfDivsCommand) { [weak self] (result, error) -> Void in
             if let error = error {
                 self?.decoder.send(error: .unexpected(error))
+                self?.onLoadingChanged?(false)
             } else {
                 self?.handleNumberOfDivs(result: result, count: count)
             }
@@ -227,6 +233,7 @@ fileprivate extension ReCaptchaWebViewManager {
             }
         } else {
             decoder.send(error: .htmlLoadError)
+            onLoadingChanged?(false)
         }
     }
 
@@ -238,6 +245,7 @@ fileprivate extension ReCaptchaWebViewManager {
             if let error = error {
                 self?.decoder.send(error: .unexpected(error))
             }
+            self?.onLoadingChanged?(false)
         }
     }
 

@@ -13,6 +13,8 @@ import WebKit
 /**
 */
 public class ReCaptcha {
+    public typealias BoolParameterClosure = (Bool) -> ()
+    
     fileprivate struct Constants {
         struct InfoDictKeys {
             static let APIKey = "ReCaptchaKey"
@@ -99,6 +101,12 @@ public class ReCaptcha {
             self.apiKey = apiKey
             self.baseURL = Config.fixSchemeIfNeeded(for: domain)
         }
+    }
+
+    /// Callback for WebView loading state changing
+    public var onLoadingChanged: BoolParameterClosure? {
+        get { return manager.onLoadingChanged }
+        set { manager.onLoadingChanged = newValue }
     }
 
     /// The worker that handles webview events and communication
