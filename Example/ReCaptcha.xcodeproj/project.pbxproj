@@ -417,7 +417,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ReCaptcha_Tests/Pods-ReCaptcha_Tests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ReCaptcha_Tests/Pods-ReCaptcha_Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/AppSwizzle/AppSwizzle.framework",
@@ -432,7 +432,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReCaptcha_Tests/Pods-ReCaptcha_Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReCaptcha_Tests/Pods-ReCaptcha_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8F03FFB3F5C55E873C23C682 /* [CP] Embed Pods Frameworks */ = {
@@ -441,7 +441,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ReCaptcha_Example/Pods-ReCaptcha_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ReCaptcha_Example/Pods-ReCaptcha_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ReCaptcha/ReCaptcha.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
@@ -456,7 +456,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReCaptcha_Example/Pods-ReCaptcha_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReCaptcha_Example/Pods-ReCaptcha_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B8A66872166B84DAD39A3E1F /* [CP] Check Pods Manifest.lock */ = {
