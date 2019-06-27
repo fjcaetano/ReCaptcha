@@ -6,7 +6,7 @@ inhibit_all_warnings!
 target 'ReCaptcha_Example' do
   pod 'ReCaptcha/RxSwift', :path => '../'
   pod 'RxCocoa', '~> 4.3'
-  pod 'SwiftLint', '~> 0.27'
+  pod 'SwiftLint', '~> 0.33'
 
   target 'ReCaptcha_Tests' do
     inherit! :search_paths

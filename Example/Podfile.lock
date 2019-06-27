@@ -12,14 +12,14 @@ PODS:
     - RxSwift (~> 4.0)
   - RxSwift (4.4.0):
     - RxAtomic (~> 4.4)
-  - SwiftLint (0.27.0)
+  - SwiftLint (0.33.0)
 
 DEPENDENCIES:
   - AppSwizzle (~> 1.3)
   - ReCaptcha/RxSwift (from `../`)
   - RxBlocking (~> 4.0)
   - RxCocoa (~> 4.3)
-  - SwiftLint (~> 0.27)
+  - SwiftLint (~> 0.33)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -41,8 +41,8 @@ SPEC CHECKSUMS:
   RxBlocking: 138ad53217434444d6eeeb4fb406a45431d92e31
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
-  SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
+  SwiftLint: fed9c66336e41fc74dc48a73678380718f0c8b0e
 
-PODFILE CHECKSUM: 63f50401dee6a885ae0eea927fb966553c6d0f33
+PODFILE CHECKSUM: d728df5085a7047e5168bb8a1af942e64585b287
 
 COCOAPODS: 1.5.3

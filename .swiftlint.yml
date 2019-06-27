@@ -10,7 +10,7 @@ disabled_rules:
   - weak_delegate
 
 opt_in_rules:
-#  - array_init # is causing a false positive on `.map { !$0 }`
+  - array_init
   - closure_end_indentation
   - closure_spacing
   - contains_over_first_not_nil
@@ -31,7 +31,8 @@ opt_in_rules:
   - redundant_nil_coalescing
   - single_test_class
   - sorted_imports
-#  - trailing_closure # causing a false positive on `.subscribe(onNext:)`
+  - trailing_closure:
+    - only_single_muted_parameter
   - unneeded_parentheses_in_closure_argument
 
 vertical_whitespace:
