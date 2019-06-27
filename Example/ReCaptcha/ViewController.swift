@@ -60,6 +60,11 @@ class ViewController: UIViewController {
     @IBAction private func didPressButton(button: UIButton) {
         disposeBag = DisposeBag()
 
+        recaptcha.rx.didFinishLoading
+            .debug("did finish loading")
+            .subscribe()
+            .disposed(by: disposeBag)
+
         let validate = recaptcha.rx.validate(on: view)
             .debug("validate")
             .share()

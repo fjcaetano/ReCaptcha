@@ -199,6 +199,19 @@ public class ReCaptcha {
         manager.reset()
     }
 
+    /**
+     - parameter closure: A closure that is called when the JS bundle finishes loading.
+
+     Provides a closure to be notified when the webview finishes loading JS resources.
+
+     The closure may be called multiple times since the resources may also be loaded multiple times
+     in case of error or reset. This may also be immediately called if the resources have already
+     finished loading when you set the closure.
+    */
+    public func didFinishLoading(_ closure: (() -> Void)?) {
+        manager.onDidFinishLoading = closure
+    }
+
     // MARK: - Development
 
 #if DEBUG

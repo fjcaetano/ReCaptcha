@@ -398,4 +398,38 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
         manager.forceVisibleChallenge = false
         XCTAssertNotEqual(manager.webView.customUserAgent?.isEmpty, false)
     }
+
+    // MARK: On Did Finish Loading
+
+    func test__Did_Finish_Loading__Immediate() {
+        let exp = expectation(description: "did finish loading")
+
+        let manager = ReCaptchaWebViewManager()
+
+        /// Should call closure immediately since it's already loaded
+        manager.onDidFinishLoading = {
+            manager.onDidFinishLoading = exp.fulfill
+        }
+
+        waitForExpectations(timeout: 1)
+    }
+
+    func test__Did_Finish_Loading__Delayed() {
+        let exp = expectation(description: "did finish loading")
+
+        let manager = ReCaptchaWebViewManager(shouldFail: true)
+
+        var called = false
+        manager.onDidFinishLoading = {
+            called = true
+        }
+
+        XCTAssertFalse(called)
+
+        // Reset
+        manager.onDidFinishLoading = exp.fulfill
+        manager.reset()
+
+        waitForExpectations(timeout: 1)
+    }
 }

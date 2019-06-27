@@ -44,6 +44,15 @@ internal class ReCaptchaWebViewManager {
     /// Sends the result message
     var completion: ((ReCaptchaResult) -> Void)?
 
+    /// Notifies the JS bundle has finished loading
+    var onDidFinishLoading: (() -> Void)? {
+        didSet {
+            if didFinishLoading {
+                onDidFinishLoading?()
+            }
+        }
+    }
+
     /// Configures the webview for display when required
     var configureWebView: ((WKWebView) -> Void)?
 
@@ -57,7 +66,13 @@ internal class ReCaptchaWebViewManager {
     fileprivate var decoder: ReCaptchaDecoder!
 
     /// Indicates if the script has already been loaded by the `webView`
-    fileprivate var didFinishLoading = false
+    fileprivate var didFinishLoading = false {
+        didSet {
+            if didFinishLoading {
+                onDidFinishLoading?()
+            }
+        }
+    }
 
     /// The observer for `.UIWindowDidBecomeVisible`
     fileprivate var observer: NSObjectProtocol?

@@ -64,4 +64,21 @@ public extension Reactive where Base: ReCaptcha {
             base?.reset()
         }
     }
+
+    /**
+     Notifies when the webview finishes loading all JS resources
+
+     This Observable may produce multiple events since the resources may be loaded multiple times in
+     case of error or reset. This may also immediately produce an event if the resources have
+     already finished loading when you subscribe to this Observable.
+     */
+    var didFinishLoading: Observable<Void> {
+        return Observable.create { [weak base] observer in
+            base?.didFinishLoading(observer.onNext)
+
+            return Disposables.create { [weak base] in
+                base?.didFinishLoading(nil)
+            }
+        }
+    }
 }

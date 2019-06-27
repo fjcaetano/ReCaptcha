@@ -69,8 +69,7 @@ class ReCaptcha_Rx__Tests: XCTestCase {
         do {
             // Validate
             _ = try recaptcha.rx.validate(on: presenterView)
-                .timeout(2, scheduler: MainScheduler.instance)
-                .toBlocking()
+                .toBlocking(timeout: 2)
                 .single()
 
             XCTFail("should have thrown exception")
@@ -101,7 +100,86 @@ class ReCaptcha_Rx__Tests: XCTestCase {
         }
     }
 
-    // MARK: Dispose
+    // MARK: - Did Finish Loading
+
+    func test__Did_Finish_Loading__Immediate() {
+        let manager = ReCaptchaWebViewManager()
+        let recaptcha = ReCaptcha(manager: manager)
+
+        manager.onDidFinishLoading = {
+            do {
+                try recaptcha.rx.didFinishLoading
+                    .toBlocking()
+                    .first()
+            }
+            catch let error {
+                XCTFail(error.localizedDescription)
+            }
+        }
+    }
+
+    func test__Did_Finish_Loading__Multiple() {
+        let recaptcha = ReCaptcha(manager: ReCaptchaWebViewManager())
+
+        do {
+            let obs = recaptcha.rx.didFinishLoading
+                .take(2)
+                .share()
+
+            let reset = obs.do(onNext: recaptcha.reset).subscribe()
+
+            let result = try obs
+                .toBlocking()
+                .toArray()
+
+            XCTAssertEqual(result.count, 2)
+            reset.dispose()
+        }
+        catch let error {
+            XCTFail(error.localizedDescription)
+        }
+    }
+
+    func test__Did_Finish_Loading__Delayed() {
+        let recaptcha = ReCaptcha(manager: ReCaptchaWebViewManager(shouldFail: true))
+
+        do {
+            _ = try recaptcha.rx.didFinishLoading
+                .toBlocking(timeout: 0.1)
+                .first()
+
+            XCTFail("should have timed out")
+        }
+        catch let error {
+            XCTAssertEqual(String(describing: error), RxError.timeout.debugDescription)
+        }
+
+        do {
+            recaptcha.reset()
+
+            try recaptcha.rx.didFinishLoading
+                .toBlocking()
+                .first()
+        }
+        catch let error {
+            XCTFail(error.localizedDescription)
+        }
+    }
+
+    func test__Did_Finish_Loading__Dispose() {
+        let manager = ReCaptchaWebViewManager()
+        let recaptcha = ReCaptcha(manager: manager)
+
+        let obs = recaptcha.rx.didFinishLoading
+            .subscribe()
+
+        XCTAssertNotNil(manager.onDidFinishLoading)
+
+        obs.dispose()
+        XCTAssertNil(manager.onDidFinishLoading)
+    }
+
+    // MARK: - Dispose
 
     func test__Dispose() {
         let exp = expectation(description: "stop loading")
@@ -118,14 +196,12 @@ class ReCaptcha_Rx__Tests: XCTestCase {
                 XCTFail("should not validate")
             }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            disposable.dispose()
-        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: disposable.dispose)
 
         waitForExpectations(timeout: 10)
     }
 
-    // MARK: Reset
+    // MARK: - Reset
 
     func test__Reset() {
         // Validate
