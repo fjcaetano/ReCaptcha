@@ -92,7 +92,7 @@ fileprivate extension ReCaptchaDecoder.Result {
         else if let message = response["log"] as? String {
             return .log(message)
         }
-        else if let message = response["error"] as? Int {
+        else if (response["error"] as? Int) != nil {
             return .error(.failedSetup)
         }
 
