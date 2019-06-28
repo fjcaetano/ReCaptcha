@@ -66,7 +66,7 @@
             <h1>ReCaptchaError</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ReCaptchaError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ReCaptchaError</span> <span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                 </div>
               </div>
@@ -96,17 +96,13 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">unexpected</span><span class="p">(</span><span class="kt">Error</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="nf">unexpected</span><span class="p">(</span><span class="kt">Error</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -127,17 +123,13 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">htmlLoadError</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">htmlLoadError</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -158,17 +150,13 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">apiKeyNotFound</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">apiKeyNotFound</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -189,17 +177,13 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">baseURLNotFound</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">baseURLNotFound</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -220,17 +204,40 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">wrongMessageFormat</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">wrongMessageFormat</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9ReCaptcha0aB5ErrorO11failedSetupyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/failedSetup" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9ReCaptcha0aB5ErrorO11failedSetupyA2CmF">failedSetup</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>ReCaptcha setup failed</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">failedSetup</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -251,7 +258,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -263,8 +270,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/fjcaetano" target="_blank" rel="external">Flávio Caetano (@fjcaetano)</a>. All rights reserved. (Last updated: 2018-09-28)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/fjcaetano" target="_blank" rel="external">Flávio Caetano (@fjcaetano)</a>. All rights reserved. (Last updated: 2019-06-28)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
