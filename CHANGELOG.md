@@ -1,3 +1,10 @@
+# 1.5.0
+
+- Swift 5.0 support
+- Feature: `didFinishLoading` callback notifier
+  
+- Fix: Resources loading validation (#72 #56 #60)
+
 # 1.4.2
 
 - Fix: Webview's resource loading detection (#56 #60)
