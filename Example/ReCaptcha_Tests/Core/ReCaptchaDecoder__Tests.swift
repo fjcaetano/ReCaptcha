@@ -183,4 +183,61 @@ class ReCaptchaDecoder__Tests: XCTestCase {
         // Check
         XCTAssertEqual(result, .error(.failedSetup))
     }
+
+    func test__Decode__Error_Response_Expired() {
+        let exp = expectation(description: "send error")
+        var result: Result?
+
+        assertResult = { res in
+            result = res
+            exp.fulfill()
+        }
+
+        // Send
+        let message = MockMessage(message: ["error": 28])
+        decoder.send(message: message)
+
+        waitForExpectations(timeout: 1)
+
+        // Check
+        XCTAssertEqual(result, .error(.responseExpired))
+    }
+
+    func test__Decode__Error_Render_Failed() {
+        let exp = expectation(description: "send error")
+        var result: Result?
+
+        assertResult = { res in
+            result = res
+            exp.fulfill()
+        }
+
+        // Send
+        let message = MockMessage(message: ["error": 29])
+        decoder.send(message: message)
+
+        waitForExpectations(timeout: 1)
+
+        // Check
+        XCTAssertEqual(result, .error(.failedRender))
+    }
+
+    func test__Decode__Error_Wrong_Format() {
+        let exp = expectation(description: "send error")
+        var result: Result?
+
+        assertResult = { res in
+            result = res
+            exp.fulfill()
+        }
+
+        // Send
+        let message = MockMessage(message: ["error": 26])
+        decoder.send(message: message)
+
+        waitForExpectations(timeout: 1)
+
+        // Check
+        XCTAssertEqual(result, .error(.wrongMessageFormat))
+    }
 }

@@ -28,6 +28,12 @@ public enum ReCaptchaError: Error, CustomStringConvertible {
     /// ReCaptcha setup failed
     case failedSetup
 
+    /// ReCaptcha response expired
+    case responseExpired
+
+    /// ReCaptcha render failed
+    case failedRender
+
     /// A human-readable description for each error
     public var description: String {
         switch self {
@@ -53,6 +59,12 @@ public enum ReCaptchaError: Error, CustomStringConvertible {
             Also check that you're using ReCaptcha's **SITE KEY** for client side integration.
             """
             // swiftlint:enable line_length
+
+        case .responseExpired:
+            return "Response expired and need to re-verify"
+
+        case .failedRender:
+            return "Recaptha encountered an error in execution"
         }
     }
 }

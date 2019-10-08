@@ -92,8 +92,8 @@ fileprivate extension ReCaptchaDecoder.Result {
         else if let message = response["log"] as? String {
             return .log(message)
         }
-        else if (response["error"] as? Int) != nil {
-            return .error(.failedSetup)
+        else if let error = response["error"] as? Int {
+            return from(error)
         }
 
         if let action = response["action"] as? String {
@@ -114,5 +114,21 @@ fileprivate extension ReCaptchaDecoder.Result {
         }
 
         return .error(.wrongMessageFormat)
+    }
+
+    private static func from(_ error: Int) -> ReCaptchaDecoder.Result {
+        switch error {
+        case 27:
+            return .error(.failedSetup)
+
+        case 28:
+            return .error(.responseExpired)
+
+        case 29:
+            return .error(.failedRender)
+
+        default:
+            return .error(.wrongMessageFormat)
+        }
     }
 }

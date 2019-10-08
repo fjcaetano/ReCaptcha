@@ -65,7 +65,10 @@ class ViewController: UIViewController {
             .subscribe()
             .disposed(by: disposeBag)
 
-        let validate = recaptcha.rx.validate(on: view)
+        let validate = recaptcha.rx.validate(on: view, resetOnError: false)
+            .catchError { error in
+                return .just("Error \(error)")
+            }
             .debug("validate")
             .share()
 
