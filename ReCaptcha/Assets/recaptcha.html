@@ -59,10 +59,10 @@
         post({ token });
         clearObservers();
       },
-      // 'expired-callback': () => {
-      //   post({ error: 28 });
-      //   clearObservers();
-      // },
+      'expired-callback': () => {
+        post({ error: 28 });
+        clearObservers();
+      },
       'error-callback': () => {
         post({ error: 29 });
         clearObservers();
