@@ -1,33 +1,33 @@
 <html>
-<head>
-  <meta name="viewport" content="width=device-width" />
-  <script type="text/javascript">
-  var key = "${apiKey}";
-  var endpoint = "${endpoint}";
-  var shouldFail = ${shouldFail};
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript">
+      var key = "${apiKey}";
+      var endpoint = "${endpoint}";
+      var shouldFail = ${shouldFail};
 
-  var post = (value) => {
-      window.webkit.messageHandlers.recaptcha.postMessage(value);
-  };
+      var post = function(value) {
+          window.webkit.messageHandlers.recaptcha.postMessage(value);
+      };
 
-  var execute = () => {
-      if (shouldFail) {
-          post("error");
-      }
-      else {
-          post(${message});
-      }
-  };
+      var execute = function() {
+          if (shouldFail) {
+              post("error");
+          }
+          else {
+              post(${message});
+          }
+      };
 
-  var reset = () => {
-      shouldFail = false;
+      var reset = function() {
+          shouldFail = false;
+          post({ action: "didLoad" });
+      };
+
       post({ action: "didLoad" });
-  };
-
-  post({ action: "didLoad" });
-  </script>
-</head>
-<body>
-  <span id="submit" style="visibility: hidden;"></span>
-</body>
+    </script>
+  </head>
+  <body>
+    <span id="submit" style="visibility: hidden;"></span>
+  </body>
 </html>
