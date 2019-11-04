@@ -430,6 +430,6 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
         manager.onDidFinishLoading = exp.fulfill
         manager.reset()
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 3)
     }
 }
