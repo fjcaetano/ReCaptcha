@@ -107,9 +107,8 @@ public class ReCaptcha {
     /**
      - parameters:
          - apiKey: The API key sent to the ReCaptcha init
-         - infoPlistKey: The API key retrived from the application's Info.plist
          - baseURL: The base URL sent to the ReCaptcha init
-         - infoPlistURL: The base URL retrieved from the application's Info.plist
+         - endpoint: The ReCaptcha endpoint to be used.
          - locale: A locale value to translate ReCaptcha into a different language
      
      Initializes a ReCaptcha object
