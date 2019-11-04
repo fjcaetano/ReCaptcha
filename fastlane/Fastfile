@@ -52,12 +52,12 @@ platform :ios do
       code_coverage: true,
     )
 
-    if Helper.is_ci?
-      codecov(
-        project_name: 'ReCaptcha',
-        use_xcodeplist: true,
-      )
-    else
+    codecov(
+      project_name: 'ReCaptcha',
+      use_xcodeplist: true,
+    )
+
+    unless Helper.is_ci?
       puts "Running UI Tests"
       scan(
         test_without_building: true,
