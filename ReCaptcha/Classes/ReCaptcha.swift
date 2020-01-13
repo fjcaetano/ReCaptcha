@@ -211,15 +211,15 @@ public class ReCaptcha {
         manager.onDidFinishLoading = closure
     }
 
-    // MARK: - Development
-
-#if DEBUG
-    /// Forces the challenge widget to be explicitly displayed.
+    /// Forces the challenge widget to be explicitly displayed. Default is `false`.
     public var forceVisibleChallenge: Bool {
         get { return manager.forceVisibleChallenge }
         set { manager.forceVisibleChallenge = newValue }
     }
 
+    // MARK: - Development
+
+#if DEBUG
     /**
      Allows validation stubbing for testing
 

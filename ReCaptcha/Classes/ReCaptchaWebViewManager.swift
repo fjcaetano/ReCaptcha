@@ -24,7 +24,6 @@ internal class ReCaptchaWebViewManager {
         static let BotUserAgent = "Googlebot/2.1"
     }
 
-#if DEBUG
     /// Forces the challenge to be explicitly displayed.
     var forceVisibleChallenge = false {
         didSet {
@@ -37,6 +36,7 @@ internal class ReCaptchaWebViewManager {
         }
     }
 
+#if DEBUG
     /// Allows validation stubbing for testing
     public var shouldSkipForTests = false
 #endif
