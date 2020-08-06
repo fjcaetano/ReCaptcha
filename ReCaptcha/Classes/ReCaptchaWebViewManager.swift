@@ -154,8 +154,8 @@ internal class ReCaptchaWebViewManager {
      */
     func reset() {
         configureWebViewDispatchToken = UUID()
-        executeJS(command: .reset)
         didFinishLoading = false
+        executeJS(command: .reset)
     }
 }
 
