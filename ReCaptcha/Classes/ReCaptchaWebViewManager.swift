@@ -199,12 +199,10 @@ fileprivate extension ReCaptchaWebViewManager {
             }
 
         case .showReCaptcha:
-            DispatchQueue.once(token: configureWebViewDispatchToken) { [weak self] in
-                guard let `self` = self else { return }
-                self.configureWebView?(self.webView)
-            }
+            configureIfRequired()
 
         case .didLoad:
+            configureIfRequired()
             didFinishLoading = true
             if completion != nil {
                 executeJS(command: .execute)
@@ -214,6 +212,13 @@ fileprivate extension ReCaptchaWebViewManager {
             #if DEBUG
                 print("[JS LOG]:", message)
             #endif
+        }
+    }
+    
+    func configureIfRequired() {
+        DispatchQueue.once(token: configureWebViewDispatchToken) { [weak self] in
+            guard let `self` = self else { return }
+            self.configureWebView?(self.webView)
         }
     }
 
