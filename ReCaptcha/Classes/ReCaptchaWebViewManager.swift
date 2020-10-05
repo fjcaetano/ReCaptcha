@@ -214,7 +214,7 @@ fileprivate extension ReCaptchaWebViewManager {
             #endif
         }
     }
-    
+
     func configureIfRequired() {
         DispatchQueue.once(token: configureWebViewDispatchToken) { [weak self] in
             guard let `self` = self else { return }
