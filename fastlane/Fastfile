@@ -80,18 +80,30 @@ platform :ios do
 
   desc "Lint Carthage lib"
   lane :carthage_lint do
-    carthage(
-      command: "update",
-      platform: "iOS",
-      cache_builds: true,
-    )
 
-    carthage(
-      command: "build",
-      platform: "iOS",
-      cache_builds: true,
-      no_skip_current: true,
-    )
+    # This is a temporary fix while Carthage is broken with Xcode 12
+    # https://github.com/Carthage/Carthage/issues/3019#issuecomment-665136323
+    #
+    # The default Fastlane action can be used when a new Carthage version with a fix has been released
+    # and the ./carthage.sh script can be removed
+    Dir.chdir("..") do
+      sh("./carthage.sh", "update", "--platform", "iOS", "--cache-builds")
+
+      sh("./carthage.sh", "build", "--no-skip-current", "--platform", "iOS", "--cache-builds")
+    end
+
+    # carthage(
+    #   command: "update",
+    #   platform: "iOS",
+    #   cache_builds: true,
+    # )
+
+    # carthage(
+    #   command: "build",
+    #   platform: "iOS",
+    #   cache_builds: true,
+    #   no_skip_current: true,
+    # )
   end
 
   desc "Deploy a new version to Github and Cocoapods"
@@ -108,9 +120,18 @@ platform :ios do
       UI.user_error! "Podspec version different than tag name"
     end
 
-    carthage(
-      command: "archive",
-    )
+    # This is a temporary fix while Carthage is broken with Xcode 12
+    # https://github.com/Carthage/Carthage/issues/3019#issuecomment-665136323
+    #
+    # The default Fastlane action can be used when a new Carthage version with a fix has been released
+    # and the ./carthage.sh script can be removed
+    Dir.chdir("..") do
+      sh("./carthage.sh", "archive")
+    end
+
+    # carthage(
+    #   command: "archive",
+    # )
 
     pod_push(
       path: "ReCaptcha.podspec",
