@@ -1,18 +1,18 @@
-platform :ios, 8.3
+platform :ios, 9.0
 
 use_frameworks!
 inhibit_all_warnings!
 
 target 'ReCaptcha_Example' do
   pod 'ReCaptcha/RxSwift', :path => '../'
-  pod 'RxCocoa', '~> 5.0'
+  pod 'RxCocoa', '~> 6.0'
   pod 'SwiftLint', '~> 0.33'
 
   target 'ReCaptcha_Tests' do
     inherit! :search_paths
 
     pod 'AppSwizzle', '~> 1.3'
-    pod 'RxBlocking', '~> 5.0'
+    pod 'RxBlocking', '~> 6.0'
   end
 
   target 'ReCaptcha_UITests' do

@@ -66,7 +66,7 @@ class ViewController: UIViewController {
             .disposed(by: disposeBag)
 
         let validate = recaptcha.rx.validate(on: view, resetOnError: false)
-            .catchError { error in
+            .catch { error in
                 return .just("Error \(error)")
             }
             .debug("validate")
@@ -83,7 +83,7 @@ class ViewController: UIViewController {
 
         let isEnabled = isLoading
             .map { !$0 }
-            .catchErrorJustReturn(false)
+            .catchAndReturn(false)
             .share(replay: 1)
 
         isEnabled

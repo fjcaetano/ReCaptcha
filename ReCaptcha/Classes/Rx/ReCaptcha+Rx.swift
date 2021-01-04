@@ -37,7 +37,7 @@ public extension Reactive where Base: ReCaptcha {
                     single(.success(token))
 
                 case .error(let error):
-                    single(.error(error))
+                    single(.failure(error))
                 }
             }
 

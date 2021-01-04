@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ReCaptcha'
-  s.version          = '1.5.0'
+  s.version          = '1.6.0'
   s.summary          = 'ReCaptcha for iOS'
   s.swift_version    = '5.0'
   
@@ -18,7 +18,7 @@ invisibility is not possible.
   s.social_media_url  = 'https://twitter.com/flavio_caetano'
   s.documentation_url = 'http://fjcaetano.github.io/ReCaptcha'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
   s.default_subspecs = 'Core'
 
   s.subspec 'Core' do |core|
@@ -33,6 +33,6 @@ invisibility is not possible.
   s.subspec 'RxSwift' do |rx|
     rx.source_files = 'ReCaptcha/Classes/Rx/**/*'
     rx.dependency 'ReCaptcha/Core'
-    rx.dependency 'RxSwift', '~> 5.0'
+    rx.dependency 'RxSwift', '~> 6.0'
   end
 end
