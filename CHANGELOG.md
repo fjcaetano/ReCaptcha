@@ -1,3 +1,10 @@
+# 1.6.0
+
+- RxSwift 6.0.0 support (#101)
+- Feature: added 2 new cases to ReCaptchaError (`.responseExpired` and `.failedRender`) (#79)
+
+- Fix: retire JS arrow functions in favor of standard functions (#78)
+
 # 1.5.0
 
 - Swift 5.0 support
