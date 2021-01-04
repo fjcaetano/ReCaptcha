@@ -248,6 +248,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = F206BAA61F8D3DE900A25807;
@@ -442,6 +443,7 @@
 				);
 				INFOPLIST_FILE = "ReCaptcha-Carthage/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.flaviocaetano.ReCaptcha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -464,6 +466,7 @@
 				);
 				INFOPLIST_FILE = "ReCaptcha-Carthage/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.flaviocaetano.ReCaptcha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -487,6 +490,7 @@
 				);
 				INFOPLIST_FILE = ReCaptcha_RxSwift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-D IMPORT_RECAPTCHA";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.flaviocaetano.ReCaptcha-RxSwift";
@@ -511,6 +515,7 @@
 				);
 				INFOPLIST_FILE = ReCaptcha_RxSwift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-D IMPORT_RECAPTCHA";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.flaviocaetano.ReCaptcha-RxSwift";
