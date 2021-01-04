@@ -73,7 +73,9 @@ platform :ios do
 
   desc "Lint Cocoapods Lib"
   lane :pod_lint do
-    pod_lib_lint
+    pod_lib_lint(
+      allow_warnings: true, # Temporarily necessary while this issue isn't fixed: https://github.com/CocoaPods/CocoaPods/issues/10291
+    )
   end
 
   desc "Lint Carthage lib"
