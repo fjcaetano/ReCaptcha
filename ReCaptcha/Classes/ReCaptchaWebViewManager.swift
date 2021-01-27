@@ -12,7 +12,7 @@ import WebKit
 
 /** Handles comunications with the webview containing the ReCaptcha challenge.
  */
-internal class ReCaptchaWebViewManager {
+internal class ReCaptchaWebViewManager: NSObject {
     enum JSCommand: String {
         case execute = "execute();"
         case reset = "reset();"
@@ -60,7 +60,7 @@ internal class ReCaptchaWebViewManager {
     var configureWebViewDispatchToken = UUID()
 
     /// If the ReCaptcha should be reset when it errors
-    var shouldResetOnError = true
+    var shouldResetOnError = false
 
     /// The JS message recoder
     fileprivate var decoder: ReCaptchaDecoder!
@@ -89,6 +89,7 @@ internal class ReCaptchaWebViewManager {
         webview.accessibilityIdentifier = "webview"
         webview.accessibilityTraits = UIAccessibilityTraits.link
         webview.isHidden = true
+        webview.navigationDelegate = self
 
         return webview
     }()
@@ -102,10 +103,12 @@ internal class ReCaptchaWebViewManager {
      */
     init(html: String, apiKey: String, baseURL: URL, endpoint: String) {
         self.endpoint = endpoint
+        super.init()
+        
         self.decoder = ReCaptchaDecoder { [weak self] result in
             self?.handle(result: result)
         }
-
+        
         let formattedHTML = String(format: html, arguments: ["apiKey": apiKey, "endpoint": endpoint])
 
         if let window = UIApplication.shared.keyWindow {
@@ -159,6 +162,20 @@ internal class ReCaptchaWebViewManager {
     }
 }
 
+// MARK: - Navigation
+
+extension ReCaptchaWebViewManager: WKNavigationDelegate {
+    public func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        stop()
+        handle(result: .error(ReCaptchaError.unexpected(error)))
+    }
+    
+    public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        stop()
+        handle(result: .error(ReCaptchaError.unexpected(error)))
+    }
+}
+    
 // MARK: - Private Methods
 
 /** Private methods for ReCaptchaWebViewManager
