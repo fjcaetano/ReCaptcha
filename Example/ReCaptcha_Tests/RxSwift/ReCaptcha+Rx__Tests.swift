@@ -6,6 +6,8 @@
 //  Copyright © 2018 ReCaptcha. All rights reserved.
 //
 
+#if canImport(RxSwift) && canImport(RxBlocking) && canImport(RxSwift)
+
 @testable import ReCaptcha
 
 import RxBlocking
@@ -263,3 +265,5 @@ class ReCaptcha_Rx__Tests: XCTestCase {
         }
     }
 }
+
+#endif

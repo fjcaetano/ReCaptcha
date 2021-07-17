@@ -55,3 +55,10 @@ fastlane/test_output
 
 ## VS Code
 .vscode
+
+## Swift Package Manager
+Packages/
+Package.pins
+Package.resolved
+.swiftpm
+.build/
