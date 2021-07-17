@@ -18,7 +18,7 @@ let package = Package(
 	],
 	dependencies: [
 		.package(url: "https://github.com/ReactiveX/RxSwift.git", from: "6.0.0"),
-		.package(url: "https://github.com/JakubMazur/AppSwizzle.git", from: "1.3.2"),
+		.package(url: "https://github.com/JakubMazur/AppSwizzle.git", from: "1.3.2")
 	],
 	targets: [
 		.target(
@@ -49,4 +49,3 @@ let package = Package(
 			])
 	]
 )
-
