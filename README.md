@@ -40,7 +40,17 @@ pod "ReCaptcha"
 pod "ReCaptcha/RxSwift"
 ```
 
+#### Swift Package Manager
+
+```swift
+https://github.com/fjcaetano/ReCaptcha
+```
+
+Adding this in project dependency in Xcode will show option to add `ReCaptcha` and `ReCaptchaRx`, the latter containing 
+internal dependency for ReCaptcha framework.
+
 #### Carthage
+
 ``` ruby
 github "fjcaetano/ReCaptcha"
 ```
