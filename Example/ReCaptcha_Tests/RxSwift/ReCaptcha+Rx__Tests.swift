@@ -6,7 +6,7 @@
 //  Copyright © 2018 ReCaptcha. All rights reserved.
 //
 
-#if canImport(RxSwift) && canImport(RxBlocking) && canImport(RxSwift)
+#if canImport(RxSwift) && canImport(RxBlocking) && canImport(RxCocoa)
 
 @testable import ReCaptcha
 
