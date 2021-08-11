@@ -10,6 +10,7 @@
 
 @testable import ReCaptcha
 
+import ReCaptchaRx
 import RxBlocking
 import RxCocoa
 import RxSwift

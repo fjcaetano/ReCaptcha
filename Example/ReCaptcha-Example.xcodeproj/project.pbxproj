@@ -1,0 +1,783 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DD554BFE26C42F8500AB2A69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD554BF626C42F8500AB2A69 /* ViewController.swift */; };
+		DD554BFF26C42F8500AB2A69 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD554BF726C42F8500AB2A69 /* LaunchScreen.xib */; };
+		DD554C0026C42F8500AB2A69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD554BF926C42F8500AB2A69 /* Main.storyboard */; };
+		DD554C0126C42F8500AB2A69 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD554BFB26C42F8500AB2A69 /* Images.xcassets */; };
+		DD554C0226C42F8500AB2A69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD554BFC26C42F8500AB2A69 /* AppDelegate.swift */; };
+		DD554C2726C4309E00AB2A69 /* ReCaptcha_Endpoint__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD554C1826C4309D00AB2A69 /* ReCaptcha_Endpoint__Tests.swift */; };
+		DD554C2826C4309E00AB2A69 /* ReCaptchaDecoder__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD554C1926C4309D00AB2A69 /* ReCaptchaDecoder__Tests.swift */; };
+		DD554C2926C4309E00AB2A69 /* ReCaptchaResult__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD554C1A26C4309D00AB2A69 /* ReCaptchaResult__Tests.swift */; };
+		DD554C2A26C4309E00AB2A69 /* ReCaptcha__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD554C1B26C4309D00AB2A69 /* ReCaptcha__Tests.swift */; };
+		DD554C2B26C4309E00AB2A69 /* ReCaptchaWebViewManager__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD554C1C26C4309D00AB2A69 /* ReCaptchaWebViewManager__Tests.swift */; };
+		DD554C2C26C4309E00AB2A69 /* DispatchQueue__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD554C1D26C4309D00AB2A69 /* DispatchQueue__Tests.swift */; };
+		DD554C2D26C4309E00AB2A69 /* mock.html in Resources */ = {isa = PBXBuildFile; fileRef = DD554C1E26C4309D00AB2A69 /* mock.html */; };
+		DD554C2E26C4309E00AB2A69 /* Result+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD554C2026C4309D00AB2A69 /* Result+Helpers.swift */; };
+		DD554C2F26C4309E00AB2A69 /* ReCaptchaError+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD554C2126C4309D00AB2A69 /* ReCaptchaError+Equatable.swift */; };
+		DD554C3026C4309E00AB2A69 /* ReCaptchaWebViewManager+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD554C2226C4309D00AB2A69 /* ReCaptchaWebViewManager+Helpers.swift */; };
+		DD554C3126C4309E00AB2A69 /* ReCaptchaDecoder+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD554C2326C4309D00AB2A69 /* ReCaptchaDecoder+Helper.swift */; };
+		DD554C3226C4309E00AB2A69 /* ReCaptcha+Rx__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD554C2526C4309E00AB2A69 /* ReCaptcha+Rx__Tests.swift */; };
+		DD554C3E26C4340300AB2A69 /* ReCaptchaRx in Frameworks */ = {isa = PBXBuildFile; productRef = DD554C3D26C4340300AB2A69 /* ReCaptchaRx */; };
+		DD84359026C434CA00654A9D /* AppSwizzle in Frameworks */ = {isa = PBXBuildFile; productRef = DD84358F26C434CA00654A9D /* AppSwizzle */; };
+		DD84359826C435C400654A9D /* ReCaptcha_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD84359726C435C400654A9D /* ReCaptcha_UITests.swift */; };
+		DD8435A126C4366300654A9D /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DD8435A026C4366300654A9D /* RxSwift */; };
+		DD8435A726C4366300654A9D /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = DD8435A626C4366300654A9D /* RxCocoa */; };
+		DD8435AB26C4369300654A9D /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = DD8435AA26C4369300654A9D /* RxTest */; };
+		DD8435AD26C4370A00654A9D /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = DD8435AC26C4370A00654A9D /* RxBlocking */; };
+		DD8435B126C4371A00654A9D /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = DD8435B026C4371A00654A9D /* RxRelay */; };
+		DD8435B926C4466200654A9D /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = DD8435B826C4466200654A9D /* RxBlocking */; };
+		DD8435BD26C4466200654A9D /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = DD8435BC26C4466200654A9D /* RxRelay */; };
+		DD8435C126C4466200654A9D /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = DD8435C026C4466200654A9D /* RxTest */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DD554C1226C4306300AB2A69 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD554BCF26C42E8800AB2A69 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD554BD626C42E8800AB2A69;
+			remoteInfo = ReCaptcha_Example;
+		};
+		DD84359A26C435C400654A9D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD554BCF26C42E8800AB2A69 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD554BD626C42E8800AB2A69;
+			remoteInfo = ReCaptcha_Example;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DD554BD726C42E8800AB2A69 /* ReCaptcha-Example_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReCaptcha-Example_Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD554BF626C42F8500AB2A69 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DD554BF826C42F8500AB2A69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		DD554BFA26C42F8500AB2A69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DD554BFB26C42F8500AB2A69 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		DD554BFC26C42F8500AB2A69 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DD554BFD26C42F8500AB2A69 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD554C0D26C4306300AB2A69 /* ReCaptcha-Example_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ReCaptcha-Example_Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD554C1126C4306300AB2A69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD554C1826C4309D00AB2A69 /* ReCaptcha_Endpoint__Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReCaptcha_Endpoint__Tests.swift; sourceTree = "<group>"; };
+		DD554C1926C4309D00AB2A69 /* ReCaptchaDecoder__Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReCaptchaDecoder__Tests.swift; sourceTree = "<group>"; };
+		DD554C1A26C4309D00AB2A69 /* ReCaptchaResult__Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReCaptchaResult__Tests.swift; sourceTree = "<group>"; };
+		DD554C1B26C4309D00AB2A69 /* ReCaptcha__Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReCaptcha__Tests.swift; sourceTree = "<group>"; };
+		DD554C1C26C4309D00AB2A69 /* ReCaptchaWebViewManager__Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReCaptchaWebViewManager__Tests.swift; sourceTree = "<group>"; };
+		DD554C1D26C4309D00AB2A69 /* DispatchQueue__Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchQueue__Tests.swift; sourceTree = "<group>"; };
+		DD554C1E26C4309D00AB2A69 /* mock.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = mock.html; sourceTree = "<group>"; };
+		DD554C2026C4309D00AB2A69 /* Result+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Result+Helpers.swift"; sourceTree = "<group>"; };
+		DD554C2126C4309D00AB2A69 /* ReCaptchaError+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ReCaptchaError+Equatable.swift"; sourceTree = "<group>"; };
+		DD554C2226C4309D00AB2A69 /* ReCaptchaWebViewManager+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ReCaptchaWebViewManager+Helpers.swift"; sourceTree = "<group>"; };
+		DD554C2326C4309D00AB2A69 /* ReCaptchaDecoder+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ReCaptchaDecoder+Helper.swift"; sourceTree = "<group>"; };
+		DD554C2526C4309E00AB2A69 /* ReCaptcha+Rx__Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ReCaptcha+Rx__Tests.swift"; sourceTree = "<group>"; };
+		DD84359526C435C400654A9D /* ReCaptcha-Example_UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ReCaptcha-Example_UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD84359726C435C400654A9D /* ReCaptcha_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReCaptcha_UITests.swift; sourceTree = "<group>"; };
+		DD84359926C435C400654A9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DD554BD426C42E8800AB2A69 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD8435A126C4366300654A9D /* RxSwift in Frameworks */,
+				DD8435A726C4366300654A9D /* RxCocoa in Frameworks */,
+				DD554C3E26C4340300AB2A69 /* ReCaptchaRx in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD554C0A26C4306300AB2A69 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD8435C126C4466200654A9D /* RxTest in Frameworks */,
+				DD8435BD26C4466200654A9D /* RxRelay in Frameworks */,
+				DD8435B926C4466200654A9D /* RxBlocking in Frameworks */,
+				DD84359026C434CA00654A9D /* AppSwizzle in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD84359226C435C400654A9D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD8435AB26C4369300654A9D /* RxTest in Frameworks */,
+				DD8435B126C4371A00654A9D /* RxRelay in Frameworks */,
+				DD8435AD26C4370A00654A9D /* RxBlocking in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DD554BCE26C42E8800AB2A69 = {
+			isa = PBXGroup;
+			children = (
+				DD554BF526C42F8500AB2A69 /* ReCaptcha_Example */,
+				DD554C0E26C4306300AB2A69 /* ReCaptcha_Tests */,
+				DD84359626C435C400654A9D /* ReCaptcha_UITests */,
+				DD554BD826C42E8800AB2A69 /* Products */,
+				DD554C3726C432D400AB2A69 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		DD554BD826C42E8800AB2A69 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DD554BD726C42E8800AB2A69 /* ReCaptcha-Example_Example.app */,
+				DD554C0D26C4306300AB2A69 /* ReCaptcha-Example_Tests.xctest */,
+				DD84359526C435C400654A9D /* ReCaptcha-Example_UITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DD554BF526C42F8500AB2A69 /* ReCaptcha_Example */ = {
+			isa = PBXGroup;
+			children = (
+				DD554BF626C42F8500AB2A69 /* ViewController.swift */,
+				DD554BF726C42F8500AB2A69 /* LaunchScreen.xib */,
+				DD554BF926C42F8500AB2A69 /* Main.storyboard */,
+				DD554BFB26C42F8500AB2A69 /* Images.xcassets */,
+				DD554BFC26C42F8500AB2A69 /* AppDelegate.swift */,
+				DD554BFD26C42F8500AB2A69 /* Info.plist */,
+			);
+			path = ReCaptcha_Example;
+			sourceTree = "<group>";
+		};
+		DD554C0E26C4306300AB2A69 /* ReCaptcha_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				DD554C1726C4309D00AB2A69 /* Core */,
+				DD554C1F26C4309D00AB2A69 /* Helpers */,
+				DD554C1E26C4309D00AB2A69 /* mock.html */,
+				DD554C2426C4309E00AB2A69 /* RxSwift */,
+				DD554C1126C4306300AB2A69 /* Info.plist */,
+			);
+			path = ReCaptcha_Tests;
+			sourceTree = "<group>";
+		};
+		DD554C1726C4309D00AB2A69 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				DD554C1826C4309D00AB2A69 /* ReCaptcha_Endpoint__Tests.swift */,
+				DD554C1926C4309D00AB2A69 /* ReCaptchaDecoder__Tests.swift */,
+				DD554C1A26C4309D00AB2A69 /* ReCaptchaResult__Tests.swift */,
+				DD554C1B26C4309D00AB2A69 /* ReCaptcha__Tests.swift */,
+				DD554C1C26C4309D00AB2A69 /* ReCaptchaWebViewManager__Tests.swift */,
+				DD554C1D26C4309D00AB2A69 /* DispatchQueue__Tests.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		DD554C1F26C4309D00AB2A69 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DD554C2026C4309D00AB2A69 /* Result+Helpers.swift */,
+				DD554C2126C4309D00AB2A69 /* ReCaptchaError+Equatable.swift */,
+				DD554C2226C4309D00AB2A69 /* ReCaptchaWebViewManager+Helpers.swift */,
+				DD554C2326C4309D00AB2A69 /* ReCaptchaDecoder+Helper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		DD554C2426C4309E00AB2A69 /* RxSwift */ = {
+			isa = PBXGroup;
+			children = (
+				DD554C2526C4309E00AB2A69 /* ReCaptcha+Rx__Tests.swift */,
+			);
+			path = RxSwift;
+			sourceTree = "<group>";
+		};
+		DD554C3726C432D400AB2A69 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DD84359626C435C400654A9D /* ReCaptcha_UITests */ = {
+			isa = PBXGroup;
+			children = (
+				DD84359726C435C400654A9D /* ReCaptcha_UITests.swift */,
+				DD84359926C435C400654A9D /* Info.plist */,
+			);
+			path = ReCaptcha_UITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DD554BD626C42E8800AB2A69 /* ReCaptcha-Example_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD554BEB26C42E8900AB2A69 /* Build configuration list for PBXNativeTarget "ReCaptcha-Example_Example" */;
+			buildPhases = (
+				DD554BD326C42E8800AB2A69 /* Sources */,
+				DD554BD426C42E8800AB2A69 /* Frameworks */,
+				DD554BD526C42E8800AB2A69 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ReCaptcha-Example_Example";
+			packageProductDependencies = (
+				DD554C3D26C4340300AB2A69 /* ReCaptchaRx */,
+				DD8435A026C4366300654A9D /* RxSwift */,
+				DD8435A626C4366300654A9D /* RxCocoa */,
+			);
+			productName = ReCaptcha;
+			productReference = DD554BD726C42E8800AB2A69 /* ReCaptcha-Example_Example.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DD554C0C26C4306300AB2A69 /* ReCaptcha-Example_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD554C1426C4306300AB2A69 /* Build configuration list for PBXNativeTarget "ReCaptcha-Example_Tests" */;
+			buildPhases = (
+				DD554C0926C4306300AB2A69 /* Sources */,
+				DD554C0A26C4306300AB2A69 /* Frameworks */,
+				DD554C0B26C4306300AB2A69 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DD554C1326C4306300AB2A69 /* PBXTargetDependency */,
+			);
+			name = "ReCaptcha-Example_Tests";
+			packageProductDependencies = (
+				DD84358F26C434CA00654A9D /* AppSwizzle */,
+				DD8435B826C4466200654A9D /* RxBlocking */,
+				DD8435BC26C4466200654A9D /* RxRelay */,
+				DD8435C026C4466200654A9D /* RxTest */,
+			);
+			productName = ReCaptcha_Tests;
+			productReference = DD554C0D26C4306300AB2A69 /* ReCaptcha-Example_Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DD84359426C435C400654A9D /* ReCaptcha-Example_UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD84359C26C435C400654A9D /* Build configuration list for PBXNativeTarget "ReCaptcha-Example_UITests" */;
+			buildPhases = (
+				DD84359126C435C400654A9D /* Sources */,
+				DD84359226C435C400654A9D /* Frameworks */,
+				DD84359326C435C400654A9D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DD84359B26C435C400654A9D /* PBXTargetDependency */,
+			);
+			name = "ReCaptcha-Example_UITests";
+			packageProductDependencies = (
+				DD8435AA26C4369300654A9D /* RxTest */,
+				DD8435AC26C4370A00654A9D /* RxBlocking */,
+				DD8435B026C4371A00654A9D /* RxRelay */,
+			);
+			productName = ReCaptcha_UITests;
+			productReference = DD84359526C435C400654A9D /* ReCaptcha-Example_UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DD554BCF26C42E8800AB2A69 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					DD554BD626C42E8800AB2A69 = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+					DD554C0C26C4306300AB2A69 = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = DD554BD626C42E8800AB2A69;
+					};
+					DD84359426C435C400654A9D = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = DD554BD626C42E8800AB2A69;
+					};
+				};
+			};
+			buildConfigurationList = DD554BD226C42E8800AB2A69 /* Build configuration list for PBXProject "ReCaptcha-Example" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DD554BCE26C42E8800AB2A69;
+			packageReferences = (
+				DD554C3C26C4340300AB2A69 /* XCRemoteSwiftPackageReference "ReCaptcha" */,
+				DD84358E26C434CA00654A9D /* XCRemoteSwiftPackageReference "AppSwizzle" */,
+				DD84359F26C4366300654A9D /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
+			productRefGroup = DD554BD826C42E8800AB2A69 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DD554BD626C42E8800AB2A69 /* ReCaptcha-Example_Example */,
+				DD554C0C26C4306300AB2A69 /* ReCaptcha-Example_Tests */,
+				DD84359426C435C400654A9D /* ReCaptcha-Example_UITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DD554BD526C42E8800AB2A69 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD554C0126C42F8500AB2A69 /* Images.xcassets in Resources */,
+				DD554BFF26C42F8500AB2A69 /* LaunchScreen.xib in Resources */,
+				DD554C0026C42F8500AB2A69 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD554C0B26C4306300AB2A69 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD554C2D26C4309E00AB2A69 /* mock.html in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD84359326C435C400654A9D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DD554BD326C42E8800AB2A69 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD554C0226C42F8500AB2A69 /* AppDelegate.swift in Sources */,
+				DD554BFE26C42F8500AB2A69 /* ViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD554C0926C4306300AB2A69 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD554C3126C4309E00AB2A69 /* ReCaptchaDecoder+Helper.swift in Sources */,
+				DD554C2826C4309E00AB2A69 /* ReCaptchaDecoder__Tests.swift in Sources */,
+				DD554C2726C4309E00AB2A69 /* ReCaptcha_Endpoint__Tests.swift in Sources */,
+				DD554C2A26C4309E00AB2A69 /* ReCaptcha__Tests.swift in Sources */,
+				DD554C2B26C4309E00AB2A69 /* ReCaptchaWebViewManager__Tests.swift in Sources */,
+				DD554C2E26C4309E00AB2A69 /* Result+Helpers.swift in Sources */,
+				DD554C3026C4309E00AB2A69 /* ReCaptchaWebViewManager+Helpers.swift in Sources */,
+				DD554C2C26C4309E00AB2A69 /* DispatchQueue__Tests.swift in Sources */,
+				DD554C2F26C4309E00AB2A69 /* ReCaptchaError+Equatable.swift in Sources */,
+				DD554C3226C4309E00AB2A69 /* ReCaptcha+Rx__Tests.swift in Sources */,
+				DD554C2926C4309E00AB2A69 /* ReCaptchaResult__Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD84359126C435C400654A9D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD84359826C435C400654A9D /* ReCaptcha_UITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DD554C1326C4306300AB2A69 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD554BD626C42E8800AB2A69 /* ReCaptcha-Example_Example */;
+			targetProxy = DD554C1226C4306300AB2A69 /* PBXContainerItemProxy */;
+		};
+		DD84359B26C435C400654A9D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD554BD626C42E8800AB2A69 /* ReCaptcha-Example_Example */;
+			targetProxy = DD84359A26C435C400654A9D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DD554BF726C42F8500AB2A69 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DD554BF826C42F8500AB2A69 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		DD554BF926C42F8500AB2A69 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DD554BFA26C42F8500AB2A69 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DD554BE926C42E8900AB2A69 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DD554BEA26C42E8900AB2A69 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DD554BEC26C42E8900AB2A69 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = ReCaptcha_Example/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flaviocaetano.ReCaptcha-Example";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		DD554BED26C42E8900AB2A69 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = ReCaptcha_Example/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flaviocaetano.ReCaptcha-Example";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		DD554C1526C4306300AB2A69 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ReCaptcha_Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flaviocaetano.ReCaptcha-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReCaptcha-Example_Example.app/ReCaptcha-Example_Example";
+			};
+			name = Debug;
+		};
+		DD554C1626C4306300AB2A69 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ReCaptcha_Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flaviocaetano.ReCaptcha-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReCaptcha-Example_Example.app/ReCaptcha-Example_Example";
+			};
+			name = Release;
+		};
+		DD84359D26C435C400654A9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ReCaptcha_UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "pl.jkmazur.ReCaptcha-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ReCaptcha_Example;
+			};
+			name = Debug;
+		};
+		DD84359E26C435C400654A9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ReCaptcha_UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "pl.jkmazur.ReCaptcha-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ReCaptcha_Example;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DD554BD226C42E8800AB2A69 /* Build configuration list for PBXProject "ReCaptcha-Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD554BE926C42E8900AB2A69 /* Debug */,
+				DD554BEA26C42E8900AB2A69 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD554BEB26C42E8900AB2A69 /* Build configuration list for PBXNativeTarget "ReCaptcha-Example_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD554BEC26C42E8900AB2A69 /* Debug */,
+				DD554BED26C42E8900AB2A69 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD554C1426C4306300AB2A69 /* Build configuration list for PBXNativeTarget "ReCaptcha-Example_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD554C1526C4306300AB2A69 /* Debug */,
+				DD554C1626C4306300AB2A69 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD84359C26C435C400654A9D /* Build configuration list for PBXNativeTarget "ReCaptcha-Example_UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD84359D26C435C400654A9D /* Debug */,
+				DD84359E26C435C400654A9D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DD554C3C26C4340300AB2A69 /* XCRemoteSwiftPackageReference "ReCaptcha" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JakubMazur/ReCaptcha";
+			requirement = {
+				branch = spm2;
+				kind = branch;
+			};
+		};
+		DD84358E26C434CA00654A9D /* XCRemoteSwiftPackageReference "AppSwizzle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JakubMazur/AppSwizzle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.3;
+			};
+		};
+		DD84359F26C4366300654A9D /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DD554C3D26C4340300AB2A69 /* ReCaptchaRx */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD554C3C26C4340300AB2A69 /* XCRemoteSwiftPackageReference "ReCaptcha" */;
+			productName = ReCaptchaRx;
+		};
+		DD84358F26C434CA00654A9D /* AppSwizzle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD84358E26C434CA00654A9D /* XCRemoteSwiftPackageReference "AppSwizzle" */;
+			productName = AppSwizzle;
+		};
+		DD8435A026C4366300654A9D /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD84359F26C4366300654A9D /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		DD8435A626C4366300654A9D /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD84359F26C4366300654A9D /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		DD8435AA26C4369300654A9D /* RxTest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD84359F26C4366300654A9D /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxTest;
+		};
+		DD8435AC26C4370A00654A9D /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD84359F26C4366300654A9D /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		DD8435B026C4371A00654A9D /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD84359F26C4366300654A9D /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		DD8435B826C4466200654A9D /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD84359F26C4366300654A9D /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		DD8435BC26C4466200654A9D /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD84359F26C4366300654A9D /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		DD8435C026C4466200654A9D /* RxTest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD84359F26C4366300654A9D /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxTest;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = DD554BCF26C42E8800AB2A69 /* Project object */;
+}

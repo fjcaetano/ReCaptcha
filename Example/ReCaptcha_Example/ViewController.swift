@@ -6,7 +6,7 @@
 //  Copyright © 2018 ReCaptcha. All rights reserved.
 //
 
-import ReCaptcha
+import ReCaptchaRx
 import RxCocoa
 import RxSwift
 import UIKit
