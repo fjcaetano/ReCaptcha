@@ -24,8 +24,11 @@ let package = Package(
 		.target(
 			name: "ReCaptcha",
 			dependencies: [],
-			path: "ReCaptcha/Classes",
-			exclude: ["Rx"],
+			path: "ReCaptcha",
+			exclude: ["Classes/Rx"],
+			resources: [
+				.process("Assets/recaptcha.html")
+			],
 			linkerSettings: [
 				.linkedFramework("UIKit")
 			]
