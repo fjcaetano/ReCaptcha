@@ -11,7 +11,6 @@
 import WebKit
 import XCTest
 
-
 class ReCaptchaWebViewManager__Tests: XCTestCase {
 
     fileprivate var apiKey: String!
@@ -50,12 +49,10 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
 
         waitForExpectations(timeout: 10)
 
-
         // Verify
         XCTAssertNotNil(result1)
         XCTAssertNil(result1?.error)
         XCTAssertEqual(result1?.token, apiKey)
-
 
         // Validate again
         let exp2 = expectation(description: "reload token")
@@ -69,13 +66,11 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
 
         waitForExpectations(timeout: 10)
 
-
         // Verify
         XCTAssertNotNil(result2)
         XCTAssertNil(result2?.error)
         XCTAssertEqual(result2?.token, apiKey)
     }
-
 
     func test__Validate__Show_ReCaptcha() {
         let exp = expectation(description: "show recaptcha")
@@ -92,7 +87,6 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
 
         waitForExpectations(timeout: 10)
     }
-
 
     func test__Validate__Message_Error() {
         var result: ReCaptchaResult?
@@ -140,7 +134,7 @@ class ReCaptchaWebViewManager__Tests: XCTestCase {
         XCTAssertNil(result?.token)
 
         switch result!.error! {
-        case .unexpected(let error as NSError):
+        case let .unexpected(error as NSError):
             XCTAssertEqual(error.code, WKError.javaScriptExceptionOccurred.rawValue)
         default:
             XCTFail("Unexpected error received")

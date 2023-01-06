@@ -20,7 +20,7 @@ extension ReCaptchaError: Equatable {
              (.responseExpired, .responseExpired),
              (.failedRender, .failedRender):
             return true
-        case (.unexpected(let lhe as NSError), .unexpected(let rhe as NSError)):
+        case let (.unexpected(lhe as NSError), .unexpected(rhe as NSError)):
             return lhe == rhe
         default:
             return false

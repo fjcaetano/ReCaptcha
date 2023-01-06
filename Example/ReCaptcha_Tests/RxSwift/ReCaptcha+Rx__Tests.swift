@@ -13,7 +13,6 @@ import RxCocoa
 import RxSwift
 import XCTest
 
-
 class ReCaptcha_Rx__Tests: XCTestCase {
 
     fileprivate var apiKey: String!
@@ -33,7 +32,6 @@ class ReCaptcha_Rx__Tests: XCTestCase {
         super.tearDown()
     }
 
-
     func test__Validate__Token() {
         let recaptcha = ReCaptcha(manager: ReCaptchaWebViewManager(messageBody: "{token: key}", apiKey: apiKey))
         recaptcha.configureWebView { _ in
@@ -48,12 +46,10 @@ class ReCaptcha_Rx__Tests: XCTestCase {
 
             // Verify
             XCTAssertEqual(result, apiKey)
-        }
-        catch let error {
+        } catch {
             XCTFail(error.localizedDescription)
         }
     }
-
 
     func test__Validate__Show_ReCaptcha() {
         let recaptcha = ReCaptcha(
@@ -73,13 +69,11 @@ class ReCaptcha_Rx__Tests: XCTestCase {
                 .single()
 
             XCTFail("should have thrown exception")
-        }
-        catch let error {
+        } catch {
             XCTAssertEqual(String(describing: error), RxError.timeout.debugDescription)
             XCTAssertTrue(didConfigureWebView)
         }
     }
-
 
     func test__Validate__Error() {
         let recaptcha = ReCaptcha(manager: ReCaptchaWebViewManager(messageBody: "\"foobar\"", apiKey: apiKey))
@@ -94,8 +88,7 @@ class ReCaptcha_Rx__Tests: XCTestCase {
                 .single()
 
             XCTFail("should have thrown exception")
-        }
-        catch let error {
+        } catch {
             XCTAssertEqual(error as? ReCaptchaError, .wrongMessageFormat)
         }
     }
@@ -111,8 +104,7 @@ class ReCaptcha_Rx__Tests: XCTestCase {
                 try recaptcha.rx.didFinishLoading
                     .toBlocking()
                     .first()
-            }
-            catch let error {
+            } catch {
                 XCTFail(error.localizedDescription)
             }
         }
@@ -134,8 +126,7 @@ class ReCaptcha_Rx__Tests: XCTestCase {
 
             XCTAssertEqual(result.count, 2)
             reset.dispose()
-        }
-        catch let error {
+        } catch {
             XCTFail(error.localizedDescription)
         }
     }
@@ -149,8 +140,7 @@ class ReCaptcha_Rx__Tests: XCTestCase {
                 .first()
 
             XCTFail("should have timed out")
-        }
-        catch let error {
+        } catch {
             XCTAssertEqual(String(describing: error), RxError.timeout.debugDescription)
         }
 
@@ -160,8 +150,7 @@ class ReCaptcha_Rx__Tests: XCTestCase {
             try recaptcha.rx.didFinishLoading
                 .toBlocking()
                 .first()
-        }
-        catch let error {
+        } catch {
             XCTFail(error.localizedDescription)
         }
     }
@@ -218,8 +207,7 @@ class ReCaptcha_Rx__Tests: XCTestCase {
             _ = try recaptcha.rx.validate(on: presenterView, resetOnError: false)
                 .toBlocking()
                 .single()
-        }
-        catch let error {
+        } catch {
             XCTAssertEqual(error as? ReCaptchaError, .wrongMessageFormat)
 
             // Resets after failure
@@ -234,8 +222,7 @@ class ReCaptcha_Rx__Tests: XCTestCase {
                 .single()
 
             XCTAssertEqual(result, apiKey)
-        }
-        catch let error {
+        } catch {
             XCTFail(error.localizedDescription)
         }
     }
@@ -257,8 +244,7 @@ class ReCaptcha_Rx__Tests: XCTestCase {
                 .single()
 
             XCTAssertEqual(result, apiKey)
-        }
-        catch let error {
+        } catch {
             XCTFail(error.localizedDescription)
         }
     }
