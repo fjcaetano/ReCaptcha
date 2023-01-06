@@ -128,14 +128,23 @@ internal class ReCaptchaWebViewManager {
 
      Starts the challenge validation
      */
-     func validate(on view: UIView) {
+     func validate(on view: UIView, animated: Bool = false) {
 #if DEBUG
         guard !shouldSkipForTests else {
             completion?(.token(""))
             return
         }
 #endif
+        if animated {
+            webView.alpha = 0
+
+            UIView.animate(withDuration: 0.2, delay: .zero, options: [.transitionCrossDissolve]) {
+                self.webView.alpha = 1
+            }
+        }
         webView.isHidden = false
+        webView.frame = view.frame
+
         view.addSubview(webView)
 
         executeJS(command: .execute)
