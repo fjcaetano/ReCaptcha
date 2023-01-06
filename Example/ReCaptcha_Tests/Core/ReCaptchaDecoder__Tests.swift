@@ -11,7 +11,6 @@
 import WebKit
 import XCTest
 
-
 class ReCaptchaDecoder__Tests: XCTestCase {
     fileprivate typealias Result = ReCaptchaDecoder.Result
 
@@ -31,7 +30,6 @@ class ReCaptchaDecoder__Tests: XCTestCase {
         super.tearDown()
     }
 
-
     func test__Send_Error() {
         let exp = expectation(description: "send error message")
         var result: Result?
@@ -41,19 +39,16 @@ class ReCaptchaDecoder__Tests: XCTestCase {
             exp.fulfill()
         }
 
-
         // Send
         let err = ReCaptchaError.random()
         decoder.send(error: err)
 
         waitForExpectations(timeout: 1)
 
-
         // Check
         XCTAssertNotNil(result)
         XCTAssertEqual(result, .error(err))
     }
-
 
     func test__Decode__Wrong_Format() {
         let exp = expectation(description: "send unsupported message")
@@ -64,18 +59,15 @@ class ReCaptchaDecoder__Tests: XCTestCase {
             exp.fulfill()
         }
 
-
         // Send
         let message = MockMessage(message: "foobar")
         decoder.send(message: message)
 
         waitForExpectations(timeout: 1)
 
-
         // Check
         XCTAssertEqual(result, .error(ReCaptchaError.wrongMessageFormat))
     }
-
 
     func test__Decode__Unexpected_Action() {
         let exp = expectation(description: "send message with unexpected action")
@@ -86,18 +78,15 @@ class ReCaptchaDecoder__Tests: XCTestCase {
             exp.fulfill()
         }
 
-
         // Send
         let message = MockMessage(message: ["action": "bar"])
         decoder.send(message: message)
 
         waitForExpectations(timeout: 1)
 
-
         // Check
         XCTAssertEqual(result, .error(ReCaptchaError.wrongMessageFormat))
     }
-
 
     func test__Decode__ShowReCaptcha() {
         let exp = expectation(description: "send showReCaptcha message")
@@ -108,18 +97,15 @@ class ReCaptchaDecoder__Tests: XCTestCase {
             exp.fulfill()
         }
 
-
         // Send
         let message = MockMessage(message: ["action": "showReCaptcha"])
         decoder.send(message: message)
 
         waitForExpectations(timeout: 1)
 
-
         // Check
         XCTAssertEqual(result, .showReCaptcha)
     }
-
 
     func test__Decode__Token() {
         let exp = expectation(description: "send token message")
@@ -130,7 +116,6 @@ class ReCaptchaDecoder__Tests: XCTestCase {
             exp.fulfill()
         }
 
-
         // Send
         let token = String(arc4random())
         let message = MockMessage(message: ["token": token])
@@ -138,11 +123,9 @@ class ReCaptchaDecoder__Tests: XCTestCase {
 
         waitForExpectations(timeout: 1)
 
-
         // Check
         XCTAssertEqual(result, .token(token))
     }
-
 
     func test__Decode__DidLoad() {
         let exp = expectation(description: "send did load message")
@@ -153,13 +136,11 @@ class ReCaptchaDecoder__Tests: XCTestCase {
             exp.fulfill()
         }
 
-
         // Send
         let message = MockMessage(message: ["action": "didLoad"])
         decoder.send(message: message)
 
         waitForExpectations(timeout: 1)
-
 
         // Check
         XCTAssertEqual(result, .didLoad)

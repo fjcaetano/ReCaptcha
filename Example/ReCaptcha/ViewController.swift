@@ -11,9 +11,8 @@ import RxCocoa
 import RxSwift
 import UIKit
 
-
 class ViewController: UIViewController {
-    private struct Constants {
+    private enum Constants {
         static let webViewTag = 123
         static let testLabelTag = 321
     }
@@ -24,11 +23,11 @@ class ViewController: UIViewController {
     private var locale: Locale?
     private var endpoint = ReCaptcha.Endpoint.default
 
-    @IBOutlet private weak var label: UILabel!
-    @IBOutlet private weak var spinner: UIActivityIndicatorView!
-    @IBOutlet private weak var localeSegmentedControl: UISegmentedControl!
-    @IBOutlet private weak var endpointSegmentedControl: UISegmentedControl!
-    @IBOutlet private weak var visibleChallengeSwitch: UISwitch!
+    @IBOutlet private var label: UILabel!
+    @IBOutlet private var spinner: UIActivityIndicatorView!
+    @IBOutlet private var localeSegmentedControl: UISegmentedControl!
+    @IBOutlet private var endpointSegmentedControl: UISegmentedControl!
+    @IBOutlet private var visibleChallengeSwitch: UISwitch!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +66,7 @@ class ViewController: UIViewController {
 
         let validate = recaptcha.rx.validate(on: view, resetOnError: false)
             .catch { error in
-                return .just("Error \(error)")
+                .just("Error \(error)")
             }
             .debug("validate")
             .share()

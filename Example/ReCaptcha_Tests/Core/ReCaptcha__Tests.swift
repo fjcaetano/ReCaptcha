@@ -11,10 +11,9 @@ import AppSwizzle
 import RxSwift
 import XCTest
 
-
 class ReCaptcha__Tests: XCTestCase {
-    fileprivate struct Constants {
-        struct InfoDictKeys {
+    fileprivate enum Constants {
+        enum InfoDictKeys {
             static let APIKey = "ReCaptchaKey"
             static let Domain = "ReCaptchaDomain"
         }
@@ -123,10 +122,9 @@ class ReCaptcha__Tests: XCTestCase {
     }
 }
 
-
-private extension Bundle {
-    @objc func failHTMLLoad(_ resource: String, type: String) -> String? {
-        guard resource == "recaptcha" && type == "html" else {
+extension Bundle {
+    @objc fileprivate func failHTMLLoad(_ resource: String, type: String) -> String? {
+        guard resource == "recaptcha", type == "html" else {
             return failHTMLLoad(resource, type: type)
         }
 

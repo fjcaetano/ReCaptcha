@@ -27,7 +27,7 @@ extension DispatchQueue {
          - deadline: The timespan to delay a closure execution
          - context: The context in which the throttle should be executed
          - action: The closure to be executed
-     
+
      Delays a closure execution and ensures no other executions are made during deadline for that context
      */
     func throttle(deadline: DispatchTime, context: AnyHashable = nilContext, action: @escaping () -> Void) {
@@ -66,12 +66,12 @@ extension DispatchQueue {
     }
 
     /**
-     - parameters:
-         - token: The control token for each dispatched action
-         - action: The closure to be executed
+      - parameters:
+          - token: The control token for each dispatched action
+          - action: The closure to be executed
 
-     Dispatch the action only once for each given token
-    */
+      Dispatch the action only once for each given token
+     */
     static func once(token: AnyHashable, action: () -> Void) {
         guard !onceTokenStorage.contains(token) else { return }
 

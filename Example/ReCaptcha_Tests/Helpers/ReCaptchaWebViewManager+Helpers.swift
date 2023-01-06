@@ -11,11 +11,9 @@ import Foundation
 import WebKit
 
 extension ReCaptchaWebViewManager {
-    private static let unformattedHTML: String! = {
-        Bundle(for: ReCaptchaWebViewManager__Tests.self)
-            .path(forResource: "mock", ofType: "html")
-            .flatMap { try? String(contentsOfFile: $0) }
-    }()
+    private static let unformattedHTML: String! = Bundle(for: ReCaptchaWebViewManager__Tests.self)
+        .path(forResource: "mock", ofType: "html")
+        .flatMap { try? String(contentsOfFile: $0) }
 
     convenience init(
         messageBody: String = "",
@@ -42,7 +40,7 @@ extension ReCaptchaWebViewManager {
     }
 
     func validate(on view: UIView, resetOnError: Bool = true, completion: @escaping (ReCaptchaResult) -> Void) {
-        self.shouldResetOnError = resetOnError
+        shouldResetOnError = resetOnError
         self.completion = completion
 
         validate(on: view)
