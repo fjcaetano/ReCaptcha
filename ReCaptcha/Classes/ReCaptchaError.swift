@@ -37,7 +37,7 @@ public enum ReCaptchaError: Error, CustomStringConvertible {
     /// A human-readable description for each error
     public var description: String {
         switch self {
-        case .unexpected(let error):
+        case let .unexpected(error):
             return "Unexpected Error: \(error)"
 
         case .htmlLoadError:

@@ -28,10 +28,10 @@ public enum ReCaptchaResult {
      */
     public func dematerialize() throws -> String {
         switch self {
-        case .token(let token):
+        case let .token(token):
             return token
 
-        case .error(let error):
+        case let .error(error):
             throw error
         }
     }

@@ -12,17 +12,18 @@ import WebKit
 
 class MockMessage: WKScriptMessage {
     override var body: Any {
-        return storedBody
+        storedBody
     }
 
     fileprivate let storedBody: Any
 
     init(message: Any) {
-        storedBody = message
+        self.storedBody = message
     }
 }
 
 // MARK: - Decoder Helpers
+
 extension ReCaptchaDecoder {
     func send(message: MockMessage) {
         userContentController(WKUserContentController(), didReceive: message)
@@ -30,9 +31,10 @@ extension ReCaptchaDecoder {
 }
 
 // MARK: - Result Helpers
+
 extension ReCaptchaDecoder.Result: Equatable {
     var error: ReCaptchaError? {
-        guard case .error(let error) = self else { return nil }
+        guard case let .error(error) = self else { return nil }
         return error
     }
 
@@ -42,10 +44,10 @@ extension ReCaptchaDecoder.Result: Equatable {
              (.didLoad, .didLoad):
             return true
 
-        case (.token(let lht), .token(let rht)):
+        case let (.token(lht), .token(rht)):
             return lht == rht
 
-        case (.error(let lhe), .error(let rhe)):
+        case let (.error(lhe), .error(rhe)):
             return lhe == rhe
 
         default:

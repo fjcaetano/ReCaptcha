@@ -9,12 +9,11 @@
 import Foundation
 import WebKit
 
-
 /**
-*/
+ */
 public class ReCaptcha {
-    fileprivate struct Constants {
-        struct InfoDictKeys {
+    fileprivate enum Constants {
+        enum InfoDictKeys {
             static let APIKey = "ReCaptchaKey"
             static let Domain = "ReCaptchaDomain"
         }
@@ -60,7 +59,7 @@ public class ReCaptcha {
             guard let cocoapodsBundle = bundle
                 .path(forResource: "ReCaptcha", ofType: "bundle")
                 .flatMap(Bundle.init(path:)) else {
-                    return bundle
+                return bundle
             }
 
             return cocoapodsBundle
@@ -110,7 +109,7 @@ public class ReCaptcha {
          - baseURL: The base URL sent to the ReCaptcha init
          - endpoint: The ReCaptcha endpoint to be used.
          - locale: A locale value to translate ReCaptcha into a different language
-     
+
      Initializes a ReCaptcha object
 
      Both `apiKey` and `baseURL` may be nil, in which case the lib will look for entries of `ReCaptchaKey` and
@@ -147,110 +146,113 @@ public class ReCaptcha {
     }
 
     /**
-     - parameter manager: A ReCaptchaWebViewManager instance.
+      - parameter manager: A ReCaptchaWebViewManager instance.
 
-      Initializes ReCaptcha with the given manager
-    */
+       Initializes ReCaptcha with the given manager
+     */
     init(manager: ReCaptchaWebViewManager) {
         self.manager = manager
     }
 
     /**
-     - parameters:
-         - view: The view that should present the webview.
-         - resetOnError: If ReCaptcha should be reset if it errors. Defaults to `true`.
-         - completion: A closure that receives a ReCaptchaResult which may contain a valid result token.
+      - parameters:
+          - view: The view that should present the webview.
+          - resetOnError: If ReCaptcha should be reset if it errors. Defaults to `true`.
+          - completion: A closure that receives a ReCaptchaResult which may contain a valid result token.
 
-     Starts the challenge validation
-    */
-    public func validate(on view: UIView, resetOnError: Bool = true, completion: @escaping (ReCaptchaResult) -> Void) {
+      Starts the challenge validation
+     */
+    public func validate(on view: UIView, animated: Bool = false, resetOnError: Bool = true, completion: @escaping (ReCaptchaResult) -> Void) {
         manager.shouldResetOnError = resetOnError
         manager.completion = completion
 
-        manager.validate(on: view)
+        manager.validate(on: view, animated: animated)
     }
-
 
     /// Stops the execution of the webview
     public func stop() {
         manager.stop()
     }
 
+    /// Remove webview from superview
+    public func destroy() {
+        manager.destroy()
+    }
 
     /**
-     - parameter configure: A closure that receives an instance of `WKWebView` for configuration.
+      - parameter configure: A closure that receives an instance of `WKWebView` for configuration.
 
-     Provides a closure to configure the webview for presentation if necessary.
+      Provides a closure to configure the webview for presentation if necessary.
 
-     If presentation is required, the webview will already be a subview of `presenterView` if one is provided. Otherwise
-     it might need to be added in a view currently visible.
-    */
+      If presentation is required, the webview will already be a subview of `presenterView` if one is provided. Otherwise
+      it might need to be added in a view currently visible.
+     */
     public func configureWebView(_ configure: @escaping (WKWebView) -> Void) {
         manager.configureWebView = configure
     }
 
     /**
-     Resets the ReCaptcha.
+      Resets the ReCaptcha.
 
-     The reset is achieved by calling `grecaptcha.reset()` on the JS API.
-    */
+      The reset is achieved by calling `grecaptcha.reset()` on the JS API.
+     */
     public func reset() {
         manager.reset()
     }
 
     /**
-     - parameter closure: A closure that is called when the JS bundle finishes loading.
+      - parameter closure: A closure that is called when the JS bundle finishes loading.
 
-     Provides a closure to be notified when the webview finishes loading JS resources.
+      Provides a closure to be notified when the webview finishes loading JS resources.
 
-     The closure may be called multiple times since the resources may also be loaded multiple times
-     in case of error or reset. This may also be immediately called if the resources have already
-     finished loading when you set the closure.
-    */
+      The closure may be called multiple times since the resources may also be loaded multiple times
+      in case of error or reset. This may also be immediately called if the resources have already
+      finished loading when you set the closure.
+     */
     public func didFinishLoading(_ closure: (() -> Void)?) {
         manager.onDidFinishLoading = closure
     }
 
     // MARK: - Development
 
-#if DEBUG
+    #if DEBUG
     /// Forces the challenge widget to be explicitly displayed.
     public var forceVisibleChallenge: Bool {
-        get { return manager.forceVisibleChallenge }
+        get { manager.forceVisibleChallenge }
         set { manager.forceVisibleChallenge = newValue }
     }
 
     /**
-     Allows validation stubbing for testing
+      Allows validation stubbing for testing
 
-     When this property is set to `true`, every call to `validate()` will immediately be resolved with `.token("")`.
-     
-     Use only when testing your application.
-    */
+      When this property is set to `true`, every call to `validate()` will immediately be resolved with `.token("")`.
+
+      Use only when testing your application.
+     */
     public var shouldSkipForTests: Bool {
-        get { return manager.shouldSkipForTests }
+        get { manager.shouldSkipForTests }
         set { manager.shouldSkipForTests = newValue }
     }
-#endif
+    #endif
 }
 
 // MARK: - Private Methods
 
-private extension ReCaptcha.Config {
+extension ReCaptcha.Config {
     /**
      - parameter url: The URL to be fixed
      - returns: An URL with scheme
 
      If the given URL has no scheme, prepends `http://` to it and return the fixed URL.
      */
-    static func fixSchemeIfNeeded(for url: URL) -> URL {
+    fileprivate static func fixSchemeIfNeeded(for url: URL) -> URL {
         guard url.scheme?.isEmpty != false else {
             return url
         }
 
-#if DEBUG
+        #if DEBUG
         print("⚠️ WARNING! Protocol not found for ReCaptcha domain (\(url))! You should add http:// or https:// to it!")
-#endif
+        #endif
 
         if let fixedURL = URL(string: "http://" + url.absoluteString) {
             return fixedURL

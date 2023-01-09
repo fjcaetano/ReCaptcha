@@ -9,7 +9,6 @@
 import Foundation
 import WebKit
 
-
 /** Handles comunications with the webview containing the ReCaptcha challenge.
  */
 internal class ReCaptchaWebViewManager {
@@ -18,13 +17,13 @@ internal class ReCaptchaWebViewManager {
         case reset = "reset();"
     }
 
-    fileprivate struct Constants {
+    fileprivate enum Constants {
         static let ExecuteJSCommand = "execute();"
         static let ResetCommand = "reset();"
         static let BotUserAgent = "Googlebot/2.1"
     }
 
-#if DEBUG
+    #if DEBUG
     /// Forces the challenge to be explicitly displayed.
     var forceVisibleChallenge = false {
         didSet {
@@ -39,7 +38,7 @@ internal class ReCaptchaWebViewManager {
 
     /// Allows validation stubbing for testing
     public var shouldSkipForTests = false
-#endif
+    #endif
 
     /// Sends the result message
     var completion: ((ReCaptchaResult) -> Void)?
@@ -63,10 +62,10 @@ internal class ReCaptchaWebViewManager {
     var shouldResetOnError = true
 
     /// The JS message recoder
-    fileprivate var decoder: ReCaptchaDecoder!
+    private var decoder: ReCaptchaDecoder!
 
     /// Indicates if the script has already been loaded by the `webView`
-    fileprivate var didFinishLoading = false {
+    private var didFinishLoading = false {
         didSet {
             if didFinishLoading {
                 onDidFinishLoading?()
@@ -75,10 +74,10 @@ internal class ReCaptchaWebViewManager {
     }
 
     /// The observer for `.UIWindowDidBecomeVisible`
-    fileprivate var observer: NSObjectProtocol?
+    private var observer: NSObjectProtocol?
 
     /// The endpoint url being used
-    fileprivate var endpoint: String
+    private var endpoint: String
 
     /// The webview that executes JS code
     lazy var webView: WKWebView = {
@@ -95,10 +94,10 @@ internal class ReCaptchaWebViewManager {
 
     /**
      - parameters:
-         - html: The HTML string to be loaded onto the webview
-         - apiKey: The Google's ReCaptcha API Key
-         - baseURL: The URL configured with the API Key
-         - endpoint: The JS API endpoint to be loaded onto the HTML file.
+     - html: The HTML string to be loaded onto the webview
+     - apiKey: The Google's ReCaptcha API Key
+     - baseURL: The URL configured with the API Key
+     - endpoint: The JS API endpoint to be loaded onto the HTML file.
      */
     init(html: String, apiKey: String, baseURL: URL, endpoint: String) {
         self.endpoint = endpoint
@@ -110,9 +109,8 @@ internal class ReCaptchaWebViewManager {
 
         if let window = UIApplication.shared.keyWindow {
             setupWebview(on: window, html: formattedHTML, url: baseURL)
-        }
-        else {
-            observer = NotificationCenter.default.addObserver(
+        } else {
+            self.observer = NotificationCenter.default.addObserver(
                 forName: UIWindow.didBecomeVisibleNotification,
                 object: nil,
                 queue: nil
@@ -128,23 +126,35 @@ internal class ReCaptchaWebViewManager {
 
      Starts the challenge validation
      */
-     func validate(on view: UIView) {
-#if DEBUG
+    func validate(on view: UIView, animated: Bool = false) {
+        #if DEBUG
         guard !shouldSkipForTests else {
             completion?(.token(""))
             return
         }
-#endif
+        #endif
+        if animated {
+            webView.alpha = 0
+
+            UIView.animate(withDuration: 0.2, delay: .zero, options: [.transitionCrossDissolve]) {
+                self.webView.alpha = 1
+            }
+        }
         webView.isHidden = false
+        webView.frame = view.bounds
+
         view.addSubview(webView)
 
         executeJS(command: .execute)
     }
 
-
-    /// Stops the execution of the webview
     func stop() {
         webView.stopLoading()
+    }
+
+    func destroy() {
+        stop()
+        webView.removeFromSuperview()
     }
 
     /**
@@ -163,13 +173,13 @@ internal class ReCaptchaWebViewManager {
 
 /** Private methods for ReCaptchaWebViewManager
  */
-fileprivate extension ReCaptchaWebViewManager {
+extension ReCaptchaWebViewManager {
     /**
      - returns: An instance of `WKWebViewConfiguration`
 
      Creates a `WKWebViewConfiguration` to be added to the `WKWebView` instance.
      */
-    func buildConfiguration() -> WKWebViewConfiguration {
+    private func buildConfiguration() -> WKWebViewConfiguration {
         let controller = WKUserContentController()
         controller.add(decoder, name: "recaptcha")
 
@@ -184,23 +194,22 @@ fileprivate extension ReCaptchaWebViewManager {
 
      Handles the decoder results received from the webview
      */
-    func handle(result: ReCaptchaDecoder.Result) {
+    private func handle(result: ReCaptchaDecoder.Result) {
         switch result {
-        case .token(let token):
+        case let .token(token):
             completion?(.token(token))
 
-        case .error(let error):
+        case let .error(error):
             if shouldResetOnError, let view = webView.superview {
                 reset()
                 validate(on: view)
-            }
-            else {
+            } else {
                 completion?(.error(error))
             }
 
         case .showReCaptcha:
             DispatchQueue.once(token: configureWebViewDispatchToken) { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.configureWebView?(self.webView)
             }
 
@@ -210,22 +219,22 @@ fileprivate extension ReCaptchaWebViewManager {
                 executeJS(command: .execute)
             }
 
-        case .log(let message):
+        case let .log(message):
             #if DEBUG
-                print("[JS LOG]:", message)
+            print("[JS LOG]:", message)
             #endif
         }
     }
 
     /**
      - parameters:
-         - window: The window in which to add the webview
-         - html: The embedded HTML file
-         - url: The base URL given to the webview
+     - window: The window in which to add the webview
+     - html: The embedded HTML file
+     - url: The base URL given to the webview
 
      Adds the webview to a valid UIView and loads the initial HTML file
      */
-    func setupWebview(on window: UIWindow, html: String, url: URL) {
+    private func setupWebview(on window: UIWindow, html: String, url: URL) {
         window.addSubview(webView)
         webView.loadHTMLString(html, baseURL: url)
 
@@ -236,12 +245,12 @@ fileprivate extension ReCaptchaWebViewManager {
 
     /**
      - parameters:
-         - command: The JavaScript command to be executed
+     - command: The JavaScript command to be executed
 
      Executes the JS command that loads the ReCaptcha challenge. This method has no effect if the webview hasn't
      finished loading.
      */
-    func executeJS(command: JSCommand) {
+    private func executeJS(command: JSCommand) {
         guard didFinishLoading else {
             // Hasn't finished loading all the resources
             return

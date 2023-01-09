@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 extension String {
     /**
      - parameters:
@@ -26,8 +25,8 @@ extension String {
      */
     init(format: String, arguments: [String: CustomStringConvertible]) {
         self.init(describing: arguments.reduce(format)
-        { (format: String, args: (key: String, value: CustomStringConvertible)) -> String in
-            format.replacingOccurrences(of: "${\(args.key)}", with: args.value.description)
-        })
+            { (format: String, args: (key: String, value: CustomStringConvertible)) -> String in
+                format.replacingOccurrences(of: "${\(args.key)}", with: args.value.description)
+            })
     }
 }

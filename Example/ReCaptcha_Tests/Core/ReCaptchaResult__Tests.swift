@@ -9,7 +9,6 @@
 @testable import ReCaptcha
 import XCTest
 
-
 class ReCaptchaResult__Tests: XCTestCase {
     func test__Get_Token() {
         let token = UUID().uuidString
@@ -18,8 +17,7 @@ class ReCaptchaResult__Tests: XCTestCase {
         do {
             let value = try result.dematerialize()
             XCTAssertEqual(value, token)
-        }
-        catch let err {
+        } catch let err {
             XCTFail(err.localizedDescription)
         }
     }
@@ -31,8 +29,7 @@ class ReCaptchaResult__Tests: XCTestCase {
         do {
             _ = try result.dematerialize()
             XCTFail("Shouldn't have completed")
-        }
-        catch let err {
+        } catch let err {
             XCTAssertEqual(err as? ReCaptchaError, error)
         }
     }

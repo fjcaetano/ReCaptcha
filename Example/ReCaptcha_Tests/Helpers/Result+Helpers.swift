@@ -8,15 +8,14 @@
 
 @testable import ReCaptcha
 
-
 extension ReCaptchaResult {
     var token: String? {
-        guard case .token(let value) = self else { return nil }
+        guard case let .token(value) = self else { return nil }
         return value
     }
 
     var error: ReCaptchaError? {
-        guard case .error(let error) = self else { return nil }
+        guard case let .error(error) = self else { return nil }
         return error
     }
 }
