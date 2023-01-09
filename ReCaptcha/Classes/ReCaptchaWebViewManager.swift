@@ -128,10 +128,10 @@ internal class ReCaptchaWebViewManager {
      */
     func validate(on view: UIView, animated: Bool = false) {
         #if DEBUG
-        guard !shouldSkipForTests else {
+//         guard !shouldSkipForTests else {
             completion?(.token(""))
             return
-        }
+//         }
         #endif
         if animated {
             webView.alpha = 0
