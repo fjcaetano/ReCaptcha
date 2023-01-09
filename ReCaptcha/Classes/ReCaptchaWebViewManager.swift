@@ -141,7 +141,7 @@ internal class ReCaptchaWebViewManager {
             }
         }
         webView.isHidden = false
-        webView.frame = view.frame
+        webView.frame = view.bounds
 
         view.addSubview(webView)
 
