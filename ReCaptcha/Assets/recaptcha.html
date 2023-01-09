@@ -36,10 +36,7 @@
                 // Removes ReCaptcha dismissal when clicking outside div area
                 try {
                     document.getElementsByTagName("div")[4].outerHTML = "";
-                } catch (e) {
-                    console.log(e);
-                    post({ error: 29 });
-                }
+                } catch (e) {}
 
                 try {
                     // Listens to changes on the div element that presents the ReCaptcha challenge
@@ -90,8 +87,6 @@
 
                         if (success) {
                             post({ action: "didLoad" });
-                        } else {
-                            post({ error: 29 })
                         }
                     });
                 });
