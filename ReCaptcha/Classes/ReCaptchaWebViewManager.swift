@@ -94,10 +94,10 @@ internal class ReCaptchaWebViewManager {
 
     /**
      - parameters:
-         - html: The HTML string to be loaded onto the webview
-         - apiKey: The Google's ReCaptcha API Key
-         - baseURL: The URL configured with the API Key
-         - endpoint: The JS API endpoint to be loaded onto the HTML file.
+     - html: The HTML string to be loaded onto the webview
+     - apiKey: The Google's ReCaptcha API Key
+     - baseURL: The URL configured with the API Key
+     - endpoint: The JS API endpoint to be loaded onto the HTML file.
      */
     init(html: String, apiKey: String, baseURL: URL, endpoint: String) {
         self.endpoint = endpoint
@@ -128,10 +128,10 @@ internal class ReCaptchaWebViewManager {
      */
     func validate(on view: UIView, animated: Bool = false) {
         #if DEBUG
-//         guard !shouldSkipForTests else {
+        guard !shouldSkipForTests else {
             completion?(.token(""))
             return
-//         }
+        }
         #endif
         if animated {
             webView.alpha = 0
@@ -228,9 +228,9 @@ extension ReCaptchaWebViewManager {
 
     /**
      - parameters:
-         - window: The window in which to add the webview
-         - html: The embedded HTML file
-         - url: The base URL given to the webview
+     - window: The window in which to add the webview
+     - html: The embedded HTML file
+     - url: The base URL given to the webview
 
      Adds the webview to a valid UIView and loads the initial HTML file
      */
@@ -245,7 +245,7 @@ extension ReCaptchaWebViewManager {
 
     /**
      - parameters:
-         - command: The JavaScript command to be executed
+     - command: The JavaScript command to be executed
 
      Executes the JS command that loads the ReCaptcha challenge. This method has no effect if the webview hasn't
      finished loading.
