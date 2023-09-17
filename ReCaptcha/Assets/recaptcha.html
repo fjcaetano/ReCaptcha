@@ -94,8 +94,14 @@
         });
       };
     </script>
+    <style>
+      .g-recaptcha div {
+        width: 100% !important;
+        height: 100% !important;
+      }
+    </style>
   </head>
-  <body id="body">
+  <body id="body" class="g-recaptcha">
     <span id="submit" style="visibility: hidden;"></span>
     <script src="${endpoint}" async defer></script>
   </body>
