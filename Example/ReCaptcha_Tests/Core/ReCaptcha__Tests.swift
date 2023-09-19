@@ -8,9 +8,8 @@
 
 import AppSwizzle
 @testable import ReCaptcha
-import RxSwift
-import XCTest
 
+import XCTest
 
 class ReCaptcha__Tests: XCTestCase {
     fileprivate struct Constants {
